@@ -5,9 +5,9 @@ Project-War-Game
 ---
 
 ## 📬 Contact Us
-- **김태완**: ncs0801@naver.com / 010-5751-0528 / [GitHub](https://github.com/janmki08)
+- **김태완**: ncs0801@naver.com / 010-5751-0528 / [GitHub](https://github.com/Taewan2Da)
 - **박광호**: pkh2956@naver.com / 010-6237-2956 / [GitHub](https://github.com/doncici77)
-- **박상훈**: bsmp4120@gmail.com / 010-4775-7585 / [GitHub](https://github.com/Taewan2Da)
+- **박상훈**: bsmp4120@gmail.com / 010-4775-7585 / [GitHub](https://github.com/janmki08)
 
 ---
 
