@@ -97,3 +97,7 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# 모든 하위 디렉토리의 Resource 폴더 무시
+**/Resource/
+**/[Dd]ownload[Aa]ssets/
