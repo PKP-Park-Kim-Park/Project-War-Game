@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Healthbar : MonoBehaviour
+public class Hatchery : MonoBehaviour
 {
     public int maxHealth = 500;
     private int currentHealth;
@@ -12,7 +12,6 @@ public class Healthbar : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = 60;
         currentHealth = maxHealth;
     }
 
