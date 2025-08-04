@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class ButtonListener : MonoBehaviour
 {
@@ -6,12 +6,12 @@ public class ButtonListener : MonoBehaviour
     {
         if (canvasToActivate != null)
         {
-            canvasToActivate.SetActive(true); // Äµ¹ö½º È°¼ºÈ­
-            Debug.Log($"{canvasToActivate.name} Äµ¹ö½º¸¦ È°¼ºÈ­Çß½À´Ï´Ù.");
+            canvasToActivate.SetActive(true); // ìº”ë²„ìŠ¤ í™œì„±í™”
+            Debug.Log($"{canvasToActivate.name} ìº”ë²„ìŠ¤ë¥¼ í™œì„±í™”í–ˆìŠµë‹ˆë‹¤.");
         }
         else
         {
-            Debug.LogWarning("ActivateCanvas ÇÔ¼ö¿¡ ÇÒ´çµÈ Äµ¹ö½º°¡ ¾ø½À´Ï´Ù!");
+            Debug.LogWarning("ActivateCanvas í•¨ìˆ˜ì— í• ë‹¹ëœ ìº”ë²„ìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤!");
         }
     }
 
@@ -19,12 +19,12 @@ public class ButtonListener : MonoBehaviour
     {
         if (canvasToDeactivate != null)
         {
-            canvasToDeactivate.SetActive(false); // Äµ¹ö½º ºñÈ°¼ºÈ­
-            Debug.Log($"{canvasToDeactivate.name} Äµ¹ö½º¸¦ ºñÈ°¼ºÈ­Çß½À´Ï´Ù.");
+            canvasToDeactivate.SetActive(false); // ìº”ë²„ìŠ¤ ë¹„í™œì„±í™”
+            Debug.Log($"{canvasToDeactivate.name} ìº”ë²„ìŠ¤ë¥¼ ë¹„í™œì„±í™”í–ˆìŠµë‹ˆë‹¤.");
         }
         else
         {
-            Debug.LogWarning("DeactivateCanvas ÇÔ¼ö¿¡ ÇÒ´çµÈ Äµ¹ö½º°¡ ¾ø½À´Ï´Ù!");
+            Debug.LogWarning("DeactivateCanvas í•¨ìˆ˜ì— í• ë‹¹ëœ ìº”ë²„ìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤!");
         }
     }
 }
