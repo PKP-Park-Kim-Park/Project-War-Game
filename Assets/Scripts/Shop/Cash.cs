@@ -6,7 +6,7 @@ public class Cash : MonoBehaviour
     private int gold = 10000; // 기본값 10000
     public Text goldText;  // UI Text 오브젝트 연결용
 
-    void Start()
+    private void Start()
     {
         UpdateGoldText();
     }
@@ -17,7 +17,8 @@ public class Cash : MonoBehaviour
         UpdateGoldText();
     }
 
-    public void SpendGold(int amount)
+    // 골드쓰는건 상점에서만 처리하기 때문에 private 써도 될 것 같음
+    private void SpendGold(int amount)
     {
         if (gold >= amount)
         {
@@ -26,24 +27,14 @@ public class Cash : MonoBehaviour
         }
     }
 
-    void UpdateGoldText()
+    private void UpdateGoldText()
     {
         goldText.text = gold.ToString() + " Gold";
     }
 
-    // 유닛 버튼별로 호출될 함수 3개
-    public void OnUnitButton1()  // 15골드 차감
+    // 하나의 함수로 여러 버튼 처리
+    public void OnUnitButton(int cost)
     {
-        SpendGold(15);
-    }
-
-    public void OnUnitButton2()  // 30골드 차감
-    {
-        SpendGold(30);
-    }
-
-    public void OnUnitButton3()  // 100골드 차감
-    {
-        SpendGold(100);
+        SpendGold(cost);
     }
 }
