@@ -3,11 +3,11 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
     [Header("Spawning Settings")]
-    [Tooltip("생성할 유닛의 프리팹")]
+    [Tooltip("생성할 유닛 프리팹")]
     public GameObject unitPrefab;
 
-    [Tooltip("유닛이 생성될 영역의 크기")]
-    public Transform spawnPosition;
+    [Tooltip("유닛 생성 영역")]
+    public Transform spawnTransform;
 
     private void Update()
     {
@@ -27,15 +27,15 @@ public class SpawnPoint : MonoBehaviour
             return;
         }
 
-        if (spawnPosition == null)
+        if (spawnTransform == null)
         {
             Debug.LogError("Spawn Position이 SpawnPoint에 할당되지 않음...", this.gameObject);
             return;
         }
 
         // 유닛 생성
-        Instantiate(unitPrefab, spawnPosition.position, Quaternion.identity);
-        Debug.Log($"유닛이 {spawnPosition.position}에 생성", this.gameObject);
+        Instantiate(unitPrefab, spawnTransform.position, Quaternion.identity);
+        Debug.Log($"유닛이 {spawnTransform.position}에 생성", this.gameObject);
     }
 
     /// <summary>
@@ -43,9 +43,9 @@ public class SpawnPoint : MonoBehaviour
     /// </summary>
     private void OnDrawGizmosSelected()
     {
-        if (spawnPosition == null) return;
+        if (spawnTransform == null) return;
 
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(spawnPosition.position, 0.5f);
+        Gizmos.DrawSphere(spawnTransform.position, 0.5f);
     }
 }
