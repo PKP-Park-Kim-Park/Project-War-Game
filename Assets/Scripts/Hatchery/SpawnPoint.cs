@@ -18,7 +18,7 @@ public class SpawnPoint : MonoBehaviour
         }
     }
 
-    // 지정된 스폰 영역 내 무작위 위치에 유닛을 생성
+    // 스폰 영역에 유닛 생성
     public void SpawnUnit()
     {
         if (unitPrefab == null)
