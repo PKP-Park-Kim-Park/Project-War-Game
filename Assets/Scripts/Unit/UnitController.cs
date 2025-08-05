@@ -20,11 +20,28 @@ public class UnitController : MonoBehaviour
     private Animator _animator;
     private bool _isMoveCommanded = false;
     private bool _isAttacking = false;
+    private Vector3 _moveDirection;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         _currentHealth = _maxHealth;
+    }
+
+    private void Start()
+    {
+        if (_spriteRenderer.flipX)
+        {
+            _moveDirection = Vector3.left;
+            _rayShootTransform.localPosition = new Vector3(-_rayShootTransform.localPosition.x, _rayShootTransform.localPosition.y, _rayShootTransform.localPosition.z);
+            _AttackCollider.transform.localPosition = new Vector3(-_AttackCollider.transform.localPosition.x, _AttackCollider.transform.localPosition.y, _AttackCollider.transform.localPosition.z);
+        }
+        else
+        {
+            _moveDirection = Vector3.right;
+        }
     }
 
     private void Update()
@@ -32,25 +49,20 @@ public class UnitController : MonoBehaviour
         Move();
 
         CheckState();
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            TakeDamage(25);
-        }
     }
 
     private void Move()
     {
         if (_isMoveCommanded && !_isAttacking)
         {
-            transform.position += Vector3.right * _moveSpeed * Time.deltaTime;
+            transform.position += _moveDirection * _moveSpeed * Time.deltaTime;
         }
     }
 
     private void CheckState()
     {
-        RaycastHit2D hit = Physics2D.Raycast(_rayShootTransform.position, Vector3.right, _rayDistance);
-        Debug.DrawLine(_rayShootTransform.position, _rayShootTransform.position + Vector3.right * _rayDistance, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(_rayShootTransform.position, _moveDirection, _rayDistance);
+        Debug.DrawLine(_rayShootTransform.position, _rayShootTransform.position + _moveDirection * _rayDistance, Color.red);
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag(_stopTargetTag))
@@ -114,10 +126,10 @@ public class UnitController : MonoBehaviour
     {
         if (collision.CompareTag(_attackTargetTag))
         {
-            UnitController enemy = collision.GetComponent<UnitController>();
-            if (enemy != null)
+            UnitController attackTarget = collision.GetComponent<UnitController>();
+            if (attackTarget != null)
             {
-                enemy.TakeDamage(10);
+                attackTarget.TakeDamage(10);
                 Debug.Log($"{_stopTargetTag}가 {_attackTargetTag}를 공격함!");
             }
         }   
