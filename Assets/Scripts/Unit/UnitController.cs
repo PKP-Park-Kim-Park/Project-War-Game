@@ -76,7 +76,7 @@ public class UnitController : MonoBehaviour
         if (_currentHealth <= 0)
         {
             // 사망 로직 추가
-            Debug.Log("게임 오버");
+            Debug.Log("유닛 사망");
         }
 
     }
