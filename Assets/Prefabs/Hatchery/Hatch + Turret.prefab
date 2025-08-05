@@ -236,7 +236,8 @@ PrefabInstance:
       value: TurretSpot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2683418807212942508, guid: c6b055779f4055f47a5230db4d0df5b4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6b055779f4055f47a5230db4d0df5b4, type: 3}
