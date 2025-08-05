@@ -1,7 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// 터렛 스팟 건설을 관리하는 빌더 클래스입니다.
+/// 이 스크립트는 씬에 단 하나만 존재하는 매니저 오브젝트에 붙여야 합니다.
+/// (주의: 복제될 TurretSpot 프리팹 자체에 붙이면 안 됩니다.)
+/// </summary>
 public class TurretSpotBuilder : MonoBehaviour
 {
     [Header("Turret Spot Settings")]
