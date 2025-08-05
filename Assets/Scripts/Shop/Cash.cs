@@ -18,7 +18,7 @@ public class Cash : MonoBehaviour
     //경험치 테스트용
     private float expTimer = 0f;
     public float expIncreaseInterval = 1f; // 경험치 증가 간격 (초)
-    public int expIncreaseAmount = 500;   // 증가할 경험치 양
+    public int expIncreaseAmount = 0;   // 증가할 경험치 양
 
     private void Start()
     {
@@ -73,6 +73,11 @@ public class Cash : MonoBehaviour
     }
 
     public void OnUnitButton(int cost)
+    {
+        SpendGold(cost);
+    }
+
+    public void OnTurretButton(int cost)
     {
         SpendGold(cost);
     }
