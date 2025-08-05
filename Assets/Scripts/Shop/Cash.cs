@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class Cash : MonoBehaviour
 {
-    private int gold = 10000; // ±âº»°ª 10000
-    public Text goldText;  // UI Text ¿ÀºêÁ§Æ® ¿¬°á¿ë
+    private int gold = 10000; // ê¸°ë³¸ê°’ 10000
+    public Text goldText;  // UI Text ì˜¤ë¸Œì íŠ¸ ì—°ê²°ìš©
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class Cash : MonoBehaviour
         UpdateGoldText();
     }
 
-    // °ñµå¾²´Â°Ç »óÁ¡¿¡¼­¸¸ Ã³¸®ÇÏ±â ¶§¹®¿¡ private ½áµµ µÉ °Í °°À½
+    // ê³¨ë“œì“°ëŠ”ê±´ ìƒì ì—ì„œë§Œ ì²˜ë¦¬í•˜ê¸° ë•Œë¬¸ì— private ì¨ë„ ë  ê²ƒ ê°™ìŒ
     private void SpendGold(int amount)
     {
         if (gold >= amount)
@@ -32,7 +32,7 @@ public class Cash : MonoBehaviour
         goldText.text = gold.ToString() + " Gold";
     }
 
-    // ÇÏ³ªÀÇ ÇÔ¼ö·Î ¿©·¯ ¹öÆ° Ã³¸®
+    // í•˜ë‚˜ì˜ í•¨ìˆ˜ë¡œ ì—¬ëŸ¬ ë²„íŠ¼ ì²˜ë¦¬
     public void OnUnitButton(int cost)
     {
         SpendGold(cost);
