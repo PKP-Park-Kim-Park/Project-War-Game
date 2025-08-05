@@ -1,8 +1,16 @@
+ï»¿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitController : MonoBehaviour
 {
+    [Header("Unit Stats")]
     [SerializeField] private float _moveSpeed = 1.0f;
+    [SerializeField] private int _maxHealth = 100;
+    private int _currentHealth;
+
+    [Header("Unit Component")]
+    [SerializeField] private Slider _healthBar;
     private Animator _animator;
     private bool _isMoveCommanded = false;
     private bool _isAttacking = false;
@@ -10,11 +18,17 @@ public class UnitController : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _currentHealth = _maxHealth;
     }
 
     private void Update()
     {
         Move();
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            TakeDamage(25);
+        }
     }
 
     private void Move()
@@ -26,9 +40,9 @@ public class UnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// À¯´ÖÀÇ ¿òÁ÷ÀÓ »óÅÂ ÇÔ¼ö
+    /// ìœ ë‹›ì˜ ì›€ì§ì„ ìƒíƒœ í•¨ìˆ˜
     /// </summary>
-    /// <param name="isMoving">À¯´ÖÀ» ¿òÁ÷ÀÌ°Ú³ª?</param>
+    /// <param name="isMoving">ìœ ë‹›ì„ ì›€ì§ì´ê² ë‚˜?</param>
     public void SetMoveState(bool isMoving)
     {
         _animator.SetBool("IsMove", isMoving);
@@ -36,12 +50,34 @@ public class UnitController : MonoBehaviour
     }
 
     /// <summary>
-    /// À¯´ÖÀÇ °ø°İ »óÅÂ ÇÔ¼ö
+    /// ìœ ë‹›ì˜ ê³µê²© ìƒíƒœ í•¨ìˆ˜
     /// </summary>
-    /// <param name="isAttacking">À¯´ÖÀÌ °ø°İÀ» ÇÏ°Ú´Â°¡?</param>
+    /// <param name="isAttacking">ìœ ë‹›ì´ ê³µê²©ì„ í•˜ê² ëŠ”ê°€?</param>
     public void SetAttackState(bool isAttacking)
     {
         _animator.SetBool("IsAttack", isAttacking);
         _isAttacking = isAttacking;
+    }
+    
+    /// <summary>
+    /// ìœ ë‹›ì´ ë°ë¯¸ì§€ë¥¼ ë°›ìŒ
+    /// </summary>
+    /// <param name="damage">ìœ ë‹›ì´ ë°›ì„ ë°ë¯¸ì§€</param>
+    public void TakeDamage(int damage)
+    {
+
+        _currentHealth -= damage;
+        _healthBar.value -= damage;
+        if (_currentHealth < 0)
+        {
+            _currentHealth = 0;
+        }
+
+        if (_currentHealth <= 0)
+        {
+            // ì‚¬ë§ ë¡œì§ ì¶”ê°€
+            Debug.Log("ìœ ë‹› ì‚¬ë§");
+        }
+
     }
 }
