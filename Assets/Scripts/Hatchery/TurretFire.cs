@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 터렛의 기본 방향을 결정합니다.
+/// 터렛의 기본 방향 좌우 결정
 /// </summary>
 public enum FacingDirection
 {
@@ -54,8 +54,6 @@ public class TurretFire : MonoBehaviour
             // 터렛의 기본 방향 설정
             if (defaultFacingDirection == FacingDirection.Left)
             {
-                // Z축을 기준으로 180도 회전하여 왼쪽을 보도록 합니다.
-                // 이 방법은 프리팹이 기본적으로 오른쪽(로컬 X축)을 향하고 있다고 가정합니다.
                 partToRotate.rotation = Quaternion.Euler(0f, 0f, 180f);
             }
             // 설정된 회전값을 초기 회전값으로 저장합니다.
@@ -146,7 +144,7 @@ public class TurretFire : MonoBehaviour
         // Z축을 중심 회전
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion lookRotation = Quaternion.Euler(0f, 0f, angle);
-        // 부드럽게 회전 (Slerp가 구체 간 회전에 더 자연스럽습니다)
+        // 부드럽게 회전
         partToRotate.rotation = Quaternion.Slerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
