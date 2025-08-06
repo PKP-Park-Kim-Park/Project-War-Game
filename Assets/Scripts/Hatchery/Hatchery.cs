@@ -2,23 +2,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hatchery : MonoBehaviour
+public class Hatchery : MonoBehaviour, IDamageable
 {
     public int maxHealth = 500;
     private int currentHealth;
 
     public Slider HealthBar;
     public TextMeshProUGUI text;
-
     void Awake()
     {
         currentHealth = maxHealth;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-            TakeDamage(25);
     }
 
     public void TakeDamage(int damage)
