@@ -17,25 +17,25 @@ public struct UnitStat
     public float moveSpeed;
     public int maxHealth;
     public int attackDamage;
+    public float attackRange;
 }
 
 public class UnitController : MonoBehaviour
 {
     [Header("Unit Stats")]
-    [SerializeField] private List<UnitStat> unitStatsList;
-    [SerializeField] private UnitType type;
+    [SerializeField] private List<UnitStat> _unitStatsList;
+    [SerializeField] private UnitType _unitType;
     private float _moveSpeed;
     private int _maxHealth;
     private int _attackDamage;
     private int _currentHealth;
+    private float _attackRange;
 
     [Header("Unit Component")]
     [SerializeField] private Slider _healthBar;
     [SerializeField] private string _attackTargetTag;
     [SerializeField] private string _stopTargetTag;
     [SerializeField] private Transform _rayShootTransform;
-    [SerializeField] private float _rayDistance = 3f;
-    [SerializeField] private Collider2D _AttackCollider;
     private Animator _animator;
     private bool _isMoveCommanded = false;
     private bool _isAttacking = false;
@@ -62,13 +62,30 @@ public class UnitController : MonoBehaviour
         CheckState();
     }
 
+    private void CheckAttack()
+    {
+        Debug.DrawRay(_rayShootTransform.position, _moveDirection * _attackRange, Color.green);
+        GameObject closestEnemy = GetNearestEnemyInRay(_rayShootTransform.position, _moveDirection, _attackRange, _attackTargetTag);
+
+        if (closestEnemy != null)
+        {
+            UnitController attackTarget = closestEnemy.GetComponent<UnitController>();
+            if (attackTarget != null)
+            {
+                attackTarget.TakeDamage(_attackDamage);
+                Debug.Log($"{_stopTargetTag}가 {_attackTargetTag}를 공격함!");
+            }
+        }
+    }
+
     private void SettingStat()
     {
-        UnitStat stat = unitStatsList.Find(IsMatchingUnitType);
+        UnitStat stat = _unitStatsList.Find(IsMatchingUnitType);
 
         _moveSpeed = stat.moveSpeed;
         _maxHealth = stat.maxHealth;
         _attackDamage = stat.attackDamage;
+        _attackRange = stat.attackRange;
         _currentHealth = _maxHealth;
     }
 
@@ -78,7 +95,6 @@ public class UnitController : MonoBehaviour
         {
             _moveDirection = Vector3.left;
             _rayShootTransform.localPosition = new Vector3(-_rayShootTransform.localPosition.x, _rayShootTransform.localPosition.y, _rayShootTransform.localPosition.z);
-            _AttackCollider.transform.localPosition = new Vector3(-_AttackCollider.transform.localPosition.x, _AttackCollider.transform.localPosition.y, _AttackCollider.transform.localPosition.z);
         }
         else
         {
@@ -88,7 +104,7 @@ public class UnitController : MonoBehaviour
 
     private bool IsMatchingUnitType(UnitStat stat)
     {
-        return stat.unitType == type;
+        return stat.unitType == _unitType;
     }
 
     private void Move()
@@ -101,8 +117,8 @@ public class UnitController : MonoBehaviour
 
     private void CheckState()
     {
-        RaycastHit2D hit = Physics2D.Raycast(_rayShootTransform.position, _moveDirection, _rayDistance);
-        Debug.DrawLine(_rayShootTransform.position, _rayShootTransform.position + _moveDirection * _rayDistance, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(_rayShootTransform.position, _moveDirection, _attackRange);
+        Debug.DrawLine(_rayShootTransform.position, _rayShootTransform.position + _moveDirection * _attackRange, Color.red);
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag(_stopTargetTag))
@@ -133,7 +149,7 @@ public class UnitController : MonoBehaviour
         _animator.SetBool("IsAttack", isAttacking);
         _isAttacking = isAttacking;
     }
-    
+
     public void TakeDamage(int damage)
     {
 
@@ -154,7 +170,6 @@ public class UnitController : MonoBehaviour
     {
         _healthBar.gameObject.SetActive(false);
         _animator.SetTrigger("Die");
-        _AttackCollider.enabled = false;
         gameObject.GetComponent<Collider2D>().enabled = false;
 
         StartCoroutine(WaitForDeathAnimation());
@@ -181,24 +196,28 @@ public class UnitController : MonoBehaviour
 
     public void StartEventAttack()
     {
-        _AttackCollider.enabled = true;
+        CheckAttack();
     }
 
-    public void EndEventAttack()
+    public GameObject GetNearestEnemyInRay(Vector2 origin, Vector2 direction, float distance, string targetTag)
     {
-        _AttackCollider.enabled = false;
-    }
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, distance);
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag(_attackTargetTag))
+        GameObject nearestEnemy = null;
+        float minDistance = float.MaxValue;
+
+        foreach (RaycastHit2D hit in hits)
         {
-            UnitController attackTarget = collision.GetComponent<UnitController>();
-            if (attackTarget != null)
+            if (hit.collider != null && hit.collider.CompareTag(targetTag))
             {
-                attackTarget.TakeDamage(_attackDamage);
-                Debug.Log($"{_stopTargetTag}가 {_attackTargetTag}를 공격함!");
+                if (hit.distance < minDistance)
+                {
+                    minDistance = hit.distance;
+                    nearestEnemy = hit.collider.gameObject;
+                }
             }
         }
+
+        return nearestEnemy;
     }
 }
