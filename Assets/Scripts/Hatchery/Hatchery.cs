@@ -18,9 +18,7 @@ public class Hatchery : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.H))
-        {
             TakeDamage(25);
-        }
     }
 
     public void TakeDamage(int damage)
