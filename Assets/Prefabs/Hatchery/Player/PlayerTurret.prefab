@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8232826661218798087}
   - component: {fileID: 8466639821562755168}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: PlayerTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa39bb6956d401499c3cbdb5156b5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 8
+  attackRange: 10
   turnSpeed: 10
   fireRate: 1
   bulletDamage: 10

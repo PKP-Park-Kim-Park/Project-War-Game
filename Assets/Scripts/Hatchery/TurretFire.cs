@@ -1,8 +1,19 @@
 using UnityEngine;
 
+/// <summary>
+/// 터렛의 기본 방향을 결정합니다.
+/// </summary>
+public enum FacingDirection
+{
+    Right,
+    Left
+}
+
 public class TurretFire : MonoBehaviour
 {
     [Header("Turret Attributes")]
+    [Tooltip("터렛의 기본 방향")]
+    public FacingDirection defaultFacingDirection = FacingDirection.Right;
     [Tooltip("터렛의 공격 사거리")]
     public float attackRange = 15f;
     [Tooltip("터렛의 회전 속도")]
@@ -10,7 +21,7 @@ public class TurretFire : MonoBehaviour
     [Tooltip("터렛의 발사 속도 (초당 발사)")]
     public float fireRate = 1f;
     [Tooltip("첫 타겟 감지 후 발사까지의 딜레이")]
-    private float initialFireDelay = 0.5f;
+    public float initialFireDelay = 0.5f;
     [Tooltip("총알이 가하는 데미지")]
     public int bulletDamage = 10;
     private float fireCountdown = 0f;
@@ -30,9 +41,24 @@ public class TurretFire : MonoBehaviour
 
     void Start()
     {
-        // 기본 회전값 저장
+        SetInitialRotation();
+
+        // 0.5초마다 가장 가까운 적을 찾도록 설정
+        InvokeRepeating(nameof(UpdateTarget), 0f, 0.5f);
+    }
+
+    void SetInitialRotation()
+    {
         if (partToRotate != null)
         {
+            // 터렛의 기본 방향 설정
+            if (defaultFacingDirection == FacingDirection.Left)
+            {
+                // Z축을 기준으로 180도 회전하여 왼쪽을 보도록 합니다.
+                // 이 방법은 프리팹이 기본적으로 오른쪽(로컬 X축)을 향하고 있다고 가정합니다.
+                partToRotate.rotation = Quaternion.Euler(0f, 0f, 180f);
+            }
+            // 설정된 회전값을 초기 회전값으로 저장합니다.
             initialRotation = partToRotate.rotation;
         }
         else
@@ -40,9 +66,6 @@ public class TurretFire : MonoBehaviour
             Debug.LogError("'Part To Rotate'가 설정되지 않았습니다!", this);
             initialRotation = transform.rotation; // Fallback
         }
-
-        // 0.5초마다 가장 가까운 적을 찾도록 설정 (매 프레임 호출보다 성능에 유리)
-        InvokeRepeating(nameof(UpdateTarget), 0f, 0.5f);
     }
 
     // 가장 가까운 적을 찾아 타겟으로 설정
