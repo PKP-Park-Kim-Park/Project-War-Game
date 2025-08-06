@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6491014475347042980, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
       propertyPath: m_Name
-      value: HatcheryEnemy
+      value: EnemyHatchery
       objectReference: {fileID: 0}
     - target: {fileID: 8867843526597301628, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -410,7 +410,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5417451669950300654, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
       propertyPath: m_Name
-      value: Hatchery
+      value: PlayerHatchery
       objectReference: {fileID: 0}
     - target: {fileID: 8578255161179439494, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
       propertyPath: m_AnchorMax.x

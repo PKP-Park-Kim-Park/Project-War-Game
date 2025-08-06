@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 4048514170745296090}
   m_Layer: 0
   m_Name: PlayerHatchery
-  m_TagString: Hatchery
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

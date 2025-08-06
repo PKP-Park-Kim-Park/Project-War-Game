@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea0eaed4bd457b4e975def0fdeb5080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretSpotPrefab: {fileID: 7942227361369835515, guid: c6b055779f4055f47a5230db4d0df5b4, type: 3}
+  turretSpotPrefab: {fileID: 7805221527644122040, guid: 4f2e3e7062a68774cb49b36ace5b64b9, type: 3}
   spotParent: {fileID: 2678450635999245614}
   initialSpotPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3008611654472221743
