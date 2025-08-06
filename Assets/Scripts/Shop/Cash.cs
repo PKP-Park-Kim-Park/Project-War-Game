@@ -82,6 +82,11 @@ public class Cash : MonoBehaviour
         SpendGold(cost);
     }
 
+    public bool HasEnoughGold(int amount)
+    {
+        return gold >= amount;
+    }
+
     private void UpdateUpgradeButtonState()
     {
         // 경험치 조건 만족 시 업그레이드 버튼 활성화
