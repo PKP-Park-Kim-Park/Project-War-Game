@@ -1,13 +1,32 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum UnitType
+{
+    Normal,
+    Archer,
+    Tank
+}
+
+[System.Serializable]
+public struct UnitStat
+{
+    public UnitType unitType;
+    public float moveSpeed;
+    public int maxHealth;
+    public int attackDamage;
+}
 
 public class UnitController : MonoBehaviour
 {
     [Header("Unit Stats")]
-    [SerializeField] private float _moveSpeed = 1.0f;
-    [SerializeField] private int _maxHealth = 100;
-    [SerializeField] private int _attackDamage = 20;
+    [SerializeField] private List<UnitStat> unitStatsList;
+    [SerializeField] private UnitType type;
+    private float _moveSpeed;
+    private int _maxHealth;
+    private int _attackDamage;
     private int _currentHealth;
 
     [Header("Unit Component")]
@@ -27,10 +46,33 @@ public class UnitController : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        _currentHealth = _maxHealth;
+
+        SettingStat();
     }
 
     private void Start()
+    {
+        SettingDiraction();
+    }
+
+    private void Update()
+    {
+        Move();
+
+        CheckState();
+    }
+
+    private void SettingStat()
+    {
+        UnitStat stat = unitStatsList.Find(IsMatchingUnitType);
+
+        _moveSpeed = stat.moveSpeed;
+        _maxHealth = stat.maxHealth;
+        _attackDamage = stat.attackDamage;
+        _currentHealth = _maxHealth;
+    }
+
+    private void SettingDiraction()
     {
         if (_spriteRenderer.flipX)
         {
@@ -44,11 +86,9 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    private void Update()
+    private bool IsMatchingUnitType(UnitStat stat)
     {
-        Move();
-
-        CheckState();
+        return stat.unitType == type;
     }
 
     private void Move()
@@ -114,6 +154,8 @@ public class UnitController : MonoBehaviour
     {
         _healthBar.gameObject.SetActive(false);
         _animator.SetTrigger("Die");
+        _AttackCollider.enabled = false;
+        gameObject.GetComponent<Collider2D>().enabled = false;
 
         StartCoroutine(WaitForDeathAnimation());
     }
