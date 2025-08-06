@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.UI.Image;
 
 public class UnitController : MonoBehaviour
 {
@@ -159,6 +157,6 @@ public class UnitController : MonoBehaviour
                 attackTarget.TakeDamage(_attackDamage);
                 Debug.Log($"{_stopTargetTag}가 {_attackTargetTag}를 공격함!");
             }
-        }   
+        }
     }
 }
