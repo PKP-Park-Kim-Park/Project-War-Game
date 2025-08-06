@@ -20,6 +20,9 @@ public class Cash : MonoBehaviour
     public float expIncreaseInterval = 1f; // 경험치 증가 간격 (초)
     public int expIncreaseAmount = 0;   // 증가할 경험치 양
 
+    // 새로운 변수 추가: CooldownManager 참조
+    public CooldownManager cooldownManager;
+
     private void Start()
     {
         UpdateGoldText();
@@ -74,8 +77,31 @@ public class Cash : MonoBehaviour
 
     public void OnUnitButton(int cost)
     {
-        SpendGold(cost);
+        // CooldownManager가 연결되어 있고, 쿨타임 중이 아니며, 골드가 충분할 때만 실행
+        if (cooldownManager != null && !cooldownManager.IsOnCooldown())
+        {
+            if (HasEnoughGold(cost))
+            {
+                SpendGold(cost); // 돈 차감
+                // TODO: 여기에 유닛 생성 로직과 함께 쿨타임 시작 로직을 추가해야 합니다.
+                // 예시: cooldownManager.StartCooldown(5f); // 5초 쿨타임 시작
+                Debug.Log($"유닛 구매! {cost} 골드 소모.");
+            }
+            else
+            {
+                Debug.Log("골드가 부족합니다. 유닛을 구매할 수 없습니다.");
+            }
+        }
+        else if (cooldownManager != null && cooldownManager.IsOnCooldown())
+        {
+            Debug.Log("아직 쿨타임 중입니다. 유닛을 구매할 수 없습니다.");
+        }
+        else
+        {
+            Debug.Log("CooldownManager가 연결되어 있지 않습니다. 유니티 에디터에서 연결해주세요.");
+        }
     }
+
 
     public void OnTurretButton(int cost)
     {
@@ -106,3 +132,4 @@ public class Cash : MonoBehaviour
         }
     }
 }
+
