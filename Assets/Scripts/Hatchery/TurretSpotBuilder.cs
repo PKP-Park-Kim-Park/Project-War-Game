@@ -10,26 +10,34 @@ public class TurretSpotBuilder : MonoBehaviour
     [Tooltip("터렛 스팟 프리팹")]
     public GameObject turretSpotPrefab;
 
-    [Tooltip("첫 번째 터렛 스팟 오브젝")]
-    public GameObject initialTurretSpot;
-
     [Tooltip("생성된 터렛 스팟의 부모 오브젝트")]
     public Transform spotParent;
+
+    [Tooltip("첫 번째 터렛 스팟이 생성될 위치 (spotParent 기준 로컬 좌표)")]
+    public Vector3 initialSpotPosition = Vector3.zero;
 
     private List<GameObject> _turretSpots = new List<GameObject>();
     private const int MAX_TURRET_SPOTS = 4;
 
     void Start()
     {
-        // 미리 배치된 첫 번째 터렛 스팟을 리스트에 추가
-        if (initialTurretSpot != null)
+        // 게임 시작 시 첫 번째 터렛 스팟을 지정된 위치에 생성
+        if (turretSpotPrefab == null)
         {
-            _turretSpots.Add(initialTurretSpot);
+            Debug.LogError("터렛 스팟 프리팹이 할당되지 않았습니다. 초기 스팟을 생성할 수 없습니다.", this);
+            return;
         }
-        else
+
+        // spotParent가 지정되지 않았다면, 이 컴포넌트의 Transform을 부모로 사용합니다.
+        Transform parent = spotParent != null ? spotParent : this.transform;
+        if (spotParent == null)
         {
-            Debug.LogError("초기 터렛 스팟 할당 실패..", this);
+            Debug.LogWarning($"'Spot Parent'가 지정되지 않아 이 오브젝트({this.name})를 부모로 사용합니다.", this);
         }
+
+        GameObject initialSpot = Instantiate(turretSpotPrefab, parent.TransformPoint(initialSpotPosition), parent.rotation, parent);
+        _turretSpots.Add(initialSpot);
+        Debug.Log($"<color=cyan>초기 터렛 스팟 '{initialSpot.name}' 생성 완료.</color>", initialSpot);
     }
 
     void Update()
@@ -46,6 +54,7 @@ public class TurretSpotBuilder : MonoBehaviour
     /// </summary>
     public void BuildTurretSpot()
     {
+
         if (turretSpotPrefab == null)
         {
             Debug.LogError("터렛 스팟 프리팹 할당X", this);
@@ -66,6 +75,7 @@ public class TurretSpotBuilder : MonoBehaviour
 
         // 마지막 스팟 위에 다음 스팟 건설
         GameObject lastSpot = _turretSpots[_turretSpots.Count - 1];
+
         Transform nextSpotTransform = lastSpot.transform.Find("NextSpotPosition");
 
         if (nextSpotTransform == null)
