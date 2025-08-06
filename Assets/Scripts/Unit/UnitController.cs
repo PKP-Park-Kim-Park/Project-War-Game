@@ -1,13 +1,13 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.UI.Image;
 
 public class UnitController : MonoBehaviour
 {
     [Header("Unit Stats")]
     [SerializeField] private float _moveSpeed = 1.0f;
     [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _attackDamage = 20;
     private int _currentHealth;
 
     [Header("Unit Component")]
@@ -106,10 +106,35 @@ public class UnitController : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            // 사망 로직 추가
-            Debug.Log("유닛 사망");
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        _healthBar.gameObject.SetActive(false);
+        _animator.SetTrigger("Die");
+
+        StartCoroutine(WaitForDeathAnimation());
+    }
+
+    private IEnumerator WaitForDeathAnimation()
+    {
+        yield return null;
+
+        // 상태 전환될 때까지 기다림
+        while (!_animator.GetCurrentAnimatorStateInfo(0).IsName("UnitDie"))
+        {
+            yield return null;
         }
 
+        // 애니메이션이 끝날 때까지 대기
+        while (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 
     public void StartEventAttack()
@@ -129,9 +154,9 @@ public class UnitController : MonoBehaviour
             UnitController attackTarget = collision.GetComponent<UnitController>();
             if (attackTarget != null)
             {
-                attackTarget.TakeDamage(10);
+                attackTarget.TakeDamage(_attackDamage);
                 Debug.Log($"{_stopTargetTag}가 {_attackTargetTag}를 공격함!");
             }
-        }   
+        }
     }
 }
