@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &622657542 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 379400321433440350, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
+  m_PrefabInstance: {fileID: 5846854095377851282}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1461258343
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +209,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1827674227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8277184038856972427, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
+  m_PrefabInstance: {fileID: 5846854095377851282}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2132359593
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +405,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4260258758918243095, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 622657542}
+    - target: {fileID: 4260258758918243095, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 1827674227}
     - target: {fileID: 6491014475347042980, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
       propertyPath: m_Name
       value: EnemyHatchery

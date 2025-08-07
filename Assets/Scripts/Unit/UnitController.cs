@@ -20,7 +20,7 @@ public struct UnitStat
     public float attackRange;
 }
 
-public class UnitController : MonoBehaviour
+public class UnitController : MonoBehaviour, IDamageable
 {
     [Header("Unit Stats")]
     [SerializeField] private List<UnitStat> _unitStatsList;
@@ -31,6 +31,7 @@ public class UnitController : MonoBehaviour
     private int _currentHealth;
     private float _attackRange;
     private string _attackTargetTag;
+
     private string _stopTargetTag;
 
     [Header("Unit Component")]
@@ -41,6 +42,7 @@ public class UnitController : MonoBehaviour
     private bool _isMoveCommanded = false;
     private bool _isAttacking = false;
     private Vector3 _moveDirection;
+
     private SpriteRenderer _spriteRenderer;
 
     private void Awake()
@@ -49,6 +51,7 @@ public class UnitController : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         SettingStat();
+
     }
 
     private void Start()
@@ -92,7 +95,7 @@ public class UnitController : MonoBehaviour
 
         if (closestEnemy != null)
         {
-            UnitController attackTarget = closestEnemy.GetComponent<UnitController>();
+            IDamageable attackTarget = closestEnemy.GetComponent<IDamageable>();
             if (attackTarget != null)
             {
                 attackTarget.TakeDamage(_attackDamage);
@@ -114,11 +117,13 @@ public class UnitController : MonoBehaviour
         if (gameObject.CompareTag("Player"))
         {
             _attackTargetTag = "Enemy";
+
             _stopTargetTag = "Player";
         }
         else if (gameObject.CompareTag("Enemy"))
         {
             _attackTargetTag = "Player";
+
             _stopTargetTag = "Enemy";
         }
         else
@@ -252,7 +257,6 @@ public class UnitController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
         _currentHealth -= damage;
         _healthBar.value -= damage;
 
