@@ -446,22 +446,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92f13d5f34457947a4f73bd50aa83a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitStatsList:
-  - unitType: 0
-    moveSpeed: 1
-    maxHealth: 100
-    attackDamage: 25
-    attackRange: 1
-  - unitType: 1
-    moveSpeed: 1
-    maxHealth: 100
-    attackDamage: 20
-    attackRange: 8
-  _unitType: 0
-  _healthBar: {fileID: 6609152356378028212}
-  _attackTargetTag: Player
-  _stopTargetTag: Enemy
-  _rayShootTransform: {fileID: 3174535942763269450}
+  unitData: {fileID: 11400000, guid: 84430ea60fd7d774592fcae9ff18cd2f, type: 2}
+  healthBar: {fileID: 6609152356378028212}
+  rayShootTransform: {fileID: 3174535942763269450}
+  stopDistance: 1
 --- !u!61 &6760651740977921317
 BoxCollider2D:
   m_ObjectHideFlags: 0
