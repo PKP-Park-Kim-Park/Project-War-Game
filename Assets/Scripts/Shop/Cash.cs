@@ -84,7 +84,6 @@ public class Cash : MonoBehaviour
             {
                 SpendGold(cost); // 돈 차감
                 // TODO: 여기에 유닛 생성 로직과 함께 쿨타임 시작 로직을 추가해야 합니다.
-                // 예시: cooldownManager.StartCooldown(5f); // 5초 쿨타임 시작
                 Debug.Log($"유닛 구매! {cost} 골드 소모.");
             }
             else
@@ -132,4 +131,7 @@ public class Cash : MonoBehaviour
         }
     }
 }
+
+
+
 
