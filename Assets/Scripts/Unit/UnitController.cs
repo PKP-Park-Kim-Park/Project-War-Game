@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,7 @@ public class UnitController : MonoBehaviour, IDamageable
     private int currentHealth;
     private bool isMoving = false;
     private bool isAttacking = false;
+    private bool isDie = false;
 
     private void Awake()
     {
@@ -43,8 +45,19 @@ public class UnitController : MonoBehaviour, IDamageable
         combat.Setup(rayShootTransform, moveDirection, stat.AttackTargetTag, stat.AttackDamage, stat.AttackRange);
     }
 
+    private void Start()
+    {
+        healthBar.maxValue = stat.MaxHealth;
+        healthBar.value = stat.MaxHealth;
+    }
+
     private void Update()
     {
+        if(isDie)
+        {
+            return;
+        }
+
         if (isMoving && !isAttacking)
         {
             transform.position += moveDirection * stat.MoveSpeed * Time.deltaTime;
@@ -114,7 +127,7 @@ public class UnitController : MonoBehaviour, IDamageable
                 SetAttack(false);
             }
         }
-        else if (stat.UnitType == UnitType.Normal)
+        else if (stat.UnitType == UnitType.Normal || stat.UnitType == UnitType.Tank)
         {
             if (closestStop != null && minStopDist <= stopDistance)
             {
@@ -168,9 +181,11 @@ public class UnitController : MonoBehaviour, IDamageable
         healthBar.gameObject.SetActive(false);
         unitAnimation.PlayDie();
         GetComponent<Collider2D>().enabled = false;
+        isDie = true;
 
         yield return unitAnimation.WaitForDeathAnimation();
 
+        gameObject.SetActive(false);
         Destroy(gameObject);
     }
 }
