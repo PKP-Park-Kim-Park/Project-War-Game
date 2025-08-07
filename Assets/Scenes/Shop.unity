@@ -179,7 +179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldText: {fileID: 1710754896053337702}
-  unitCooldownManager: {fileID: 0}
   expText: {fileID: 8661133626664095790}
   expupgrade: 4000
   upgradeButton: {fileID: 800532620}
@@ -187,6 +186,7 @@ MonoBehaviour:
   upgradeCanvas: {fileID: 6862325629154103751}
   expIncreaseInterval: 1
   expIncreaseAmount: 500
+  cooldownManager: {fileID: 290080817}
 --- !u!114 &290080816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,6 +744,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Shop1
       objectReference: {fileID: 0}
+    - target: {fileID: 8928060488594800367, guid: b3af09cee3fb9f64e9a8a1f16b52f7ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -859,7 +863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3122634411448478607, guid: 74832c9dcddfba847aac80b9335a92d5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 381
+      value: 539.0001
       objectReference: {fileID: 0}
     - target: {fileID: 4004226305798029332, guid: 74832c9dcddfba847aac80b9335a92d5, type: 3}
       propertyPath: m_Name
@@ -1600,8 +1604,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1612,15 +1624,39 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 290080817}
     - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 290080811}
+    - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUnitButton
       objectReference: {fileID: 0}
     - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: StartCooldown
       objectReference: {fileID: 0}
     - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Cash, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CooldownManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: CooldownManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3765459882935258630, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
@@ -1677,7 +1713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9207252859126892742, guid: 49da84ad5fd92a445bff457f274f7ffa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
