@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 3696407319073629151}
   m_Layer: 0
   m_Name: EnemyHatchery
-  m_TagString: Enemy
+  m_TagString: EnemyHatchery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
