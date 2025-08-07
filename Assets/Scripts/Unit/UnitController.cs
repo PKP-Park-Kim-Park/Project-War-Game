@@ -8,7 +8,8 @@ public enum UnitType
 {
     Normal,
     Archer,
-    Tank
+    Tank,
+    Long
 }
 
 public class UnitController : MonoBehaviour, IDamageable
@@ -111,7 +112,7 @@ public class UnitController : MonoBehaviour, IDamageable
             }
         }
 
-        if (stat.UnitType == UnitType.Archer)
+        if (stat.UnitType == UnitType.Archer || stat.UnitType == UnitType.Long)
         {
             if (closestAttack != null)
             {
