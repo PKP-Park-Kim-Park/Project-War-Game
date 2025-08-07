@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,7 +43,7 @@ public class UnitController : MonoBehaviour, IDamageable
         currentHealth = stat.MaxHealth;
 
         SetMoveDirection();
-        combat.Setup(rayShootTransform, moveDirection, stat.AttackTargetTag, stat.AttackDamage, stat.AttackRange);
+        combat.Setup(rayShootTransform, moveDirection, stat.AttackTargetTags, stat.AttackDamage, stat.AttackRange);
     }
 
     private void Start()
@@ -53,7 +54,7 @@ public class UnitController : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if(isDie)
+        if (isDie)
         {
             return;
         }
@@ -96,7 +97,8 @@ public class UnitController : MonoBehaviour, IDamageable
             float distance = Vector2.Distance(rayShootTransform.position, hits[i].point);
             GameObject target = collider.gameObject;
 
-            if (target.CompareTag(stat.AttackTargetTag) && distance < minAttackDist)
+            // 공격 가능한 태그 목록에 포함되어 있는지 확인합니다.
+            if (stat.AttackTargetTags.Contains(target.tag) && distance < minAttackDist)
             {
                 minAttackDist = distance;
                 closestAttack = target;

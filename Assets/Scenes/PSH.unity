@@ -119,48 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &622657542 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 379400321433440350, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
-  m_PrefabInstance: {fileID: 5846854095377851282}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &652447354 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5417451669950300654, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
-  m_PrefabInstance: {fileID: 6155671210164997223}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &652447358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652447354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd61358c7894e5341bd22b983041c767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 500
-  healthBar: {fileID: 942401603}
-  healthText: {fileID: 1066370231}
---- !u!114 &942401603 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2584473832537779091, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
-  m_PrefabInstance: {fileID: 6155671210164997223}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1031672904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,17 +184,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b47407ad153d8b4286fee6dcf3d5348, type: 3}
---- !u!114 &1066370231 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8622507956251111739, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
-  m_PrefabInstance: {fileID: 6155671210164997223}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1461258343
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,37 +263,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1471384691 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6491014475347042980, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
-  m_PrefabInstance: {fileID: 5846854095377851282}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1471384695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471384691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd61358c7894e5341bd22b983041c767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 500
-  healthBar: {fileID: 622657542}
-  healthText: {fileID: 1827674227}
---- !u!114 &1827674227 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8277184038856972427, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
-  m_PrefabInstance: {fileID: 5846854095377851282}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2095600851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,10 +473,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 736762938846896420, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3654876206274923325, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5
@@ -601,16 +513,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4260258758918243095, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 622657542}
-    - target: {fileID: 4260258758918243095, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
-      propertyPath: healthText
-      value: 
-      objectReference: {fileID: 1827674227}
     - target: {fileID: 6491014475347042980, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
       propertyPath: m_Name
+      value: EnemyHatchery
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491014475347042980, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
+      propertyPath: m_TagString
       value: EnemyHatchery
       objectReference: {fileID: 0}
     - target: {fileID: 8867843526597301628, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
@@ -621,15 +529,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4260258758918243095, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 3304643708964682643, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6491014475347042980, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1471384695}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
 --- !u!1001 &6155671210164997223
 PrefabInstance:
@@ -639,20 +542,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3845319993614798697, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 942401603}
-    - target: {fileID: 3845319993614798697, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845319993614798697, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
-      propertyPath: healthText
-      value: 
-      objectReference: {fileID: 1066370231}
     - target: {fileID: 5417451669950300654, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
       propertyPath: m_Name
+      value: PlayerHatchery
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417451669950300654, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
+      propertyPath: m_TagString
       value: PlayerHatchery
       objectReference: {fileID: 0}
     - target: {fileID: 8578255161179439494, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
@@ -704,13 +599,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1641138232193089149, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5417451669950300654, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 652447358}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

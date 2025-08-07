@@ -9,10 +9,12 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 20f;
     [Tooltip("총알이 사라지기까지의 시간 (초)")]
     [SerializeField] private float lifeTime = 3f;
+    [Tooltip("총알이 공격할 대상의 태그")]
+    [SerializeField] private string _attackTargetTag = "Enemy";
 
     // TurretFire.cs에서 설정하는 값들
     public int damage;
-    public string AttackTargetTag { get; set; }
+    public string AttackTargetTag;
 
     private Rigidbody2D rb;
     // private bool hasHit = false; // 중복 충돌 방지 플래그
@@ -30,20 +32,18 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        // 충돌한 객체가 공격 대상 태그(AttackTargetTag)를 가지고 있는지 확인합니다.
+        // 충돌한 객체가 공격 대상 태그(AttackTargetTag)를 가지고 있는지 확인
         if (hitInfo.CompareTag(AttackTargetTag))
         {
-            // IDamageable 컴포넌트를 가져옵니다.
             IDamageable damageableObject = hitInfo.GetComponent<IDamageable>();
 
-            // IDamageable 컴포넌트가 있다면 TakeDamage를 호출합니다.
+            // IDamageable 컴포넌트가 있다면 TakeDamage를 호출
             if (damageableObject != null)
             {
                 damageableObject.TakeDamage(damage);
             }
 
-            // 공격 대상과 충돌했으므로 총알을 즉시 파괴합니다.
-            // (여기에 폭발 이펙트를 생성하는 코드를 추가할 수 있습니다.)
+            // 공격 대상과 충돌했으므로 총알을 즉시 파괴
             Destroy(gameObject);
         }
     }
