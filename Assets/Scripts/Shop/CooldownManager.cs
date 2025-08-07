@@ -29,7 +29,7 @@ public class CooldownManager : MonoBehaviour
                 isCooldown = false;
                 currentCooldownTime = 0;
                 cooltimeBarFill.fillAmount = 0;
-                
+
                 //SpawnUnit();
 
                 Debug.Log("쿨타임 종료! 다시 사용 가능합니다.");
@@ -60,3 +60,10 @@ public class CooldownManager : MonoBehaviour
         }
     }
 }
+
+
+
+
+
+
+

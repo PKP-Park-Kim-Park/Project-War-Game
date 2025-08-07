@@ -160,6 +160,8 @@ public class TurretFire : MonoBehaviour
         {
             // 생성된 총알에 데미지 값을 설정
             bullet.damage = bulletDamage;
+            // 생성된 총알에 공격할 타겟의 태그를 설정
+            bullet.AttackTargetTag = enemyTag;
         }
     }
 
