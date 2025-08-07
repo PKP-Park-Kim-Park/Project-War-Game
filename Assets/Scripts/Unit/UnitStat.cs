@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class UnitStat
 {
@@ -7,7 +8,7 @@ public class UnitStat
     public int AttackDamage { get; private set; }
     public float AttackRange { get; private set; }
     public UnitType UnitType { get; private set; }
-    public string AttackTargetTag { get; private set; }
+    public List<string> AttackTargetTags { get; private set; }
     public string StopTargetTag { get; private set; }
 
     public void Initialize(UnitData unitData, string unitTag)
@@ -20,17 +21,17 @@ public class UnitStat
 
         if (unitTag == "Player")
         {
-            AttackTargetTag = "Enemy";
+            AttackTargetTags = new List<string> { "Enemy", "EnemyHatchery" };
             StopTargetTag = "Player";
         }
         else if (unitTag == "Enemy")
         {
-            AttackTargetTag = "Player";
+            AttackTargetTags = new List<string> { "Player", "PlayerHatchery" };
             StopTargetTag = "Enemy";
         }
         else
         {
-            Debug.LogWarning("À¯´Ö ÅÂ±×°¡ Àß¸ø ÁöÁ¤µÇ¾î ÀÖÀ½.");
+            Debug.LogWarning("ìœ ë‹› íƒœê·¸ê°€ ì˜ëª» ì§€ì •ë˜ì–´ ìˆìŒ.");
         }
     }
 }
