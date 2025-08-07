@@ -31,7 +31,7 @@ public class UnitStat
         }
         else
         {
-            Debug.LogWarning("���� �±װ� �߸� �����Ǿ� ����.");
+            Debug.LogWarning("유닛 태그가 잘못 지정되어 있음.");
         }
     }
 }

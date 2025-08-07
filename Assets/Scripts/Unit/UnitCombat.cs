@@ -14,7 +14,7 @@ public class UnitCombat
     {
         this.rayOrigin = rayOrigin;
         this.moveDirection = moveDirection;
-        this.attackTargetTags = attackTargetTags ?? new List<string>();
+        this.attackTargetTags = attackTargetTags;
         this.attackDamage = attackDamage;
         this.attackRange = attackRange;
     }
