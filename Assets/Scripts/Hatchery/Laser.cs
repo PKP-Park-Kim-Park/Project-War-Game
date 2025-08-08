@@ -1,11 +1,8 @@
 using UnityEngine;
 
-/// <summary>
-/// 총알의 이동과 충돌 처리
-/// </summary>
-public class Bullet : MonoBehaviour, IProjectile
+public class Laser : MonoBehaviour, IProjectile
 {
-    [Header("Bullet Stats")]
+    [Header("Laser Stats")]
     [SerializeField] private float speed = 20f;
     [Tooltip("총알이 사라지기까지의 시간 (초)")]
     [SerializeField] private float lifeTime = 3f;
