@@ -60,7 +60,7 @@ public class Cash : MonoBehaviour
 
     private void UpdateGoldText()
     {
-        goldText.text = gold.ToString() + " Gold";
+        goldText.text = "Gold : " + gold.ToString();
     }
 
     public void AddExp(int amount)
@@ -72,7 +72,7 @@ public class Cash : MonoBehaviour
 
     private void UpdateExpText()
     {
-        expText.text = exp.ToString() + " EXP";
+        expText.text = "EXP : " + exp.ToString();
     }
 
     public void OnUnitButton(int cost)

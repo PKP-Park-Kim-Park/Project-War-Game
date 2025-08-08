@@ -19,7 +19,7 @@ public class ButtonCooldown : MonoBehaviour
         // 게임 시작 시, 쿨타임 바를 0으로 초기화하여 비어있는 상태로 만듭니다.
         if (cooltimeBarFill != null)
         {
-            cooltimeBarFill.fillAmount = 0;
+            cooltimeBarFill.fillAmount = 1;
         }
     }
 
@@ -34,7 +34,7 @@ public class ButtonCooldown : MonoBehaviour
             {
                 isCooldown = false;
                 currentCooldownTime = 0;
-                cooltimeBarFill.fillAmount = 0;
+                cooltimeBarFill.fillAmount = 1;
 
                 Debug.Log(gameObject.name + "의 쿨타임이 끝났습니다.");
             }
@@ -51,7 +51,7 @@ public class ButtonCooldown : MonoBehaviour
 
             isCooldown = true;
             currentCooldownTime = 0;
-            cooltimeBarFill.fillAmount = 0;
+            cooltimeBarFill.fillAmount = 1;
 
             Debug.Log(gameObject.name + "의 궁극기 쿨타임이 " + cooldownTime + "초 동안 시작됩니다.");
         }
