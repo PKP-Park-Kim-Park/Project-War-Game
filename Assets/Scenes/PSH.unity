@@ -387,6 +387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyHatchery
       objectReference: {fileID: 0}
+    - target: {fileID: 7663561264905457712, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8867843526597301628, guid: 5f5061acb32b1134ea27ab1ab8a944a9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
