@@ -22,8 +22,8 @@ public class TurretFire : MonoBehaviour
     public float fireRate = 1f;
     [Tooltip("첫 타겟 감지 후 발사까지의 딜레이")]
     public float initialFireDelay = 0.5f;
-    [Tooltip("총알이 가하는 데미지")]
-    public int bulletDamage = 10;
+    [Tooltip("발사체가 가하는 데미지")]
+    public int projectileDamage = 10;
     private float fireCountdown = 0f;
 
     [Header("Required Setup")]
@@ -33,8 +33,8 @@ public class TurretFire : MonoBehaviour
     public Transform partToRotate;
     [Tooltip("총알이 발사될 위치")]
     public Transform firePoint;
-    [Tooltip("발사할 총알 프리팹")]
-    public GameObject bulletPrefab;
+    [Tooltip("발사할 발사체(총알, 미사일 등) 프리팹")]
+    public GameObject projectilePrefab;
 
     private Transform target;
     private Quaternion initialRotation;
@@ -61,7 +61,7 @@ public class TurretFire : MonoBehaviour
         }
         else
         {
-            Debug.LogError("'Part To Rotate'가 설정되지 않았습니다!", this);
+            Debug.LogError("'Part To Rotate'를 설정하시오..", this);
             initialRotation = transform.rotation; // Fallback
         }
     }
@@ -125,17 +125,15 @@ public class TurretFire : MonoBehaviour
 
         // 타겟을 향해 회전
         LockOnTarget();
-
         // 발사 로직
         if (fireCountdown <= 0f)
         {
-            Fire();
+            FireProjectile();
             fireCountdown = 1f / fireRate;
         }
 
         fireCountdown -= Time.deltaTime;
     }
-
     // 타겟을 향해 총구를 회전시키는 함수
     void LockOnTarget()
     {
@@ -148,20 +146,23 @@ public class TurretFire : MonoBehaviour
         partToRotate.rotation = Quaternion.Slerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
-    // 총알 발사 함수
-    void Fire()
+    // 투사체 발사 함수
+    void FireProjectile()
     {
-        if (bulletPrefab == null || firePoint == null) return;
+        if (projectilePrefab == null || firePoint == null) return;
 
-        GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
+        GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        IProjectile projectile = projectileGO.GetComponent<IProjectile>();
 
-        if (bullet != null)
+        if (projectile != null)
         {
-            // 생성된 총알에 데미지 값을 설정
-            bullet.damage = bulletDamage;
-            // 생성된 총알에 공격할 타겟의 태그를 설정
-            bullet.AttackTargetTag = enemyTag;
+            // 생성된 발사체에 데미지와 타겟 태그를 설정합니다.
+            projectile.Damage = projectileDamage;
+            projectile.AttackTargetTag = enemyTag;
+        }
+        else
+        {
+            Debug.LogWarning($"'{projectilePrefab.name}' 프리팹에 IProjectile을 구현하는 컴포넌트 부재", projectileGO);
         }
     }
 
