@@ -1,41 +1,65 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
     [Header("Spawning Settings")]
-    [Tooltip("생성할 유닛 프리팹")]
-    public GameObject unitPrefab;
+    [Tooltip("생성할 유닛 프리팹 목록. 1, 2, 3키에 순서대로 매핑")]
+    public List<GameObject> unitPrefabs = new List<GameObject>();
 
     [Tooltip("유닛 생성 영역")]
     public Transform spawnTransform;
 
     private void Update()
     {
-        // 테스트용: 스페이스바를 누르면 유닛이 생성됩니다.
-        if (Input.GetKeyDown(KeyCode.Space))
+        // 1, 2, 3 키를 눌러 각각 다른 유닛을 생성합니다.
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SpawnUnit();
+            SpawnUnit(0); // 첫 번째 프리팹
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SpawnUnit(1); // 두 번째 프리팹
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SpawnUnit(2); // 세 번째 프리팹
         }
     }
 
-    // 스폰 영역에 유닛 생성
-    public void SpawnUnit()
+    // 지정된 인덱스의 유닛을 스폰 영역에 생성합니다.
+    public void SpawnUnit(int unitIndex)
     {
+        // 유닛 프리팹 목록이 비어있거나 인덱스가 범위를 벗어나는지 확인합니다.
+        if (unitPrefabs == null || unitPrefabs.Count == 0)
+        {
+            Debug.LogError("유닛 프리팹 목록 없음..", this.gameObject);
+            return;
+        }
+
+        if (unitIndex < 0 || unitIndex >= unitPrefabs.Count)
+        {
+            Debug.LogError($"유효하지 않은 유닛 인덱스: {unitIndex}. 프리팹 목록이 비어있음..", this.gameObject);
+            return;
+        }
+
+        GameObject unitPrefab = unitPrefabs[unitIndex];
+
         if (unitPrefab == null)
         {
-            Debug.LogError("유닛이 프리팹에 할당되지 않음...", this.gameObject);
+            Debug.LogError($"인덱스 {unitIndex}에 해당하는 유닛 프리팹이 할당X", this.gameObject);
             return;
         }
 
         if (spawnTransform == null)
         {
-            Debug.LogError("Spawn Position이 SpawnPoint에 할당되지 않음...", this.gameObject);
+            Debug.LogError("Spawn Position이 SpawnPoint에 할당X", this.gameObject);
             return;
         }
 
         // 유닛 생성
         Instantiate(unitPrefab, spawnTransform.position, Quaternion.identity);
-        Debug.Log($"유닛이 {spawnTransform.position}에 생성", this.gameObject);
+        Debug.Log($"'{unitPrefab.name}' 유닛 생성", this.gameObject);
     }
 
     /// <summary>
