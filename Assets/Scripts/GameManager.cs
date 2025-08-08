@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,13 +17,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Application.targetFrameRate = 60;
+    }
+
     public void StartGame()
     {
-        Debug.Log("°ÔÀÓ ½ÃÀÛ!");
+        Debug.Log("ê²Œìž„ ì‹œìž‘!");
     }
 
     public void EndGame()
     {
-        Debug.Log("°ÔÀÓ Á¾·á");
+        Debug.Log("ê²Œìž„ ì¢…ë£Œ");
     }
 }
