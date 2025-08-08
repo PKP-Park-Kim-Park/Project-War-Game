@@ -104,7 +104,7 @@ MonoBehaviour:
   defaultFacingDirection: 0
   attackRange: 6
   turnSpeed: 10
-  fireRate: 1
+  fireRate: 2
   initialFireDelay: 0.5
   projectileDamage: 10
   enemyTag: Enemy
