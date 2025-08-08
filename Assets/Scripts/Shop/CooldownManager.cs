@@ -60,10 +60,3 @@ public class CooldownManager : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-
-
