@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7458041981180984281}
   - component: {fileID: 8809590001528814548}
   - component: {fileID: 314657520741052664}
+  - component: {fileID: -3853558185973545817}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 105
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d79ef79b5a264cfd9b4195c5a9760d9, type: 3}
   m_Color: {r: 0.9373345, g: 0.990566, b: 0.06074228, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,7 +153,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.8, y: 0.8}
   m_Direction: 0
 --- !u!114 &314657520741052664
 MonoBehaviour:
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e30f483edf624e48923bcca88ead6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 30
+  maxSpeed: 40
   accelerationDuration: 1
   lifeTime: 3
   accelerationCurve:
@@ -182,41 +183,45 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.2375
     - serializedVersion: 3
-      time: 0.37486294
-      value: 0.1463967
-      inSlope: 1.3101361
-      outSlope: 1.3101361
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.2108227
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5007541
-      value: 0.30100703
-      inSlope: 1.1696068
-      outSlope: 1.1696068
+      time: 0.71441895
+      value: 0.15397775
+      inSlope: 0.7228951
+      outSlope: 0.7228951
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.48902145
     - serializedVersion: 3
-      time: 0.8439232
-      value: 0.7596604
-      inSlope: 1.5450706
-      outSlope: 1.5450706
+      time: 0.9916687
+      value: 0.9976196
+      inSlope: 6.8600235
+      outSlope: 6.8600235
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
+      inWeight: 0.0515927
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-3853558185973545817
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9036121827171556530}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfa1f197800da41f29dee560ee391cae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

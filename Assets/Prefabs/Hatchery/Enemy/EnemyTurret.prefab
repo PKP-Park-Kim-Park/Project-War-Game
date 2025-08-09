@@ -102,15 +102,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultFacingDirection: 1
-  attackRange: 10
+  attackRange: 15
   turnSpeed: 10
   fireRate: 1
   initialFireDelay: 0.5
-  bulletDamage: 10
+  projectileDamage: 10
   enemyTag: Player
   partToRotate: {fileID: 6769983941630644336}
   firePoint: {fileID: 3292934676694102579}
-  bulletPrefab: {fileID: 2332763397493495252, guid: 938c5b8f52f817a4ab63b15996ad0c49, type: 3}
+  projectilePrefab: {fileID: 2332763397493495252, guid: 938c5b8f52f817a4ab63b15996ad0c49, type: 3}
 --- !u!1 &6033298696349521774
 GameObject:
   m_ObjectHideFlags: 0
