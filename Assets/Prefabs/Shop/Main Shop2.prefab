@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.5330188, b: 0.94269973, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -384,6 +384,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Upgrade
       objectReference: {fileID: 0}
+    - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUpgradeButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpgradeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8714671248998512540, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_Text
       value: Upgrade
@@ -489,6 +505,22 @@ PrefabInstance:
     - target: {fileID: 1557292415884399088, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_Name
       value: Addition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnAdditionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8714671248998512540, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_Text
