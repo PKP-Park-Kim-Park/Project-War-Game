@@ -42,7 +42,7 @@ public class EnemyTurretSlot : MonoBehaviour
     }
 
     /// <summary>
-    /// AI 컨트롤러 등 외부에서 호출하여 터렛을 건설하게 할 수 있는 public 메서드입니다.
+    /// AI 컨트롤러 등 외부에서 호출하여 터렛을 건설하게 할 수 있는 public 메서드
     /// </summary>
     public void BuildTurretByAI()
     {
@@ -50,7 +50,7 @@ public class EnemyTurretSlot : MonoBehaviour
     }
 
     /// <summary>
-    /// enemyTurretPrefabs 목록에서 무작위로 터렛을 선택하여 건설합니다.
+    /// enemyTurretPrefabs 목록에서 무작위로 터렛을 선택하여 건설
     /// </summary>
     private void BuildRandomTurret()
     {
@@ -70,12 +70,12 @@ public class EnemyTurretSlot : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"인덱스 {randomIndex}의 적 터렛 프리팹이 null입니다.", this.gameObject);
+            Debug.LogError($"인덱스 {randomIndex}의 적 터렛 프리팹이 null", this.gameObject);
         }
     }
 
     /// <summary>
-    /// 지정된 터렛 프리팹을 이 터렛 슬롯에 장착합니다.
+    /// 지정된 터렛 프리팹을 이 터렛 슬롯에 장착
     /// </summary>
     public bool MountTurret(GameObject turretPrefab)
     {
@@ -87,20 +87,20 @@ public class EnemyTurretSlot : MonoBehaviour
 
         if (turretPrefab == null)
         {
-            Debug.LogError("장착하려는 터렛 프리팹이 NULL입니다.", this.gameObject);
+            Debug.LogError("장착하려는 터렛 프리팹 NULL.", this.gameObject);
             return false;
         }
 
-        // TurretSlot의 위치에 터렛을 생성합니다.
+        // TurretSlot의 위치에 터렛을 생성
         mountedTurret = Instantiate(turretPrefab, this.transform.position, this.transform.rotation);
 
-        // 생성된 터렛을 TurretSpot(부모)의 자식으로 만들어 계층 구조를 정리합니다.
+        // 생성된 터렛 계층 구조 정리
         if (this.transform.parent != null)
         {
             mountedTurret.transform.SetParent(this.transform.parent);
         }
 
-        // 터렛이 장착되었으므로 호버 효과를 비활성화합니다.
+        // 터렛이 장착되었으므로 호버 효과를 비활성화
         if (hoverVisual != null)
         {
             hoverVisual.SetActive(false);
@@ -112,10 +112,10 @@ public class EnemyTurretSlot : MonoBehaviour
         return true;
     }
 
-    // 씬 뷰에서 터렛 슬롯 영역을 시각적으로 표시합니다.
+    // 씬 뷰에서 터렛 슬롯 영역
     private void OnDrawGizmos()
     {
-        Gizmos.color = isOccupied ? new Color(1f, 0.5f, 0f) : Color.magenta; // 적 슬롯은 주황/마젠타로 구분
+        Gizmos.color = isOccupied ? new Color(1f, 0.5f, 0f) : Color.magenta;
         Gizmos.DrawWireCube(transform.position, transform.lossyScale);
     }
 

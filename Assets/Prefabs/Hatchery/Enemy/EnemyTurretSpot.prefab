@@ -124,9 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTurretPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4330110605205189453, guid: 109568a72ac46544dacd50e4ea8534d9, type: 3}
+  - {fileID: 402038543466537056, guid: 73e2239f54db6ad4d81b8e88347cfe51, type: 3}
+  - {fileID: 7399804362714274945, guid: 45e44bd239ab3cb4ba72cd770e9566ea, type: 3}
   hoverVisual: {fileID: 7727568644004788497}
   isOccupied: 0
   mountedTurret: {fileID: 0}
