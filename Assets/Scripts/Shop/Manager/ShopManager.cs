@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 
 public class ShopManager : MonoBehaviour
@@ -6,9 +6,9 @@ public class ShopManager : MonoBehaviour
     public GoldManager goldManager;
     public CooldownManager cooldownManager;
 
-    // ÁõÃà ºñ¿ëÀ» ´ã´Â ¹è¿­
+    // ì¦ì¶• ë¹„ìš©ì„ ë‹´ëŠ” ë°°ì—´
     private int[] additionCosts = { 1000, 3000, 5000, 8000 };
-    // ÇöÀç ÁõÃà È½¼ö
+    // í˜„ì¬ ì¦ì¶• íšŸìˆ˜
     private int currentAdditions = 0;
     private int maxAdditions = 4;
 
@@ -34,21 +34,21 @@ public class ShopManager : MonoBehaviour
                 if (_cooldownTimes.TryGetValue(cost, out float cooldownTime))
                 {
                     cooldownManager.StartCooldown(cooldownTime);
-                    Debug.Log($"À¯´Ö ±¸¸Å! {cost} °ñµå ¼Ò¸ğ.");
+                    Debug.Log($"ìœ ë‹› êµ¬ë§¤! {cost} ê³¨ë“œ ì†Œëª¨.");
                 }
                 else
                 {
-                    Debug.LogWarning($"ºñ¿ë {cost}¿¡ ´ëÇÑ ÄğÅ¸ÀÓ ¼³Á¤ÀÌ ¾ø½À´Ï´Ù.");
+                    Debug.LogWarning($"ë¹„ìš© {cost}ì— ëŒ€í•œ ì¿¨íƒ€ì„ ì„¤ì •ì´ ì—†ìŠµë‹ˆë‹¤.");
                 }
             }
             else
             {
-                Debug.Log("°ñµå ºÎÁ·!");
+                Debug.Log("ê³¨ë“œ ë¶€ì¡±!");
             }
         }
         else
         {
-            Debug.Log("Äğ´Ù¿î ÁßÀÌ°Å³ª Äğ´Ù¿î ¸Å´ÏÀú ¹Ì¿¬°á");
+            Debug.Log("ì¿¨ë‹¤ìš´ ì¤‘ì´ê±°ë‚˜ ì¿¨ë‹¤ìš´ ë§¤ë‹ˆì € ë¯¸ì—°ê²°");
         }
     }
 
@@ -56,34 +56,34 @@ public class ShopManager : MonoBehaviour
     {
         if (goldManager != null && goldManager.SpendGold(cost))
         {
-            Debug.Log("ÅÍ·¿ ¼³Ä¡ ¿Ï·á");
-            // ÅÍ·¿ ¼³Ä¡ ·ÎÁ÷ Ãß°¡
+            Debug.Log("í„°ë › ì„¤ì¹˜ ì™„ë£Œ");
+            // í„°ë › ì„¤ì¹˜ ë¡œì§ ì¶”ê°€
         }
         else
         {
-            Debug.Log("°ñµå ºÎÁ·À¸·Î ÅÍ·¿ ¼³Ä¡ ºÒ°¡");
+            Debug.Log("ê³¨ë“œ ë¶€ì¡±ìœ¼ë¡œ í„°ë › ì„¤ì¹˜ ë¶ˆê°€");
         }
 
-        //isInstallingTurret = true;  // ¼³Ä¡ ¸ğµå ÁøÀÔ
+        //isInstallingTurret = true;  // ì„¤ì¹˜ ëª¨ë“œ ì§„ì…
     }
 
     public void OnAdditionButton()
     {
         if (currentAdditions >= maxAdditions)
         {
-            Debug.Log("´õ ÀÌ»ó ÁõÃàÇÒ ¼ö ¾ø½À´Ï´Ù. ÃÖ´ë ÁõÃà È½¼ö¿¡ µµ´ŞÇß½À´Ï´Ù.");
+            Debug.Log("ë” ì´ìƒ ì¦ì¶•í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ìµœëŒ€ ì¦ì¶• íšŸìˆ˜ì— ë„ë‹¬í–ˆìŠµë‹ˆë‹¤.");
             return;
         }
 
-        // ÇöÀç ÁõÃà ´Ü°è¿¡ ¸Â´Â ºñ¿ëÀ» °¡Á®¿È
+        // í˜„ì¬ ì¦ì¶• ë‹¨ê³„ì— ë§ëŠ” ë¹„ìš©ì„ ê°€ì ¸ì˜´
         int cost = additionCosts[currentAdditions];
 
-        // °ñµå°¡ ÃæºĞÇÑÁö È®ÀÎ
+        // ê³¨ë“œê°€ ì¶©ë¶„í•œì§€ í™•ì¸
         if (goldManager != null && goldManager.SpendGold(cost))
         {
-            Debug.Log("ÁõÃà ¿Ï·á! ºñ¿ë: " + cost + "°ñµå");
+            Debug.Log("ì¦ì¶• ì™„ë£Œ! ë¹„ìš©: " + cost + "ê³¨ë“œ");
 
-            //// »óÈÆ's ÅÍ·¿ ÁõÃà ÄÚµå ÇÊ¿ä
+            //// ìƒí›ˆ's í„°ë › ì¦ì¶• ì½”ë“œ í•„ìš”
             //if (turretManager != null)
             //{
             //    turretManager.BuildTurretSpot();
@@ -93,13 +93,13 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("°ñµå ºÎÁ·À¸·Î ÁõÃà ºÒ°¡.");
+            Debug.Log("ê³¨ë“œ ë¶€ì¡±ìœ¼ë¡œ ì¦ì¶• ë¶ˆê°€.");
         }
     }
 }
 
     //public void OnSellingButton(int cost)
     //{
-    //    Debug.Log("ÆÇ¸Å ¿Ï·á");
+    //    Debug.Log("íŒë§¤ ì™„ë£Œ");
     //}
 
