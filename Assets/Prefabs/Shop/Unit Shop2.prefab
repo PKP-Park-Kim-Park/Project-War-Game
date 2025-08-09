@@ -140,8 +140,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 737, y: 472}
-  m_SizeDelta: {x: 1480, y: 497.83}
+  m_AnchoredPosition: {x: 0.68, y: -523.38}
+  m_SizeDelta: {x: 2959.84, y: 390.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9209579125955099083
 CanvasRenderer:
@@ -215,11 +215,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 295.6
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 239.72
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -251,11 +251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 918
+      value: -42
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 465
+      value: -515
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -283,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Cash, Assembly-CSharp
+      value: ShopManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -341,11 +341,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 295.6
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 239.72
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -377,11 +377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1271.9999
+      value: 541
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 465
+      value: -515
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -422,6 +422,10 @@ PrefabInstance:
     - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714671248998512540, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
+      propertyPath: m_Text
+      value: Exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -467,11 +471,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 295.6
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 239.72
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -503,11 +507,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 533.0001
+      value: -660
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 465
+      value: -515
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -535,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Cash, Assembly-CSharp
+      value: ShopManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -593,11 +597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 295.6
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 239.72
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -629,11 +633,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 156.00002
+      value: -1217
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 467
+      value: -515
       objectReference: {fileID: 0}
     - target: {fileID: 861964635258528474, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -661,7 +665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Cash, Assembly-CSharp
+      value: ShopManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6623514437776427136, guid: 27199f02f3795ca4d9f3e52a84e2afc3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
