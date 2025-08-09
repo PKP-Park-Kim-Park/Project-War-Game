@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
@@ -30,7 +30,7 @@ public class UpgradeManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("°æÇèÄ¡°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+            Debug.Log("ê²½í—˜ì¹˜ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
         }
     }
 }
