@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class ShopManager : MonoBehaviour
 {
-    public GoldManager goldManager;
     public CooldownManager cooldownManager;
     [Tooltip("Turret Manager 넣으쇼..")]
     public TurretSpotBuilder turretSpotBuilder;
@@ -48,7 +47,7 @@ public class ShopManager : MonoBehaviour
         if (cooldownManager != null && !cooldownManager.IsOnCooldown())
         {
             // 골드가 충분한지 확인
-            if (goldManager != null && goldManager.SpendGold(cost))
+            if (GoldManager.instance != null && GoldManager.instance.SpendGold(cost))
             {
                 // 비용에 해당하는 쿨타임과 유닛 인덱스를 가져옴
                 if (_cooldownTimes.TryGetValue(cost, out float cooldownTime) &&
@@ -76,7 +75,7 @@ public class ShopManager : MonoBehaviour
 
     public void OnTurretButton(int cost)
     {
-        if (goldManager != null && goldManager.SpendGold(cost))
+        if (GoldManager.instance != null && GoldManager.instance.SpendGold(cost))
         {
             Debug.Log("터렛 설치 완료");
             // 터렛 설치 로직 추가
@@ -101,7 +100,7 @@ public class ShopManager : MonoBehaviour
         int cost = additionCosts[currentAdditions];
 
         // 골드가 충분한지 확인
-        if (goldManager != null && goldManager.SpendGold(cost))
+        if (GoldManager.instance != null && GoldManager.instance.SpendGold(cost))
         {
             Debug.Log("증축 완료! 비용: " + cost + "골드");
 

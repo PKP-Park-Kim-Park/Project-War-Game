@@ -8,8 +8,6 @@ public class UpgradeManager : MonoBehaviour
     public GameObject upgradeCanvas;
     public Button upgradeButton;
 
-    public ExpManager expManager;
-
     private void Start()
     {
         UpdateUpgradeButtonState();
@@ -17,13 +15,13 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpdateUpgradeButtonState()
     {
-        if (expManager != null)
+        if (ExpManager.instance != null)
             upgradeButton.gameObject.SetActive(true);
     }
 
     public void OnUpgradeButtonClicked()
     {
-        if (expManager != null && expManager.HasEnoughExp(expRequired))
+        if (ExpManager.instance != null && ExpManager.instance.HasEnoughExp(expRequired))
         {
             mainCanvas.SetActive(false);
             upgradeCanvas.SetActive(true);

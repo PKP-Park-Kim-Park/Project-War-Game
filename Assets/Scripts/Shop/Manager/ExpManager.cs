@@ -3,6 +3,22 @@ using UnityEngine.UI;
 
 public class ExpManager : MonoBehaviour
 {
+    public static ExpManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     public int exp = 0;
     public Text expText;
 
