@@ -44,7 +44,7 @@ public class UnitController : MonoBehaviour, IDamageable
         currentHealth = stat.MaxHealth;
 
         SetMoveDirection();
-        combat.Setup(rayShootTransform, moveDirection, stat.AttackTargetTags, stat.AttackDamage, stat.AttackRange);
+        combat.Setup(rayShootTransform, moveDirection, stat.AttackTargetTags, stat.AttackDamage, stat.AttackRange, stat.Gold, stat.Exp);
     }
 
     private void Start()
@@ -187,6 +187,12 @@ public class UnitController : MonoBehaviour, IDamageable
         isDie = true;
 
         yield return unitAnimation.WaitForDeathAnimation();
+
+        if(gameObject.CompareTag("Enemy"))
+        {
+            GoldManager.instance.AddGold(stat.Gold);
+            ExpManager.instance.AddExp(stat.Exp);
+        }
 
         gameObject.SetActive(false);
         Destroy(gameObject);

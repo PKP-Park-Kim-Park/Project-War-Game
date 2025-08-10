@@ -10,6 +10,9 @@ public class UnitStat
     public UnitType UnitType { get; private set; }
     public List<string> AttackTargetTags { get; private set; }
     public string StopTargetTag { get; private set; }
+    public int Gold { get; private set; }
+    public int Exp { get; private set; }
+
 
     public void Initialize(UnitData unitData, string unitTag)
     {
@@ -18,6 +21,8 @@ public class UnitStat
         AttackDamage = unitData.attackDamage;
         AttackRange = unitData.attackRange;
         UnitType = unitData.unitType;
+        Gold = unitData.gold;
+        Exp = unitData.exp;
 
         if (unitTag == "Player")
         {

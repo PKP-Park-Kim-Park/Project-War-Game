@@ -22,4 +22,12 @@ public class UnitData : ScriptableObject
     [SerializeField]
     private float _attackRange;
     public float attackRange { get { return _attackRange; } }
+
+    [SerializeField]
+    private int _gold;
+    public int gold { get { return _gold; } }
+
+    [SerializeField]
+    private int _exp;
+    public int exp { get { return _exp; } }
 }

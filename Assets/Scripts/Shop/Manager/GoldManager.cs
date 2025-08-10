@@ -3,6 +3,21 @@ using UnityEngine.UI;
 
 public class GoldManager : MonoBehaviour
 {
+    public static GoldManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public int gold = 10000;
     public Text goldText;
 
