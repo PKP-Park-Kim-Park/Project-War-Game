@@ -40,6 +40,14 @@ public class TurretSpotBuilder : MonoBehaviour
         Debug.Log($"<color=cyan>초기 터렛 스팟 '{initialSpot.name}' 생성 완료.</color>", initialSpot);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            BuildTurretSpot();
+        }
+    }
+
     /// <summary>
     /// 터렛 스팟을 건설
     /// </summary>
