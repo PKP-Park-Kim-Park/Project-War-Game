@@ -5,6 +5,8 @@ public class ShopManager : MonoBehaviour
 {
     public GoldManager goldManager;
     public CooldownManager cooldownManager;
+    [Tooltip("Turret Manager 넣으쇼..")]
+    public TurretSpotBuilder turretSpotBuilder;
 
     // 증축 비용을 담는 배열
     private int[] additionCosts = { 1000, 3000, 5000, 8000 };
@@ -83,11 +85,15 @@ public class ShopManager : MonoBehaviour
         {
             Debug.Log("증축 완료! 비용: " + cost + "골드");
 
-            //// 상훈's 터렛 증축 코드 필요
-            //if (turretManager != null)
-            //{
-            //    turretManager.BuildTurretSpot();
-            //}
+            // TurretSpotBuilder의 터렛 스팟 건설 메서드 호출
+            if (turretSpotBuilder != null)
+            {
+                turretSpotBuilder.BuildTurretSpot();
+            }
+            else
+            {
+                Debug.LogError("TurretSpotBuilder가 ShopManager에 연결되지 않았습니다.");
+            }
             currentAdditions++;
 
         }
@@ -98,8 +104,7 @@ public class ShopManager : MonoBehaviour
     }
 }
 
-    //public void OnSellingButton(int cost)
-    //{
-    //    Debug.Log("판매 완료");
-    //}
-
+//public void OnSellingButton(int cost)
+//{
+//    Debug.Log("판매 완료");
+//}

@@ -9,10 +9,6 @@ public class TurretSlot : MonoBehaviour
     [Tooltip("마우스 호버 시 표시될 시각적 효과 오브젝트 => 나중에 드래그한 터렛이 위에 올라가면 나오게 수정할 필요 있음.")]
     public GameObject hoverVisual;
 
-    [Header("Turret To Build")]
-    [Tooltip("테스트용: 클릭 시 터렛 건설")]
-    public GameObject turretToMountPrefab;
-
     [Header("State (Runtime)")]
     [Tooltip("터렛이 장착되었는지 여부")]
     [SerializeField]
@@ -26,7 +22,7 @@ public class TurretSlot : MonoBehaviour
 
     void Start()
     {
-        // 게임 시작 시 호버 효과를 비활성화합니다.
+        // 게임 시작 시 호버 효과를 비활성화
         if (hoverVisual != null)
         {
             hoverVisual.SetActive(false);
@@ -37,13 +33,23 @@ public class TurretSlot : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log($"TurretSlot Clicked '{this.gameObject.name}'");
-        if (turretToMountPrefab != null)
+
+        // TurretManager에서 선택된 터렛 프리팹을 가져옵니다.
+        if (TurretManager.Instance == null)
         {
-            MountTurret(turretToMountPrefab);
+            Debug.LogError("TurretManager 인스턴스를 찾을 수 없습니다. 씬에 TurretManager가 있는지 확인하세요.", this.gameObject);
+            return;
+        }
+
+        GameObject turretToBuild = TurretManager.Instance.GetSelectedTurretPrefab();
+
+        if (turretToBuild != null)
+        {
+            MountTurret(turretToBuild);
         }
         else
         {
-            Debug.LogError("장착할 터렛 프리팹이 TurretSlot에 할당되지 않음..", this.gameObject);
+            Debug.LogError("선택된 터렛이 없습니다. TurretManager에서 터렛을 선택하거나, 목록에 터렛을 추가하세요.", this.gameObject);
         }
     }
 
@@ -61,7 +67,7 @@ public class TurretSlot : MonoBehaviour
 
         if (turretPrefab == null)
         {
-            Debug.LogError("터렛 프리팹이 NULL...", this.gameObject);
+            Debug.LogError("장착하려는 터렛 프리팹이 NULL입니다.", this.gameObject);
             return false;
         }
 
