@@ -29,27 +29,34 @@ public class TurretSlot : MonoBehaviour
         }
     }
 
-    // 테스트용 마우스 클릭으로 터렛 건설
     private void OnMouseDown()
     {
-        Debug.Log($"TurretSlot Clicked '{this.gameObject.name}'");
-
-        // TurretManager에서 선택된 터렛 프리팹을 가져옵니다.
-        if (TurretManager.Instance == null)
+        // 포탑 설치 모드가 아닐 경우, 아무것도 하지 않음.
+        if (TurretManager.Instance == null || !TurretManager.Instance.isPlacingTurret)
         {
-            Debug.LogError("TurretManager 인스턴스를 찾을 수 없습니다. 씬에 TurretManager가 있는지 확인하세요.", this.gameObject);
             return;
         }
 
-        GameObject turretToBuild = TurretManager.Instance.GetSelectedTurretPrefab();
+        // TurretManager에서 설치할 터렛 정보를 가져옴
+        GameObject turretToBuild = TurretManager.Instance.turretToPlacePrefab;
+        int turretCost = TurretManager.Instance.turretCost;
 
         if (turretToBuild != null)
         {
-            MountTurret(turretToBuild);
-        }
-        else
-        {
-            Debug.LogError("선택된 터렛이 없습니다. TurretManager에서 터렛을 선택하거나, 목록에 터렛을 추가하세요.", this.gameObject);
+            // 골드가 충분한지 확인하고 소모
+            if (GoldManager.instance != null && GoldManager.instance.SpendGold(turretCost))
+            {
+                if (MountTurret(turretToBuild))
+                {
+                    Debug.Log("터렛 설치 완료");
+                }
+                TurretManager.Instance.EndTurretPlacement(); // 설치 완료 후 모드 종료
+            }
+            else
+            {
+                Debug.Log("골드 부족으로 터렛 설치 불가");
+                TurretManager.Instance.EndTurretPlacement(); // 모드 종료
+            }
         }
     }
 
