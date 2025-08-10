@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 105
   m_Sprite: {fileID: 21300000, guid: 4d79ef79b5a264cfd9b4195c5a9760d9, type: 3}
-  m_Color: {r: 0.9373345, g: 0.990566, b: 0.06074228, a: 1}
+  m_Color: {r: 0.9019608, g: 1, b: 0.15686275, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -167,9 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e30f483edf624e48923bcca88ead6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 3
+  hitEffectPrefab: {fileID: 2191102530486117600, guid: f79c683d597606d4ca5bc152d0c0b6b0, type: 3}
   maxSpeed: 40
   accelerationDuration: 1
-  lifeTime: 3
   accelerationCurve:
     serializedVersion: 2
     m_Curve:

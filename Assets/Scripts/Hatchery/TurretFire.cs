@@ -31,13 +31,14 @@ public class TurretFire : MonoBehaviour
     public string enemyTag = "Enemy";
     [Tooltip("회전할 터렛 파츠 (총구 부분)")]
     public Transform partToRotate;
-    [Tooltip("총알이 발사될 위치")]
-    public Transform firePoint;
+    [Tooltip("총알이 발사될 위치 목록. 여러 개를 설정하면 번갈아가며 발사됩니다.")]
+    public System.Collections.Generic.List<Transform> firePoints;
     [Tooltip("발사할 발사체(총알, 미사일 등) 프리팹")]
     public GameObject projectilePrefab;
 
     private Transform target;
     private Quaternion initialRotation;
+    private int nextFirePointIndex = 0; // 다음 발사할 총구의 인덱스
 
     void Start()
     {
@@ -149,7 +150,22 @@ public class TurretFire : MonoBehaviour
     // 투사체 발사 함수
     void FireProjectile()
     {
-        if (projectilePrefab == null || firePoint == null) return;
+        if (projectilePrefab == null || firePoints == null || firePoints.Count == 0)
+        {
+            Debug.LogError("'Projectile Prefab' 또는 'Fire Points'가 설정되지 않았습니다.", this);
+            return;
+        }
+
+        // 현재 발사할 총구를 가져옵니다.
+        Transform firePoint = firePoints[nextFirePointIndex];
+
+        if (firePoint == null)
+        {
+            Debug.LogWarning($"Fire Points 목록의 인덱스 {nextFirePointIndex}가 비어있습니다. 건너뜁니다.", this);
+            // 다음 인덱스로 넘어가서 다음 프레임에 시도하도록 함
+            nextFirePointIndex = (nextFirePointIndex + 1) % firePoints.Count;
+            return;
+        }
 
         GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         IProjectile projectile = projectileGO.GetComponent<IProjectile>();
@@ -164,6 +180,9 @@ public class TurretFire : MonoBehaviour
         {
             Debug.LogWarning($"'{projectilePrefab.name}' 프리팹에 IProjectile을 구현하는 컴포넌트 부재", projectileGO);
         }
+
+        // 다음 발사를 위해 인덱스를 순환시킵니다.
+        nextFirePointIndex = (nextFirePointIndex + 1) % firePoints.Count;
     }
 
     // 씬 뷰에서 터렛의 사거리를 시각적으로 표시
