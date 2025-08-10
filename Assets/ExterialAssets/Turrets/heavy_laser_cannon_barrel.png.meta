@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 52ffeff24fa17864b9957dac46f83c62
+guid: 47766026924b64d43ae4ac3273e804ec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4196182061993403548
-    second: plasma_cannon_barrel_0
+      213: -2632755467919357143
+    second: heavy_laser_cannon_barrel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plasma_cannon_barrel_0
+      name: heavy_laser_cannon_barrel_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 29
-        height: 16
+        y: 11
+        width: 32
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 46b540e95aa24c5c0800000000000000
-      internalID: -4196182061993403548
+      spriteID: 92b0332d9d2967bd0800000000000000
+      internalID: -2632755467919357143
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      plasma_cannon_barrel_0: -4196182061993403548
+      heavy_laser_cannon_barrel_0: -2632755467919357143
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
