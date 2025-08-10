@@ -9,10 +9,10 @@ public class ShopManager : MonoBehaviour
     public TurretSpotBuilder turretSpotBuilder;
 
     // 증축 비용을 담는 배열
-    private int[] additionCosts = { 1000, 3000, 5000, 8000 };
+    private int[] additionCosts = { 1000, 3000, 5000 };
     // 현재 증축 횟수
     private int currentAdditions = 0;
-    private int maxAdditions = 4;
+    private int maxAdditions = 3;
 
     private Dictionary<int, float> _cooldownTimes = new Dictionary<int, float>()
     {

@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3614963719071355172, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: gold
+      value: 999999
+      objectReference: {fileID: 0}
     - target: {fileID: 5040409113472357114, guid: 42d4c425491ecf44b908188707984d14, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2208223
