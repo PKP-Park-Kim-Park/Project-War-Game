@@ -26,21 +26,69 @@ public class ShopManager : MonoBehaviour
         { 85, 2.5f },
         { 300, 3.5f },
     };
+    // 비용(cost)을 키로, 유닛 인덱스(unitIndex)를 값으로 하는 딕셔너리
+    private Dictionary<int, int> _unitCostsAndIndices = new Dictionary<int, int>();
+
+    void Awake()
+    {
+        // Awake()에서 비용과 유닛 인덱스를 매핑
+        // 이 부분은 유닛 프리팹 리스트 순서에 맞게 직접 설정해야 합니다.
+        _unitCostsAndIndices.Add(15, 0);   // 비용 15 골드는 unitPrefabs[0]에 해당
+        _unitCostsAndIndices.Add(25, 1);   // 비용 25 골드는 unitPrefabs[1]에 해당
+        _unitCostsAndIndices.Add(100, 2);  // 비용 100 골드는 unitPrefabs[2]에 해당
+
+        //// Unit Shop 2의 유닛들도 추가
+        //_unitCostsAndIndices.Add(50, 3);
+        //_unitCostsAndIndices.Add(85, 4);
+        //_unitCostsAndIndices.Add(300, 5);
+    }
+
+    //public void OnUnitButton(int cost)
+    //{
+    //    if (cooldownManager != null && !cooldownManager.IsOnCooldown())
+    //    {
+    //        if (goldManager != null && goldManager.SpendGold(cost))
+    //        {
+    //            if (_cooldownTimes.TryGetValue(cost, out float cooldownTime))
+    //            {
+    //                cooldownManager.StartCooldown(cooldownTime);
+    //                Debug.Log($"유닛 구매! {cost} 골드 소모.");
+    //            }
+    //            else
+    //            {
+    //                Debug.LogWarning($"비용 {cost}에 대한 쿨타임 설정이 없습니다.");
+    //            }
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("골드 부족!");
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("쿨다운 중이거나 쿨다운 매니저 미연결");
+    //    }
+    //}
+    // 버튼의 OnClick 이벤트에 연결할 함수 (비용만 받음)
 
     public void OnUnitButton(int cost)
     {
         if (cooldownManager != null && !cooldownManager.IsOnCooldown())
         {
+            // 골드가 충분한지 확인
             if (goldManager != null && goldManager.SpendGold(cost))
             {
-                if (_cooldownTimes.TryGetValue(cost, out float cooldownTime))
+                // 비용에 해당하는 쿨타임과 유닛 인덱스를 가져옴
+                if (_cooldownTimes.TryGetValue(cost, out float cooldownTime) &&
+                    _unitCostsAndIndices.TryGetValue(cost, out int unitIndex))
                 {
-                    cooldownManager.StartCooldown(cooldownTime);
-                    Debug.Log($"유닛 구매! {cost} 골드 소모.");
+                    // 쿨타임 시작 시 유닛 인덱스를 함께 전달
+                    cooldownManager.StartCooldown(cooldownTime, unitIndex);
+                    Debug.Log($"유닛 구매! {cost} 골드 소모. 유닛 인덱스: {unitIndex}");
                 }
                 else
                 {
-                    Debug.LogWarning($"비용 {cost}에 대한 쿨타임 설정이 없습니다.");
+                    Debug.LogWarning($"비용 {cost}에 대한 쿨타임 또는 유닛 인덱스 설정이 없습니다.");
                 }
             }
             else

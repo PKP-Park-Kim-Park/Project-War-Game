@@ -5,6 +5,9 @@ public class CooldownManager : MonoBehaviour
 {
     public Image cooltimeBarFill;
 
+    public SpawnPoint spawnPoint; // SpawnPoint 스크립트 참조
+    private int unitIndexToSpawn; // 스폰할 유닛의 인덱스 저장
+
     private float currentCooldownTime = 0f;
     private float maxCooldownTime = 0f; // 버튼 클릭 시 설정될 쿨타임 시간
     private bool isCooldown = false;
@@ -30,7 +33,11 @@ public class CooldownManager : MonoBehaviour
                 currentCooldownTime = 0;
                 cooltimeBarFill.fillAmount = 0;
 
-                //SpawnUnit();
+                //여기에 스폰유닛함수를 넣어야댐
+                if (spawnPoint != null)
+                {
+                    spawnPoint.SpawnUnit(unitIndexToSpawn);
+                }
 
                 Debug.Log("쿨타임 종료! 다시 사용 가능합니다.");
             }
@@ -44,7 +51,7 @@ public class CooldownManager : MonoBehaviour
     }
 
     // 이 함수를 버튼의 OnClick() 이벤트에 연결하고, 쿨타임 시간을 매개변수로 입력합니다.
-    public void StartCooldown(float buttonCooldownTime)
+    public void StartCooldown(float buttonCooldownTime, int unitIndex)
     {
         if (!isCooldown)
         {
@@ -53,6 +60,9 @@ public class CooldownManager : MonoBehaviour
             maxCooldownTime = buttonCooldownTime; // 버튼에서 받은 쿨타임 시간으로 설정
             currentCooldownTime = 0;
             cooltimeBarFill.fillAmount = 0;
+
+            // 전달받은 unitIndex를 저장합니다.
+            unitIndexToSpawn = unitIndex;
         }
         else
         {
