@@ -9,14 +9,18 @@ public class UnitCombat
     private List<string> attackTargetTags;
     private int attackDamage;
     private float attackRange;
+    private int gold;
+    private int exp;
 
-    public void Setup(Transform rayOrigin, Vector3 moveDirection, List<string> attackTargetTags, int attackDamage, float attackRange)
+    public void Setup(Transform rayOrigin, Vector3 moveDirection, List<string> attackTargetTags, int attackDamage, float attackRange, int gold, int exp)
     {
         this.rayOrigin = rayOrigin;
         this.moveDirection = moveDirection;
         this.attackTargetTags = attackTargetTags;
         this.attackDamage = attackDamage;
         this.attackRange = attackRange;
+        this.gold = gold;
+        this.exp = exp;
     }
 
     public void Attack()
