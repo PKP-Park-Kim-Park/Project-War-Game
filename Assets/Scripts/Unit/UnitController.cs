@@ -186,13 +186,13 @@ public class UnitController : MonoBehaviour, IDamageable
         GetComponent<Collider2D>().enabled = false;
         isDie = true;
 
-        yield return unitAnimation.WaitForDeathAnimation();
-
-        if(gameObject.CompareTag("Enemy"))
+        if (gameObject.CompareTag("Enemy"))
         {
             GoldManager.instance.AddGold(stat.Gold);
             ExpManager.instance.AddExp(stat.Exp);
         }
+
+        yield return unitAnimation.WaitForDeathAnimation();
 
         gameObject.SetActive(false);
         Destroy(gameObject);
