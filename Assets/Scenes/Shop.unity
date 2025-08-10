@@ -368,6 +368,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea0eaed4bd457b4e975def0fdeb5080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2123524208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1409377985132278940, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
+  m_PrefabInstance: {fileID: 2143979402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d65acbf389ac5e4da5c9e9491fff34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2143979402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -637,6 +648,34 @@ PrefabInstance:
       propertyPath: turretSpotBuilder
       value: 
       objectReference: {fileID: 2123524206}
+    - target: {fileID: 8231995864870853785, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231995864870853785, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231995864870853785, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2123524208}
+    - target: {fileID: 8231995864870853785, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231995864870853785, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: EndTurretPlacement
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231995864870853785, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: TurretManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231995864870853785, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

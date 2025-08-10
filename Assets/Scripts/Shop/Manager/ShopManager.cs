@@ -25,8 +25,11 @@ public class ShopManager : MonoBehaviour
         { 85, 2.5f },
         { 300, 3.5f },
     };
+
     // 비용(cost)을 키로, 유닛 인덱스(unitIndex)를 값으로 하는 딕셔너리
     private Dictionary<int, int> _unitCostsAndIndices = new Dictionary<int, int>();
+    //터렛 비용과 인덱스를 매핑하는 딕셔너리 추가
+    private Dictionary<int, int> _turretCostsAndIndices = new Dictionary<int, int>();
 
     void Awake()
     {
@@ -40,6 +43,11 @@ public class ShopManager : MonoBehaviour
         //_unitCostsAndIndices.Add(50, 3);
         //_unitCostsAndIndices.Add(85, 4);
         //_unitCostsAndIndices.Add(300, 5);
+
+        // 터렛 비용과 인덱스 매핑 (예시)
+        _turretCostsAndIndices.Add(150, 0); // 50골드 터렛은 turretPrefabs[0]
+        _turretCostsAndIndices.Add(300, 1); // 150골드 터렛은 turretPrefabs[1]
+        _turretCostsAndIndices.Add(500, 2);
     }
 
     public void OnUnitButton(int cost)
@@ -75,17 +83,23 @@ public class ShopManager : MonoBehaviour
 
     public void OnTurretButton(int cost)
     {
-        if (GoldManager.instance != null && GoldManager.instance.SpendGold(cost))
+        if (_turretCostsAndIndices.TryGetValue(cost, out int turretIndex))
         {
-            Debug.Log("터렛 설치 완료");
-            // 터렛 설치 로직 추가
+            // TurretManager에 포탑 설치 모드 시작을 알림
+            if (TurretManager.Instance != null)
+            {
+                // 포탑 설치 모드 시작. 골드는 아직 소모하지 않음.
+                TurretManager.Instance.SelectTurret(turretIndex, cost);
+            }
+            else
+            {
+                Debug.LogError("TurretManager 인스턴스를 찾을 수 없습니다.");
+            }
         }
         else
         {
-            Debug.Log("골드 부족으로 터렛 설치 불가");
+            Debug.LogWarning($"비용 {cost}에 해당하는 터렛이 없습니다.");
         }
-
-        //isInstallingTurret = true;  // 설치 모드 진입
     }
 
     public void OnAdditionButton()
