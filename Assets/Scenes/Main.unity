@@ -1438,6 +1438,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea0eaed4bd457b4e975def0fdeb5080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1153144141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1409377985132278940, guid: b3434b2eaaa73e44e8128dc35cbaf207, type: 3}
+  m_PrefabInstance: {fileID: 64092756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d65acbf389ac5e4da5c9e9491fff34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1163287288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1620,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 974765880}
+    - target: {fileID: 7279819651498942310, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: turretManager
+      value: 
+      objectReference: {fileID: 1153144141}
     - target: {fileID: 7279819651498942310, guid: 42d4c425491ecf44b908188707984d14, type: 3}
       propertyPath: turretSpotBuilder
       value: 
@@ -2184,17 +2199,25 @@ PrefabInstance:
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 1058690243}
+    - target: {fileID: 1524428019189412483, guid: 581512defa151ec4686ea07c55d4d115, type: 3}
+      propertyPath: _ingredients.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524428019189412483, guid: 581512defa151ec4686ea07c55d4d115, type: 3}
+      propertyPath: _ingredients.Array.data[2].unitSpawnCoolTime.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3192495946806609731, guid: 581512defa151ec4686ea07c55d4d115, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.069107
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3192495946806609731, guid: 581512defa151ec4686ea07c55d4d115, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.38088056
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3192495946806609731, guid: 581512defa151ec4686ea07c55d4d115, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 51.117065
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3192495946806609731, guid: 581512defa151ec4686ea07c55d4d115, type: 3}
       propertyPath: m_LocalRotation.w

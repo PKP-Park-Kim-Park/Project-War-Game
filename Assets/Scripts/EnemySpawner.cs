@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
     {
         _time += Time.deltaTime;
 
-        if(_time < _spawnCoolTime)
+        if (_time < _spawnCoolTime)
         {
             return;
         }
@@ -60,7 +60,12 @@ public class EnemySpawner : MonoBehaviour
     {
         _spawnUnitInt = Random.Range(1f, 100f);
 
-        if(0f < _spawnUnitInt && _spawnUnitInt <= _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Normal])
+        if (_ingredients.Count <= _currentAge)
+        {
+            return;
+        }
+
+        if (0f < _spawnUnitInt && _spawnUnitInt <= _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Normal])
         {
             _spawnPoint.SpawnUnit((int)UnitType.Normal);
         }
@@ -72,7 +77,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else if (_spawnUnitInt <=
             _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Normal] +
-            _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Long] + 
+            _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Long] +
             _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Tank])
         {
             _spawnPoint.SpawnUnit((int)UnitType.Tank);
