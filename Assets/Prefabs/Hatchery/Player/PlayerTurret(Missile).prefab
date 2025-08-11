@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 5527621026151770015}
   - component: {fileID: 4961126073187138726}
   - component: {fileID: 2451619758195425710}
+  - component: {fileID: 2730297146086990488}
   m_Layer: 0
   m_Name: PlayerTurret(Missile)
   m_TagString: Untagged
@@ -143,6 +144,19 @@ MonoBehaviour:
   firePoints:
   - {fileID: 608564608677855310}
   projectilePrefab: {fileID: 9036121827171556530, guid: d015bd1eabaa18247aa00f72020d16aa, type: 3}
+--- !u!114 &2730297146086990488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4885401199099342128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c537bade5166ca4994b10a0c7c38a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  purchaseCost: 300
 --- !u!1 &4965301367709619518
 GameObject:
   m_ObjectHideFlags: 0
