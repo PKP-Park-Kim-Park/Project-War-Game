@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class EnemyAIController : MonoBehaviour
 {
-    [Header("Turret Building Strategy")]
+    [Header("터렛 건설 전략(순서)")]
     [Tooltip("AI는 이 순서대로 터렛을 건설함..")]
     public List<GameObject> turretBuildSequence;
 
@@ -25,7 +25,7 @@ public class EnemyAIController : MonoBehaviour
     [Tooltip("게임 시작 후 첫 터렛 건설까지의 대기 시간 (초)")]
     public float initBuildTime = 10f;
 
-    [Header("Turret Capacity Upgrade")]
+    [Header("터렛 설치 최대 개수")]
     [Tooltip("첫 터렛 건설 후 밑의 시간이 지나면 최대 터렛 수 1 증가")]
     public float increaseMaxTurretTime = 480f; // 8 * 60 = 480 seconds
 
