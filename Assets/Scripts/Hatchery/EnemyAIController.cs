@@ -19,6 +19,9 @@ public class EnemyAIController : MonoBehaviour
     [Tooltip("터렛 건설을 시도하는 주기 (초)")]
     public float buildTime = 30f;
 
+    [Tooltip("AI가 터렛 스팟을 건설하는 주기 (초). 이 값은 TurretSpotBuilder로 전달됩니다.")]
+    public float spotBuildInterval = 10f;
+
     [Tooltip("게임 시작 후 첫 터렛 건설까지의 대기 시간 (초)")]
     public float initBuildTime = 10f;
 
@@ -106,7 +109,7 @@ public class EnemyAIController : MonoBehaviour
             TurretSpotBuilder spotBuilder = FindObjectOfType<TurretSpotBuilder>();
             if (spotBuilder != null)
             {
-                spotBuilder.StartBuildingProcess();
+                spotBuilder.StartBuildingProcess(spotBuildInterval);
                 Debug.Log("AI가 첫 터렛을 건설하여 터렛 스팟 자동 건설 시작", this);
             }
             else
