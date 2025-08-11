@@ -114,18 +114,21 @@ public class UnitController : MonoBehaviour, IDamageable
 
         if (stat.UnitType == UnitType.Archer || stat.UnitType == UnitType.Long)
         {
-            if (closestAttack != null)
+            if (closestStop != null && minStopDist <= stopDistance)
             {
+                // 아군이 가로막고 있으면 멈춤, 공격은 적이 보일 때만
                 SetMove(false);
-                SetAttack(true);
+                SetAttack(closestAttack != null);
             }
-            else if (closestStop != null)
+            else if (closestAttack != null)
             {
-                SetMove(minStopDist > stopDistance);
-                SetAttack(false);
+                // 적이 있는데 stopDistance 밖이면 이동하면서 공격
+                SetMove(minAttackDist > stopDistance);
+                SetAttack(true);
             }
             else
             {
+                // 아무것도 없으면 그냥 이동
                 SetMove(true);
                 SetAttack(false);
             }
