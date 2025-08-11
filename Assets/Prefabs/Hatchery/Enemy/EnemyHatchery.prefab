@@ -664,6 +664,10 @@ MonoBehaviour:
   maxHealth: 500
   healthBar: {fileID: 379400321433440350}
   healthText: {fileID: 8277184038856972427}
+  winUIPanel: {fileID: 0}
+  loseUIPanel: {fileID: 0}
+  enemyHatcheryTag: EnemyHatchery
+  playerHatcheryTag: PlayerHatchery
 --- !u!1 &6496507903362898924
 GameObject:
   m_ObjectHideFlags: 0

@@ -590,6 +590,10 @@ MonoBehaviour:
   maxHealth: 500
   healthBar: {fileID: 2584473832537779091}
   healthText: {fileID: 8622507956251111739}
+  winUIPanel: {fileID: 0}
+  loseUIPanel: {fileID: 0}
+  enemyHatcheryTag: EnemyHatchery
+  playerHatcheryTag: PlayerHatchery
 --- !u!1 &5831109561848270742
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlacingTurret: 0
+  isSellingTurret: 0
   turretToPlacePrefab: {fileID: 0}
   turretCost: 0
   turretPrefabs:
