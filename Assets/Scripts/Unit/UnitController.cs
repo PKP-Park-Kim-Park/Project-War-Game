@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public enum UnitType
 {
     Normal,
-    Archer,
+    Long,
     Tank,
-    Long
+    Archer
 }
 
 public class UnitController : MonoBehaviour, IDamageable
