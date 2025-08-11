@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class UltSkill : MonoBehaviour
@@ -7,6 +8,25 @@ public class UltSkill : MonoBehaviour
     public int skillDamage = 50;
     public float skillCooldown = 30f;
     private float nextAvailableTime;
+
+    public Image whiteImage;
+    public float flashDuration = 0.3f;
+
+    void Start()
+    {
+        if (whiteImage != null)
+        {
+            // 시작 시에는 이미지를 비활성화하고 투명도를 0으로 설정
+            whiteImage.gameObject.SetActive(false);
+            Color initialColor = whiteImage.color;
+            initialColor.a = 0f;
+            whiteImage.color = initialColor;
+        }
+        else
+        {
+            Debug.LogError("White Image가 연결되지 않았습니다!");
+        }
+    }
 
     public void OnUltSkillButton()
     {
@@ -32,10 +52,36 @@ public class UltSkill : MonoBehaviour
         // 4. 여기서 0.75초 동안 기다립니다.
         yield return new WaitForSeconds(0.75f);
 
-        //번쩍하는 이펙트 만들고  지우고
+        // --- 번쩍 효과 (페이드 인) 시작 ---
+        if (whiteImage != null)
+        {
+            whiteImage.gameObject.SetActive(true);
+            Color targetColor = whiteImage.color;
+
+            float timer = 0f;
+            while (timer < flashDuration)
+            {
+                // 시간에 따라 알파 값을 0에서 1로 점차 증가시킵니다.
+                timer += Time.deltaTime;
+                targetColor.a = Mathf.Lerp(0f, 1f, timer / flashDuration);
+                whiteImage.color = targetColor;
+                yield return null; // 다음 프레임까지 대기
+            }
+            targetColor.a = 1f; // 확실하게 1로 설정
+            whiteImage.color = targetColor;
+        }
 
         // 5. 0.75초 후에 데미지를 적용합니다.
         DealDamageToEnemies();
+
+        // 6. 번쩍이는 효과를 즉시 사라지게 함
+        if (whiteImage != null)
+        {
+            Color invisibleColor = whiteImage.color;
+            invisibleColor.a = 0f;
+            whiteImage.color = invisibleColor;
+            whiteImage.gameObject.SetActive(false);
+        }
     }
 
     void DealDamageToEnemies()
