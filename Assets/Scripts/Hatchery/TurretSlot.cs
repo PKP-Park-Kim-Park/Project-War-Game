@@ -152,6 +152,28 @@ public class TurretSlot : MonoBehaviour
     /// <summary>
     /// 슬롯에 장착된 터렛을 제거(판매)
     /// </summary>
+    //private bool RemoveTurret()
+    //{
+    //    if (!isOccupied)
+    //    {
+    //        Debug.LogWarning($"TurretSlot '{this.gameObject.name}'에 터렛이 존재하지 않음..", this.gameObject);
+    //        return false;
+    //    }
+
+    //    if (mountedTurret != null)
+    //    {
+    //        Destroy(mountedTurret);
+    //        mountedTurret = null;
+    //        isOccupied = false;
+
+    //        // TODO: 터렛 판매 비용의 일부를 반환하는 로직 추가
+
+    //        Debug.Log($"'{this.gameObject.name}'의 터렛이 제거되었습니다.");
+    //    }
+
+    //    return true;
+    //}
+
     private bool RemoveTurret()
     {
         if (!isOccupied)
@@ -162,16 +184,36 @@ public class TurretSlot : MonoBehaviour
 
         if (mountedTurret != null)
         {
+            // 터렛의 판매 금액을 가져옵니다.
+            int sellValue = 0;
+            TurretData turretData = mountedTurret.GetComponent<TurretData>();
+
+            if (turretData != null)
+            {
+                sellValue = turretData.GetSellCost();
+            }
+
+            // 터렛을 파괴합니다.
             Destroy(mountedTurret);
             mountedTurret = null;
             isOccupied = false;
 
-            // TODO: 터렛 판매 비용의 일부를 반환하는 로직 추가
+            // GoldManager를 통해 골드를 추가합니다.
+            if (GoldManager.instance != null)
+            {
+                GoldManager.instance.AddGold(sellValue);
+                Debug.Log($"터렛 판매 완료! {sellValue} 골드를 획득했습니다.");
+            }
+            else
+            {
+                Debug.LogError("GoldManager 인스턴스를 찾을 수 없습니다.");
+            }
 
             Debug.Log($"'{this.gameObject.name}'의 터렛이 제거되었습니다.");
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     // 씬 뷰에서 터렛 슬롯 영역을 시각적으로 표시합니다.

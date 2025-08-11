@@ -484,7 +484,7 @@ GameObject:
   m_Layer: 0
   m_Name: Ult Skill
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillEffectPrefab: {fileID: 4121636856196943559, guid: 47a119362eca5454e911105d88815c23, type: 3}
-  skillDamage: 20
+  skillDamage: 50
   skillCooldown: 30
 --- !u!1001 &6996644818773317497
 PrefabInstance:
@@ -695,6 +695,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1899523440}
+    - target: {fileID: 3614963719071355172, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: gold
+      value: 11000
+      objectReference: {fileID: 0}
     - target: {fileID: 4229861933669496797, guid: 42d4c425491ecf44b908188707984d14, type: 3}
       propertyPath: m_Camera
       value: 
@@ -763,6 +767,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 9125829425538793365}
+    - target: {fileID: 7279819651498942310, guid: 42d4c425491ecf44b908188707984d14, type: 3}
+      propertyPath: turretManager
+      value: 
+      objectReference: {fileID: 2123524208}
     - target: {fileID: 7279819651498942310, guid: 42d4c425491ecf44b908188707984d14, type: 3}
       propertyPath: turretSpotBuilder
       value: 

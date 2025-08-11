@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 839450773199360112}
   - component: {fileID: 8232826661218798087}
   - component: {fileID: 8466639821562755168}
+  - component: {fileID: 6822874831480599907}
   m_Layer: 0
   m_Name: PlayerTurret(Bullet)
   m_TagString: Untagged
@@ -114,6 +115,19 @@ MonoBehaviour:
   - {fileID: 8329717103702194023}
   - {fileID: 2491058172487260948}
   projectilePrefab: {fileID: 2332763397493495252, guid: 938c5b8f52f817a4ab63b15996ad0c49, type: 3}
+--- !u!114 &6822874831480599907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416073545092648483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c537bade5166ca4994b10a0c7c38a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  purchaseCost: 150
 --- !u!1 &2867528121281127486
 GameObject:
   m_ObjectHideFlags: 0
