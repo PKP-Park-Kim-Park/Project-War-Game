@@ -35,7 +35,7 @@ public class Hatchery : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
-            Die();
+            DestroyHatchery();
         }
     }
 
@@ -53,10 +53,19 @@ public class Hatchery : MonoBehaviour, IDamageable
         }
     }
 
-    private void Die()
+    private void DestroyHatchery()
     {
         // 게임 오버 로직 추가
         Debug.Log("Hatchery가 파괴되었습니다. 게임 오버!");
-        // gameObject.SetActive(false); // 예: 해처리 비활성화
+
+        // GameManager의 EndGame() 메서드를 호출합니다.
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.EndGame();
+        }
+        else
+        {
+            Debug.LogWarning("GameManager 인스턴스를 찾을 수 없어 EndGame()을 호출할 수 없습니다.");
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -31,5 +32,6 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("게임 종료");
+        SceneManager.LoadScene("Title");
     }
 }
