@@ -122,7 +122,7 @@ public class TurretSlot : MonoBehaviour
     /// <summary>
     /// 슬롯에 장착된 터렛을 제거(판매)
     /// </summary>
-  
+
     private bool RemoveTurret()
     {
         if (!isOccupied)

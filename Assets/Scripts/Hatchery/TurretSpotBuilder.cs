@@ -17,6 +17,9 @@ public class TurretSpotBuilder : MonoBehaviour
     [Tooltip("첫 번째 터렛 스팟이 생성될 위치 (spotParent 기준 로컬 좌표)")]
     public Vector3 initialSpotPosition = Vector3.zero;
 
+    [Tooltip("터렛 스팟을 추가로 건설하는 주기 (초)")]
+    public float buildInterval = 10f;
+
     private List<GameObject> _turretSpots = new List<GameObject>();
     private const int MAX_TURRET_SPOTS = 4;
     private bool _isBuildingProcessStarted = false;
@@ -30,7 +33,6 @@ public class TurretSpotBuilder : MonoBehaviour
             return;
         }
 
-        // spotParent가 지정되지 않았다면, 이 컴포넌트의 Transform을 부모로 사용합니다.
         Transform parent = spotParent != null ? spotParent : this.transform;
         if (spotParent == null)
         {
@@ -43,27 +45,26 @@ public class TurretSpotBuilder : MonoBehaviour
     }
 
     /// <summary>
-    /// 외부(예: 첫 터렛 건설 시)에서 호출하여 터렛 스팟 자동 건설 프로세스를 시작합니다.
+    /// 적 터렛 설치 AI에서 사용
     /// </summary>
     public void StartBuildingProcess()
     {
         if (_isBuildingProcessStarted) return;
         _isBuildingProcessStarted = true;
 
-        Debug.Log("첫 터렛 건설 신호를 받아, 1분마다 터렛 스팟 추가 건설을 시작합니다.");
+        Debug.Log($"첫 터렛 건설 후 {buildInterval}초마다 터렛 스팟 건설을 시작합니다.");
         StartCoroutine(BuildSpotsOverTime());
     }
 
     /// <summary>
-    /// 일정 시간(1분)마다 터렛 스팟을 추가로 건설하는 코루틴입니다.
+    /// 일정 시간(1분)마다 터렛 스팟을 추가로 건설
     /// </summary>
     private IEnumerator BuildSpotsOverTime()
     {
         // 최대 스팟 수에 도달할 때까지 반복합니다.
         while (_turretSpots.Count < MAX_TURRET_SPOTS)
         {
-            // 1분(60초) 대기합니다.
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(buildInterval);
 
             // BuildTurretSpot()은 내부적으로 최대 개수 체크를 하므로 여기서 호출만 하면 됩니다.
             BuildTurretSpot();
