@@ -60,7 +60,7 @@ public class UnitController : MonoBehaviour, IDamageable
             return;
         }
 
-        if (isMoving && !isAttacking)
+        if (isMoving)
         {
             transform.position += moveDirection * stat.MoveSpeed * Time.deltaTime;
         }
