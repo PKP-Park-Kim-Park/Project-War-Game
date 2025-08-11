@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 /// <summary>
 /// 터렛을 장착할 수 있는 슬롯 동작 관리
@@ -100,10 +101,16 @@ public class TurretSlot : MonoBehaviour
     }
 
     /// <summary>
-    /// 슬롯에 장착된 터렛을 제거(판매)합니다.
+    /// 슬롯에 장착된 터렛을 제거(판매)
     /// </summary>
-    private void RemoveTurret()
+    private bool RemoveTurret()
     {
+        if (!isOccupied)
+        {
+            Debug.LogWarning($"TurretSlot '{this.gameObject.name}'에 터렛이 존재하지 않음..", this.gameObject);
+            return false;
+        }
+
         if (mountedTurret != null)
         {
             Destroy(mountedTurret);
@@ -114,6 +121,8 @@ public class TurretSlot : MonoBehaviour
 
             Debug.Log($"'{this.gameObject.name}'의 터렛이 제거되었습니다.");
         }
+
+        return true;
     }
 
     // 씬 뷰에서 터렛 슬롯 영역을 시각적으로 표시합니다.
