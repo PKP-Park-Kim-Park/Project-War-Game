@@ -400,7 +400,7 @@ MonoBehaviour:
   unitData: {fileID: 11400000, guid: 71885216bf1c4294a9319b7c0a9ce4c4, type: 2}
   healthBar: {fileID: 2399803964355010657}
   rayShootTransform: {fileID: 8986007581976345039}
-  stopDistance: 1
+  stopDistance: 0.2
 --- !u!61 &3871559584754211982
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -60,7 +60,7 @@ public class UnitController : MonoBehaviour, IDamageable
             return;
         }
 
-        if (isMoving && !isAttacking)
+        if (isMoving)
         {
             transform.position += moveDirection * stat.MoveSpeed * Time.deltaTime;
         }
@@ -116,7 +116,7 @@ public class UnitController : MonoBehaviour, IDamageable
         {
             if (closestAttack != null)
             {
-                SetMove(false);
+                SetMove(minAttackDist > stopDistance);
                 SetAttack(true);
             }
             else if (closestStop != null)
