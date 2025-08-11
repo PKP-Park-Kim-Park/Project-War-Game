@@ -6,6 +6,8 @@ public class ShopManager : MonoBehaviour
     public CooldownManager cooldownManager;
     [Tooltip("Turret Manager 넣으쇼..")]
     public TurretSpotBuilder turretSpotBuilder;
+    // 터렛 매니저 참조 변수 추가
+    public TurretManager turretManager; 
 
     // 증축 비용을 담는 배열
     private int[] additionCosts = { 1000, 3000, 5000 };
@@ -48,6 +50,18 @@ public class ShopManager : MonoBehaviour
         _turretCostsAndIndices.Add(150, 0); // 50골드 터렛은 turretPrefabs[0]
         _turretCostsAndIndices.Add(300, 1); // 150골드 터렛은 turretPrefabs[1]
         _turretCostsAndIndices.Add(500, 2);
+    }
+
+    void Start()
+    {
+        if (turretManager == null)
+        {
+            turretManager = TurretManager.Instance;
+            if (turretManager == null)
+            {
+                Debug.LogError("TurretManager 인스턴스를 찾을 수 없습니다. 씬에 TurretManager를 배치했는지 확인하세요.");
+            }
+        }
     }
 
     public void OnUnitButton(int cost)
@@ -101,6 +115,23 @@ public class ShopManager : MonoBehaviour
             Debug.LogWarning($"비용 {cost}에 해당하는 터렛이 없습니다.");
         }
     }
+
+    public void OnSellingButton(int cost)
+    {
+
+        // 터렛 매니저가 있는지 확인
+        if (turretManager != null)
+        {
+            // 터렛 매니저의 ToggleSellMode 함수를 호출하여 판매 모드 전환
+            turretManager.ToggleSellMode();
+            Debug.LogWarning($"터렛 판매 모드 토글!");
+        }
+        else
+        {
+            Debug.LogError("TurretManager 인스턴스를 찾을 수 없습니다.");
+        }
+    }
+
 
     public void OnAdditionButton()
     {

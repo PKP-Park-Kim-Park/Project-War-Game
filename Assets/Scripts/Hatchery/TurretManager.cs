@@ -7,6 +7,10 @@ public class TurretManager : MonoBehaviour
 
     [Header("Current Placement State")]
     public bool isPlacingTurret = false;
+
+    [Header("Current Selling State")]
+    public bool isSellingTurret = false;
+
     public GameObject turretToPlacePrefab;
     public int turretCost;
 
@@ -30,14 +34,16 @@ public class TurretManager : MonoBehaviour
     /// </summary>
     public void SelectTurret(int turretIndex, int cost)
     {
+
         if (turretIndex >= 0 && turretIndex < turretPrefabs.Length)
         {
+            // 터렛 설치 모드를 시작하면, 판매 모드는 비활성화
+            isSellingTurret = false;
+
             turretToPlacePrefab = turretPrefabs[turretIndex];
-
-            // TODO: 터렛 인덱스에 맞는 비용을 설정하는 로직 추가 필요
             turretCost = cost;
-
             isPlacingTurret = true;
+
             Debug.Log($"Turret placement mode started for {turretToPlacePrefab.name}.");
         }
         else
@@ -55,6 +61,26 @@ public class TurretManager : MonoBehaviour
         turretToPlacePrefab = null;
         turretCost = 0;
         Debug.Log("Turret placement mode ended.");
+    }
+
+      /// <summary>
+    /// 터렛 판매 모드 시작/종료
+    /// </summary>
+    public void ToggleSellMode()
+    {
+        // 판매 모드를 전환할 때 설치 모드는 항상 비활성화
+        EndTurretPlacement();
+
+        isSellingTurret = !isSellingTurret;
+
+        if (isSellingTurret)
+        {
+            Debug.Log("Turret sell mode started.");
+        }
+        else
+        {
+            Debug.Log("Turret sell mode ended.");
+        }
     }
 
 }
