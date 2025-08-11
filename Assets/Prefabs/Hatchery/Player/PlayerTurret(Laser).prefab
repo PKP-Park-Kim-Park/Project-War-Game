@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 7648664024117503374}
   - component: {fileID: 378276820946741505}
   - component: {fileID: 8445369379628124297}
+  - component: {fileID: 6854870438788714667}
   m_Layer: 0
   m_Name: PlayerTurret(Laser)
   m_TagString: Untagged
@@ -143,6 +144,19 @@ MonoBehaviour:
   firePoints:
   - {fileID: 3821572602902714025}
   projectilePrefab: {fileID: 1194767702817770867, guid: a0e61f4a341a7f243bfbcc122bb40827, type: 3}
+--- !u!114 &6854870438788714667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6079942632171860774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c537bade5166ca4994b10a0c7c38a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  purchaseCost: 500
 --- !u!1 &8588804348268182666
 GameObject:
   m_ObjectHideFlags: 0
