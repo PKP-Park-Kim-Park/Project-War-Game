@@ -168,7 +168,3 @@ public class ShopManager : MonoBehaviour
     }
 }
 
-//public void OnSellingButton(int cost)
-//{
-//    Debug.Log("판매 완료");
-//}

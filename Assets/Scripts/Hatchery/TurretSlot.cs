@@ -30,36 +30,6 @@ public class TurretSlot : MonoBehaviour
         }
     }
 
-    //private void OnMouseDown()
-    //{
-    //    // 포탑 설치 모드가 아닐 경우, 아무것도 하지 않음.
-    //    if (TurretManager.Instance == null || !TurretManager.Instance.isPlacingTurret)
-    //    {
-    //        return;
-    //    }
-
-    //    // TurretManager에서 설치할 터렛 정보를 가져옴
-    //    GameObject turretToBuild = TurretManager.Instance.turretToPlacePrefab;
-    //    int turretCost = TurretManager.Instance.turretCost;
-
-    //    if (turretToBuild != null)
-    //    {
-    //        // 골드가 충분한지 확인하고 소모
-    //        if (GoldManager.instance != null && GoldManager.instance.SpendGold(turretCost))
-    //        {
-    //            if (MountTurret(turretToBuild))
-    //            {
-    //                Debug.Log("터렛 설치 완료");
-    //            }
-    //            TurretManager.Instance.EndTurretPlacement(); // 설치 완료 후 모드 종료
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("골드 부족으로 터렛 설치 불가");
-    //            TurretManager.Instance.EndTurretPlacement(); // 모드 종료
-    //        }
-    //    }
-    //}
     private void OnMouseDown()
     {
         // TurretManager가 없으면 아무것도 하지 않음.
@@ -152,28 +122,7 @@ public class TurretSlot : MonoBehaviour
     /// <summary>
     /// 슬롯에 장착된 터렛을 제거(판매)
     /// </summary>
-    //private bool RemoveTurret()
-    //{
-    //    if (!isOccupied)
-    //    {
-    //        Debug.LogWarning($"TurretSlot '{this.gameObject.name}'에 터렛이 존재하지 않음..", this.gameObject);
-    //        return false;
-    //    }
-
-    //    if (mountedTurret != null)
-    //    {
-    //        Destroy(mountedTurret);
-    //        mountedTurret = null;
-    //        isOccupied = false;
-
-    //        // TODO: 터렛 판매 비용의 일부를 반환하는 로직 추가
-
-    //        Debug.Log($"'{this.gameObject.name}'의 터렛이 제거되었습니다.");
-    //    }
-
-    //    return true;
-    //}
-
+  
     private bool RemoveTurret()
     {
         if (!isOccupied)
@@ -227,14 +176,6 @@ public class TurretSlot : MonoBehaviour
     /// <summary>
     /// 호버 효과
     /// </summary>
-    //private void OnMouseEnter()
-    //{
-    //    // 슬롯이 비었을 때만 호버 효과 표시
-    //    if (!isOccupied && hoverVisual != null)
-    //    {
-    //        hoverVisual.SetActive(true);
-    //    }
-    //}
 
     private void OnMouseEnter()
     {
