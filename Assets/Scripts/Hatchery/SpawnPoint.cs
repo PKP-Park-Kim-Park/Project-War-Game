@@ -9,7 +9,21 @@ public class SpawnPoint : MonoBehaviour
 
     [Tooltip("유닛 생성 영역")]
     public Transform spawnTransform;
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SpawnUnit(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SpawnUnit(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SpawnUnit(2);
+        }
+    }
     // 지정된 인덱스의 유닛을 스폰 영역에 생성합니다.
     public void SpawnUnit(int unitIndex)
     {
