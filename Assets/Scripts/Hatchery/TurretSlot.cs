@@ -99,6 +99,23 @@ public class TurretSlot : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 슬롯에 장착된 터렛을 제거(판매)합니다.
+    /// </summary>
+    private void RemoveTurret()
+    {
+        if (mountedTurret != null)
+        {
+            Destroy(mountedTurret);
+            mountedTurret = null;
+            isOccupied = false;
+
+            // TODO: 터렛 판매 비용의 일부를 반환하는 로직 추가
+
+            Debug.Log($"'{this.gameObject.name}'의 터렛이 제거되었습니다.");
+        }
+    }
+
     // 씬 뷰에서 터렛 슬롯 영역을 시각적으로 표시합니다.
     private void OnDrawGizmos()
     {
