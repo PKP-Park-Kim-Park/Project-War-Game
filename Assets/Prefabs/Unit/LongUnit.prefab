@@ -130,6 +130,10 @@ MonoBehaviour:
   unitData: {fileID: 11400000, guid: 1074ed1149289de42923e1e5c050a343, type: 2}
   healthBar: {fileID: 7395906314128137494}
   rayShootTransform: {fileID: 2213554120749724117}
+  unitAttackSounds:
+  - unitType: 1
+    attackSounds:
+    - {fileID: 8300000, guid: 4f4754699f6f90e4a819a321e25ceecb, type: 3}
   stopDistance: 0.3
 --- !u!61 &2870807809268322535
 BoxCollider2D:

@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,12 +12,22 @@ public enum UnitType
     Archer
 }
 
+[System.Serializable]
+public class UnitTypeAudioClips
+{
+    public UnitType unitType;
+    public AudioClip[] attackSounds;
+}
+
 public class UnitController : MonoBehaviour, IDamageable
 {
     [Header("Unit Settings")]
     [SerializeField] private UnitData unitData;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Transform rayShootTransform;
+
+    [Header("Audio")]
+    [SerializeField] private UnitTypeAudioClips[] unitAttackSounds;
     [SerializeField] private float stopDistance = 1f;
 
     private UnitStat stat = new UnitStat();
@@ -26,6 +36,8 @@ public class UnitController : MonoBehaviour, IDamageable
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
+    private Dictionary<UnitType, AudioClip[]> attackSoundMap;
 
     private Vector3 moveDirection;
     private int currentHealth;
@@ -37,11 +49,17 @@ public class UnitController : MonoBehaviour, IDamageable
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         unitAnimation = new UnitAnimation(animator);
         stat.Initialize(unitData, gameObject.tag);
 
         currentHealth = stat.MaxHealth;
+        InitializeSoundMap();
 
         SetMoveDirection();
         combat.Setup(rayShootTransform, moveDirection, stat.AttackTargetTags, stat.AttackDamage, stat.AttackRange, stat.Gold, stat.Exp);
@@ -51,6 +69,18 @@ public class UnitController : MonoBehaviour, IDamageable
     {
         healthBar.maxValue = stat.MaxHealth;
         healthBar.value = stat.MaxHealth;
+    }
+
+    private void InitializeSoundMap()
+    {
+        attackSoundMap = new Dictionary<UnitType, AudioClip[]>();
+        foreach (var soundData in unitAttackSounds)
+        {
+            if (soundData.attackSounds != null && soundData.attackSounds.Length > 0)
+            {
+                attackSoundMap[soundData.unitType] = soundData.attackSounds;
+            }
+        }
     }
 
     private void Update()
@@ -167,7 +197,37 @@ public class UnitController : MonoBehaviour, IDamageable
 
     public void StartEventAttack()
     {
+        PlayAttackSound();
         combat.Attack();
+    }
+
+    private void PlayAttackSound()
+    {
+        // 디버깅을 위해 어떤 유닛이 사운드 재생을 시도하는지 로그를 남깁니다.
+        Debug.Log($"[{gameObject.name}] (Type: {stat.UnitType}) is trying to play an attack sound.");
+
+        if (attackSoundMap.TryGetValue(stat.UnitType, out AudioClip[] sounds))
+        {
+            if (sounds != null && sounds.Length > 0)
+            {
+                // 할당된 사운드 중 하나를 무작위로 선택
+                int randomIndex = Random.Range(0, sounds.Length);
+                AudioClip clipToPlay = sounds[randomIndex];
+
+                if (clipToPlay != null)
+                {
+                    audioSource.PlayOneShot(clipToPlay);
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"-> Sound array for [{stat.UnitType}] is empty or null.", gameObject);
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"-> No sound entry found in map for UnitType: [{stat.UnitType}]", gameObject);
+        }
     }
 
     public void TakeDamage(int damage)
