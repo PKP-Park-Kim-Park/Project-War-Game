@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitType: 2
   _moveSpeed: 1
-  _maxHealth: 50
+  _maxHealth: 300
   _attackDamage: 50
   _attackRange: 0.2
   _gold: 100

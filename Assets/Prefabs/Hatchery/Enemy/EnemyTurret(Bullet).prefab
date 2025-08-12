@@ -105,15 +105,18 @@ MonoBehaviour:
   defaultFacingDirection: 1
   attackRange: 7
   turnSpeed: 10
-  fireRate: 1
+  fireRate: 5
   initialFireDelay: 0.5
-  projectileDamage: 10
+  projectileDamage: 5
   enemyTag: Player
   partToRotate: {fileID: 6769983941630644336}
   firePoints:
   - {fileID: 3292934676694102579}
   - {fileID: 7802474226059645956}
   projectilePrefab: {fileID: 2332763397493495252, guid: 938c5b8f52f817a4ab63b15996ad0c49, type: 3}
+  fireSounds:
+  - {fileID: 8300000, guid: 3061c7b9b32d894478e4126ccce25ca3, type: 3}
+  fireSoundVolume: 0.3
 --- !u!1 &4528980147167585009
 GameObject:
   m_ObjectHideFlags: 0

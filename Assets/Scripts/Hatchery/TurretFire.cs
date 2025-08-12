@@ -36,11 +36,26 @@ public class TurretFire : MonoBehaviour
     [Tooltip("발사할 발사체(총알, 미사일 등) 프리팹")]
     public GameObject projectilePrefab;
 
+    [Header("Audio")]
+    [Tooltip("발사 시 재생할 효과음 목록. 여러 개를 넣으면 무작위로 재생됩니다.")]
+    public AudioClip[] fireSounds;
+    [Tooltip("발사 효과음의 볼륨 (0.0 ~ 1.0)")]
+    [Range(0f, 1f)]
+    public float fireSoundVolume = 1.0f;
+
     private Transform target;
     private Quaternion initialRotation;
     private int nextFirePointIndex = 0; // 다음 발사할 총구의 인덱스
+    private AudioSource audioSource;
 
-    void Start()
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+    }
+
+    private void Start()
     {
         SetInitialRotation();
 
@@ -156,6 +171,8 @@ public class TurretFire : MonoBehaviour
             return;
         }
 
+        PlayFireSound();
+
         // 현재 발사할 총구를 가져옵니다.
         Transform firePoint = firePoints[nextFirePointIndex];
 
@@ -183,6 +200,27 @@ public class TurretFire : MonoBehaviour
 
         // 다음 발사를 위해 인덱스를 순환시킵니다.
         nextFirePointIndex = (nextFirePointIndex + 1) % firePoints.Count;
+    }
+
+    // 발사 효과음 재생 함수
+    private void PlayFireSound()
+    {
+        if (audioSource == null || fireSounds == null || fireSounds.Length == 0)
+        {
+            return;
+        }
+
+        int randomIndex = Random.Range(0, fireSounds.Length);
+        AudioClip clipToPlay = fireSounds[randomIndex];
+
+        if (clipToPlay != null)
+        {
+            audioSource.PlayOneShot(clipToPlay, fireSoundVolume);
+        }
+        else
+        {
+            Debug.LogWarning($"[{gameObject.name}] 'Fire Sounds' 배열의 인덱스 {randomIndex}에 있는 오디오 클립이 null입니다.", this);
+        }
     }
 
     // 씬 뷰에서 터렛의 사거리를 시각적으로 표시
