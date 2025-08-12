@@ -38,6 +38,14 @@ public class UnitController : MonoBehaviour, IDamageable
     [SerializeField] private UnitDeathAudioClips[] unitDieSounds;
     [SerializeField] private float stopDistance = 1f;
 
+    [Tooltip("공격 효과음의 볼륨 (0.0 ~ 1.0)")]
+    [Range(0f, 1f)]
+    public float hitSoundVolume = 1.0f;
+
+    [Tooltip("죽음 효과음의 볼륨 (0.0 ~ 1.0)")]
+    [Range(0f, 1f)]
+    public float dieSoundVolume = 1.0f;
+
     private UnitStat stat = new UnitStat();
     private UnitAnimation unitAnimation;
     private UnitCombat combat = new UnitCombat();
@@ -234,7 +242,7 @@ public class UnitController : MonoBehaviour, IDamageable
 
                 if (clipToPlay != null)
                 {
-                    audioSource.PlayOneShot(clipToPlay);
+                    audioSource.PlayOneShot(clipToPlay, hitSoundVolume);
                 }
             }
             else
@@ -260,7 +268,7 @@ public class UnitController : MonoBehaviour, IDamageable
 
                 if (clipToPlay != null)
                 {
-                    audioSource.PlayOneShot(clipToPlay);
+                    audioSource.PlayOneShot(clipToPlay, dieSoundVolume);
                 }
             }
         }

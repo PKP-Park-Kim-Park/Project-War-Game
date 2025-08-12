@@ -1179,6 +1179,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5319014626800620803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3121419802337682348}
+  - component: {fileID: 9175958905571666470}
+  - component: {fileID: 562531368592930906}
+  m_Layer: 5
+  m_Name: Black
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &3121419802337682348
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319014626800620803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1657711984556984052}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 195.93005}
+  m_SizeDelta: {x: 2960, y: 1048.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9175958905571666470
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319014626800620803}
+  m_CullTransparentMesh: 1
+--- !u!114 &562531368592930906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319014626800620803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 7482667652216324306, guid: 8f1e4ae27689e0b47be91c66cbe0a665, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5414171167560619572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,7 +2829,10 @@ PrefabInstance:
       objectReference: {fileID: 9069554877037565838}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 480255463036459367, guid: f3b2eac690e25854e9c0111a623e3f1e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3121419802337682348}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b2eac690e25854e9c0111a623e3f1e, type: 3}
 --- !u!224 &1657711984556984052 stripped
@@ -4393,7 +4471,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
       propertyPath: flashDuration
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
+      propertyPath: skillStartSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4921d0d966e07284e9abd37c4fd76a3e, type: 3}
+    - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
+      propertyPath: skillSoundVolume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
+      propertyPath: darkenOverlayImage
+      value: 
+      objectReference: {fileID: 562531368592930906}
+    - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
+      propertyPath: skillCooldownSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4af25a373757614498a652981a409390, type: 3}
+    - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
+      propertyPath: cooldownSoundVolume
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4620748240701030874, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
       propertyPath: m_Icon

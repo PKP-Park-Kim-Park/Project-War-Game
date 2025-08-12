@@ -245,6 +245,8 @@ MonoBehaviour:
     dieSounds:
     - {fileID: 8300000, guid: 4ab6582c80389494b8b752c027d973ba, type: 3}
   stopDistance: 0.2
+  hitSoundVolume: 0.5
+  dieSoundVolume: 0.3
 --- !u!61 &8569752728947690391
 BoxCollider2D:
   m_ObjectHideFlags: 0
