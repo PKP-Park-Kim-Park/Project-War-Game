@@ -96,7 +96,7 @@ public class UltSkill : MonoBehaviour
             float darkenDuration = 3.0f;
             float timer = 0f;
             Color overlayColor = darkenOverlayImage.color;
-            float targetAlpha = 0.8f; // 80% 어둡게
+            float targetAlpha = 0.95f; // 95% 어둡게
 
             while (timer < darkenDuration)
             {
