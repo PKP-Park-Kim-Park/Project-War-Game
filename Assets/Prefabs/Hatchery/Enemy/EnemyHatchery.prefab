@@ -287,6 +287,7 @@ MonoBehaviour:
   turretSpotPrefab: {fileID: 7805221527644122040, guid: 4f2e3e7062a68774cb49b36ace5b64b9, type: 3}
   spotParent: {fileID: 2678450635999245614}
   initialSpotPosition: {x: -0.01, y: -0.05, z: 0}
+  buildInterval: 10
 --- !u!1 &3008611654472221743
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +511,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3582472909035271502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8909566250721103195}
+  - component: {fileID: 6354976354925923486}
+  m_Layer: 0
+  m_Name: EnemyAI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8909566250721103195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582472909035271502}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3654876206274923325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6354976354925923486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582472909035271502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310060d33a4e53945b29c7030cd65ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretBuildSequence:
+  - {fileID: 4330110605205189453, guid: 109568a72ac46544dacd50e4ea8534d9, type: 3}
+  - {fileID: 402038543466537056, guid: 73e2239f54db6ad4d81b8e88347cfe51, type: 3}
+  - {fileID: 7399804362714274945, guid: 45e44bd239ab3cb4ba72cd770e9566ea, type: 3}
+  maxTurrets: 2
+  buildTime: 30
+  initBuildTime: 10
+  increaseMaxTurretTime: 480
 --- !u!1 &6491014475347042980
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +599,7 @@ Transform:
   - {fileID: 2678450635999245614}
   - {fileID: 5499155780129235860}
   - {fileID: 176352023560064200}
+  - {fileID: 8909566250721103195}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7663561264905457712

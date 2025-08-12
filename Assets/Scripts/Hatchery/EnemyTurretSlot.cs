@@ -10,10 +10,6 @@ public class EnemyTurretSlot : MonoBehaviour
     [Tooltip("이 슬롯에 건설 가능한 적 터렛 프리팹 목록")]
     public List<GameObject> enemyTurretPrefabs;
 
-    [Header("Visuals")]
-    [Tooltip("마우스 호버 시 표시될 시각적 효과 오브젝트")]
-    public GameObject hoverVisual;
-
     [Header("State (Runtime)")]
     [Tooltip("터렛이 장착되었는지 여부")]
     [SerializeField]
@@ -25,28 +21,20 @@ public class EnemyTurretSlot : MonoBehaviour
     private GameObject mountedTurret;
     public GameObject MountedTurret => mountedTurret;
 
-    void Start()
-    {
-        // 게임 시작 시 호버 효과를 비활성화
-        if (hoverVisual != null)
-        {
-            hoverVisual.SetActive(false);
-        }
-    }
-
-    // 테스트용 마우스 클릭으로 터렛 건설
-    private void OnMouseDown()
-    {
-        Debug.Log($"EnemyTurretSlot Clicked '{this.gameObject.name}'");
-        BuildRandomTurret();
-    }
-
     /// <summary>
     /// AI 컨트롤러 등 외부에서 호출하여 터렛을 건설하게 할 수 있는 public 메서드
     /// </summary>
-    public void BuildTurretByAI()
+    /// <param name="specificTurretPrefab">건설할 특정 터렛 프리팹. null이면 목록에서 무작위로 선택합니다.</param>
+    public void BuildTurretByAI(GameObject specificTurretPrefab = null)
     {
-        BuildRandomTurret();
+        if (specificTurretPrefab != null)
+        {
+            MountTurret(specificTurretPrefab);
+        }
+        else
+        {
+            BuildRandomTurret();
+        }
     }
 
     /// <summary>
@@ -100,16 +88,29 @@ public class EnemyTurretSlot : MonoBehaviour
             mountedTurret.transform.SetParent(this.transform.parent);
         }
 
-        // 터렛이 장착되었으므로 호버 효과를 비활성화
-        if (hoverVisual != null)
-        {
-            hoverVisual.SetActive(false);
-        }
-
         isOccupied = true;
         Debug.Log($"적 터렛 '{turretPrefab.name}'이(가) '{this.gameObject.name}'에 장착되었습니다.", this.gameObject);
 
         return true;
+    }
+
+    /// <summary>
+    /// 이 슬롯에 장착된 터렛을 파괴합니다. AI에 의해 호출됩니다.
+    /// </summary>
+    public void DestroyTurret()
+    {
+        if (!isOccupied || mountedTurret == null)
+        {
+            // 이미 비어있거나 터렛이 없는 경우(예: 플레이어에 의해 파괴됨), 상태만 정리하고 종료합니다.
+            isOccupied = false;
+            mountedTurret = null;
+            return;
+        }
+
+        Debug.Log($"'{gameObject.name}' 슬롯의 터렛 '{mountedTurret.name}'을(를) 파괴합니다.", this);
+        Destroy(mountedTurret);
+        mountedTurret = null;
+        isOccupied = false;
     }
 
     // 씬 뷰에서 터렛 슬롯 영역
@@ -117,22 +118,6 @@ public class EnemyTurretSlot : MonoBehaviour
     {
         Gizmos.color = isOccupied ? new Color(1f, 0.5f, 0f) : Color.magenta;
         Gizmos.DrawWireCube(transform.position, transform.lossyScale);
-    }
-
-    private void OnMouseEnter()
-    {
-        if (!isOccupied && hoverVisual != null)
-        {
-            hoverVisual.SetActive(true);
-        }
-    }
-
-    private void OnMouseExit()
-    {
-        if (hoverVisual != null)
-        {
-            hoverVisual.SetActive(false);
-        }
     }
 }
 
