@@ -511,6 +511,10 @@ MonoBehaviour:
   - unitType: 1
     attackSounds:
     - {fileID: 8300000, guid: 4f4754699f6f90e4a819a321e25ceecb, type: 3}
+  unitDieSounds:
+  - unitType: 1
+    dieSounds:
+    - {fileID: 8300000, guid: 2967e6b714563c445b102efd80f6b611, type: 3}
   stopDistance: 0.3
 --- !u!61 &6827044128819230665
 BoxCollider2D:

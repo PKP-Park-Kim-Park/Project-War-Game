@@ -19,6 +19,13 @@ public class UnitTypeAudioClips
     public AudioClip[] attackSounds;
 }
 
+[System.Serializable]
+public class UnitDeathAudioClips
+{
+    public UnitType unitType;
+    public AudioClip[] dieSounds;
+}
+
 public class UnitController : MonoBehaviour, IDamageable
 {
     [Header("Unit Settings")]
@@ -28,6 +35,7 @@ public class UnitController : MonoBehaviour, IDamageable
 
     [Header("Audio")]
     [SerializeField] private UnitTypeAudioClips[] unitAttackSounds;
+    [SerializeField] private UnitDeathAudioClips[] unitDieSounds;
     [SerializeField] private float stopDistance = 1f;
 
     private UnitStat stat = new UnitStat();
@@ -38,6 +46,7 @@ public class UnitController : MonoBehaviour, IDamageable
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     private Dictionary<UnitType, AudioClip[]> attackSoundMap;
+    private Dictionary<UnitType, AudioClip[]> dieSoundMap;
 
     private Vector3 moveDirection;
     private int currentHealth;
@@ -79,6 +88,15 @@ public class UnitController : MonoBehaviour, IDamageable
             if (soundData.attackSounds != null && soundData.attackSounds.Length > 0)
             {
                 attackSoundMap[soundData.unitType] = soundData.attackSounds;
+            }
+        }
+
+        dieSoundMap = new Dictionary<UnitType, AudioClip[]>();
+        foreach (var soundData in unitDieSounds)
+        {
+            if (soundData.dieSounds != null && soundData.dieSounds.Length > 0)
+            {
+                dieSoundMap[soundData.unitType] = soundData.dieSounds;
             }
         }
     }
@@ -230,6 +248,24 @@ public class UnitController : MonoBehaviour, IDamageable
         }
     }
 
+    private void PlayDieSound()
+    {
+        if (dieSoundMap.TryGetValue(stat.UnitType, out AudioClip[] sounds))
+        {
+            if (sounds != null && sounds.Length > 0)
+            {
+                // 할당된 사운드 중 하나를 무작위로 선택
+                int randomIndex = Random.Range(0, sounds.Length);
+                AudioClip clipToPlay = sounds[randomIndex];
+
+                if (clipToPlay != null)
+                {
+                    audioSource.PlayOneShot(clipToPlay);
+                }
+            }
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -244,6 +280,8 @@ public class UnitController : MonoBehaviour, IDamageable
 
     private IEnumerator Die()
     {
+        // 유닛이 죽을 때 효과음을 재생합니다.
+        PlayDieSound();
         healthBar.gameObject.SetActive(false);
         unitAnimation.PlayDie();
         GetComponent<Collider2D>().enabled = false;
