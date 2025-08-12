@@ -287,7 +287,6 @@ MonoBehaviour:
   turretSpotPrefab: {fileID: 7805221527644122040, guid: 4f2e3e7062a68774cb49b36ace5b64b9, type: 3}
   spotParent: {fileID: 2678450635999245614}
   initialSpotPosition: {x: -0.01, y: -0.05, z: 0}
-  buildInterval: 10
 --- !u!1 &3008611654472221743
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +560,7 @@ MonoBehaviour:
   - {fileID: 7399804362714274945, guid: 45e44bd239ab3cb4ba72cd770e9566ea, type: 3}
   maxTurrets: 2
   buildTime: 30
+  spotBuildInterval: 10
   initBuildTime: 10
   increaseMaxTurretTime: 480
 --- !u!1 &6491014475347042980
@@ -701,7 +701,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.48, y: 1.58}
+  m_Size: {x: 1.35, y: 1.58}
   m_EdgeRadius: 0
 --- !u!114 &3696407319073629151
 MonoBehaviour:
@@ -886,7 +886,7 @@ Transform:
   m_GameObject: {fileID: 8990637676458345837}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15, y: -0.35, z: 0}
+  m_LocalPosition: {x: -0.45, y: -0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

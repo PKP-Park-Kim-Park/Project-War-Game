@@ -112,6 +112,9 @@ MonoBehaviour:
   firePoints:
   - {fileID: 1693164840683332520}
   projectilePrefab: {fileID: 9036121827171556530, guid: d015bd1eabaa18247aa00f72020d16aa, type: 3}
+  fireSounds:
+  - {fileID: 8300000, guid: 40e71b0f7bd610849b40f150553f4702, type: 3}
+  fireSoundVolume: 0.3
 --- !u!1 &3214032720585474614
 GameObject:
   m_ObjectHideFlags: 0

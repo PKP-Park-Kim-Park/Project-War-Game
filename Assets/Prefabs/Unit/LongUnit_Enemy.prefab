@@ -507,7 +507,17 @@ MonoBehaviour:
   unitData: {fileID: 11400000, guid: 1074ed1149289de42923e1e5c050a343, type: 2}
   healthBar: {fileID: 4398256345512976053}
   rayShootTransform: {fileID: 4002229921122384584}
+  unitAttackSounds:
+  - unitType: 1
+    attackSounds:
+    - {fileID: 8300000, guid: 4f4754699f6f90e4a819a321e25ceecb, type: 3}
+  unitDieSounds:
+  - unitType: 1
+    dieSounds:
+    - {fileID: 8300000, guid: 2967e6b714563c445b102efd80f6b611, type: 3}
   stopDistance: 0.3
+  hitSoundVolume: 0.4
+  dieSoundVolume: 0.25
 --- !u!61 &6827044128819230665
 BoxCollider2D:
   m_ObjectHideFlags: 0
