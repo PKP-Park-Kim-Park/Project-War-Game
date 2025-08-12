@@ -61,7 +61,7 @@ public class UltSkill : MonoBehaviour
 
     public void OnUltSkillButton()
     {
-        // 쿨다운 시간이 지났을 때만 코루틴을 시작합니다.
+        // 쿨다운 시간이 지났을 때만 코루틴을 시작
         if (Time.time >= nextAvailableTime)
         {
             StartCoroutine(UseSkillCoroutine());
@@ -80,7 +80,7 @@ public class UltSkill : MonoBehaviour
     // 코루틴 함수는 IEnumerator 타입을 반환해야 합니다.
     IEnumerator UseSkillCoroutine()
     {
-        // 1. 쿨다운 시간 설정
+        // 쿨다운 시간 설정
         nextAvailableTime = Time.time + skillCooldown;
 
         // 스킬 시전 사운드 재생
@@ -96,7 +96,7 @@ public class UltSkill : MonoBehaviour
             float darkenDuration = 3.0f;
             float timer = 0f;
             Color overlayColor = darkenOverlayImage.color;
-            float targetAlpha = 0.8f; // 95% 어둡게
+            float targetAlpha = 0.8f; // 80% 어둡게
 
             while (timer < darkenDuration)
             {
@@ -105,31 +105,28 @@ public class UltSkill : MonoBehaviour
                 darkenOverlayImage.color = overlayColor;
                 yield return null;
             }
-            overlayColor.a = targetAlpha; // 확실하게 설정
+            overlayColor.a = targetAlpha;
             darkenOverlayImage.color = overlayColor;
         }
         else
         {
-            // 어두워지는 이미지가 없으면 그냥 3초 대기
             yield return new WaitForSeconds(3.0f);
         }
 
         // --- 3초 후, 번쩍이는 효과와 스킬 발동 ---
-
-        // 어두워지는 효과가 끝났으므로, 하얀 번쩍임이 회색으로 보이지 않도록 오버레이를 즉시 제거합니다.
         if (darkenOverlayImage != null)
         {
             darkenOverlayImage.gameObject.SetActive(false);
         }
 
-        // 2. 스킬 이펙트 생성 (번쩍임과 동시에)
+        // 스킬 이펙트 생성 (번쩍임과 동시에)
         if (skillEffectPrefab != null)
         {
             GameObject effectInstance = Instantiate(skillEffectPrefab, transform.position, Quaternion.identity);
             Destroy(effectInstance, 2f); // 이펙트 지속시간은 적절히 조절
         }
 
-        // 3. 하얀 번쩍 효과 (즉시 번쩍 -> 페이드 아웃)
+        // 하얀 번쩍 효과 (즉시 번쩍 -> 페이드 아웃)
         if (whiteImage != null)
         {
             whiteImage.gameObject.SetActive(true);
