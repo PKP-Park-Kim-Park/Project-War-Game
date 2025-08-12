@@ -120,11 +120,11 @@ public class UltSkill : MonoBehaviour
         }
 
         // 스킬 이펙트 생성 (번쩍임과 동시에)
-        if (skillEffectPrefab != null)
-        {
-            GameObject effectInstance = Instantiate(skillEffectPrefab, transform.position, Quaternion.identity);
-            Destroy(effectInstance, 2f); // 이펙트 지속시간은 적절히 조절
-        }
+        // if (skillEffectPrefab != null)
+        // {
+        //     GameObject effectInstance = Instantiate(skillEffectPrefab, transform.position, Quaternion.identity);
+        //     Destroy(effectInstance, 2f); // 이펙트 지속시간은 적절히 조절
+        // }
 
         // 하얀 번쩍 효과 (즉시 번쩍 -> 페이드 아웃)
         if (whiteImage != null)
