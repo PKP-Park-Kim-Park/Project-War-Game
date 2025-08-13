@@ -10,6 +10,13 @@ public class TurretSlot : MonoBehaviour
     [Tooltip("마우스 호버 시 표시될 시각적 효과 오브젝트 => 나중에 드래그한 터렛이 위에 올라가면 나오게 수정할 필요 있음.")]
     public GameObject hoverVisual;
 
+    [Header("Audio")]
+    [Tooltip("터렛이 장착될 때 재생될 효과음")]
+    public AudioClip mountSound;
+    [Tooltip("장착 효과음의 볼륨 (0.0 ~ 1.0)")]
+    [Range(0f, 1f)]
+    public float mountSoundVolume = 1.0f;
+
     [Header("State (Runtime)")]
     [Tooltip("터렛이 장착되었는지 여부")]
     [SerializeField]
@@ -20,6 +27,18 @@ public class TurretSlot : MonoBehaviour
     [SerializeField]
     private GameObject mountedTurret;
     public GameObject MountedTurret => mountedTurret;
+
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        // AudioSource 컴포넌트를 가져오거나, 없으면 추가합니다.
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
 
     void Start()
     {
@@ -115,6 +134,12 @@ public class TurretSlot : MonoBehaviour
 
         isOccupied = true;
         Debug.Log($"터렛 '{turretPrefab.name}'이(가) '{this.gameObject.name}'에 장착됨..", this.gameObject);
+
+        // 터렛 장착 효과음 재생
+        if (audioSource != null && mountSound != null)
+        {
+            audioSource.PlayOneShot(mountSound, mountSoundVolume);
+        }
 
         return true;
     }

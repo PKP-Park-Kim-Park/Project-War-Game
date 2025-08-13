@@ -37,8 +37,8 @@ public class TurretFire : MonoBehaviour
     public GameObject projectilePrefab;
 
     [Header("Audio")]
-    [Tooltip("발사 시 재생할 효과음 목록. 여러 개를 넣으면 무작위로 재생됩니다.")]
-    public AudioClip[] fireSounds;
+    [Tooltip("발사 시 재생할 효과음")]
+    public AudioClip fireSound;
     [Tooltip("발사 효과음의 볼륨 (0.0 ~ 1.0)")]
     [Range(0f, 1f)]
     public float fireSoundVolume = 1.0f;
@@ -205,22 +205,11 @@ public class TurretFire : MonoBehaviour
     // 발사 효과음 재생 함수
     private void PlayFireSound()
     {
-        if (audioSource == null || fireSounds == null || fireSounds.Length == 0)
+        if (audioSource == null || fireSound == null)
         {
             return;
         }
-
-        int randomIndex = Random.Range(0, fireSounds.Length);
-        AudioClip clipToPlay = fireSounds[randomIndex];
-
-        if (clipToPlay != null)
-        {
-            audioSource.PlayOneShot(clipToPlay, fireSoundVolume);
-        }
-        else
-        {
-            Debug.LogWarning($"[{gameObject.name}] 'Fire Sounds' 배열의 인덱스 {randomIndex}에 있는 오디오 클립이 null입니다.", this);
-        }
+        audioSource.PlayOneShot(fireSound, fireSoundVolume);
     }
 
     // 씬 뷰에서 터렛의 사거리를 시각적으로 표시
