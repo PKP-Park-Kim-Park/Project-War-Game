@@ -11,7 +11,7 @@ public class UpgradeManager : MonoBehaviour
 
     [Header("Hatchery Upgrade")]
     private Hatchery playerHatchery;
-    public int[] expRequirements = { 4000, 10000 };
+    public int[] expRequirements = { 4000, 12000 };
 
     private void Start()
     {
