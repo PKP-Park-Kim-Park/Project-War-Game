@@ -3,11 +3,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 해처리의 시대를 정의합니다.
+/// </summary>
+public enum Age
+{
+    Primitive,   // 원시 시대
+    Developed,   // 발전 시대
+    Advanced     // 진보 시대
+}
+
 public class Hatchery : MonoBehaviour, IDamageable
 {
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 500;
-    private int currentHealth;
+    private int currHealth;
+
+    [Header("Era Settings")]
+    [Tooltip("현재 해처리 시대")]
+    [SerializeField] private Age currAge = Age.Primitive;
+    public Age CurrAge => currAge;
 
     [Header("UI")]
     [SerializeField] private Slider healthBar;
@@ -36,7 +51,7 @@ public class Hatchery : MonoBehaviour, IDamageable
         {
             winUIPanel.SetActive(false);
         }
-        currentHealth = maxHealth;
+        currHealth = maxHealth;
         UpdateHealthUI();
     }
 
@@ -44,15 +59,42 @@ public class Hatchery : MonoBehaviour, IDamageable
     {
         if (damage < 0) return;
 
-        Debug.Log($"Hatchery가 {damage}의 데미지를 받았습니다. 이전 체력: {currentHealth}", this);
+        Debug.Log($"Hatchery가 {damage}의 데미지를 받았습니다. 이전 체력: {currHealth}", this);
 
-        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        currHealth = Mathf.Clamp(currHealth - damage, 0, maxHealth);
 
         UpdateHealthUI();
 
-        if (currentHealth <= 0)
+        if (currHealth <= 0)
         {
             DestroyHatchery();
+        }
+    }
+
+    /// <summary>
+    /// 해처리 시대 업글
+    /// </summary>
+    public void UpgradeAge()
+    {
+        if (currAge < Age.Advanced)
+        {
+            currAge++;
+            Debug.Log($"해처리 시대가 {currAge}(으)로 업그레이드되었습니다!", this);
+
+            // 최대 체력을 2배로 늘립니다.
+            maxHealth *= 2;
+
+            // 현재 체력을 새로운 최대 체력으로 회복
+            currHealth = currHealth + (maxHealth / 2);
+
+            // 체력 UI를 업데이트합니다.
+            UpdateHealthUI();
+
+            Debug.Log($"해처리 체력이 {maxHealth}(으)로 증가했습니다!", this);
+        }
+        else
+        {
+            Debug.Log("이미 최종 시대입니다.", this);
         }
     }
 
@@ -61,12 +103,12 @@ public class Hatchery : MonoBehaviour, IDamageable
         if (healthBar != null)
         {
             healthBar.maxValue = maxHealth;
-            healthBar.value = currentHealth;
+            healthBar.value = currHealth;
         }
 
         if (healthText != null)
         {
-            healthText.text = $"{currentHealth}";
+            healthText.text = $"{currHealth}";
         }
     }
 
@@ -91,8 +133,8 @@ public class Hatchery : MonoBehaviour, IDamageable
         else if (gameObject.CompareTag(playerHatcheryTag))
         {
             // --- 패배 조건 (플레이어 해처리) ---
-            Debug.Log("적 해처리가 파괴되었습니다. 게임 승리!");
-            if (winUIPanel != null)
+            Debug.Log("플레이어 해처리가 파괴되었습니다. 게임 패배!");
+            if (loseUIPanel != null)
             {
                 loseUIPanel.SetActive(true);
             }

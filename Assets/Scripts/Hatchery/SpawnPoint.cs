@@ -3,27 +3,34 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
+    [Header("Dependencies")]
+    [Tooltip("플레이어의 해처리")]
+    public Hatchery playerHatchery;
+
     [Header("Spawning Settings")]
     [Tooltip("생성할 유닛 프리팹 목록. 1, 2, 3키에 순서대로 매핑")]
     public List<GameObject> unitPrefabs = new List<GameObject>();
 
-    [Tooltip("유닛 생성 영역")]
     public Transform spawnTransform;
-    private void Update()
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (playerHatchery == null)
         {
-            SpawnUnit(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SpawnUnit(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SpawnUnit(2);
+            // 자동으로 플레이어 해처리를 찾아봅니다.
+            GameObject hatcheryObj = GameObject.FindGameObjectWithTag("PlayerHatchery");
+            if (hatcheryObj != null)
+            {
+                playerHatchery = hatcheryObj.GetComponent<Hatchery>();
+            }
+
+            if (playerHatchery == null)
+            {
+                Debug.LogError("SpawnPoint에 PlayerHatchery연결하시오", this);
+            }
         }
     }
+
     // 지정된 인덱스의 유닛을 스폰 영역에 생성합니다.
     public void SpawnUnit(int unitIndex)
     {
@@ -53,10 +60,6 @@ public class SpawnPoint : MonoBehaviour
             Debug.LogError("Spawn Position이 SpawnPoint에 할당X", this.gameObject);
             return;
         }
-
-        // 유닛 생성
-        Instantiate(unitPrefab, spawnTransform.position, Quaternion.identity);
-        Debug.Log($"'{unitPrefab.name}' 유닛 생성", this.gameObject);
     }
 
     /// <summary>
