@@ -21,6 +21,9 @@ public class EnemyTurretSlot : MonoBehaviour
     private GameObject mountedTurret;
     public GameObject MountedTurret => mountedTurret;
 
+    private GameObject mountedTurretPrefab;
+    public GameObject MountedTurretPrefab => mountedTurretPrefab;
+
     /// <summary>
     /// AI 컨트롤러 등 외부에서 호출하여 터렛을 건설하게 할 수 있는 public 메서드
     /// </summary>
@@ -80,6 +83,7 @@ public class EnemyTurretSlot : MonoBehaviour
         }
 
         // TurretSlot의 위치에 터렛을 생성
+        mountedTurretPrefab = turretPrefab;
         mountedTurret = Instantiate(turretPrefab, this.transform.position, this.transform.rotation);
 
         // 생성된 터렛 계층 구조 정리
@@ -104,6 +108,7 @@ public class EnemyTurretSlot : MonoBehaviour
             // 이미 비어있거나 터렛이 없는 경우(예: 플레이어에 의해 파괴됨), 상태만 정리하고 종료합니다.
             isOccupied = false;
             mountedTurret = null;
+            mountedTurretPrefab = null;
             return;
         }
 
@@ -111,6 +116,7 @@ public class EnemyTurretSlot : MonoBehaviour
         Destroy(mountedTurret);
         mountedTurret = null;
         isOccupied = false;
+        mountedTurretPrefab = null;
     }
 
     // 씬 뷰에서 터렛 슬롯 영역
