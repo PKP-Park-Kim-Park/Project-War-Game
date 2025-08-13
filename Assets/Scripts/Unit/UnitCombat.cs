@@ -9,8 +9,8 @@ public class UnitCombat
     private List<string> attackTargetTags;
     private int attackDamage;
     private float attackRange;
-    private int gold;
-    private int exp;
+    public int gold;
+    public int exp;
 
     public void Setup(Transform rayOrigin, Vector3 moveDirection, List<string> attackTargetTags, int attackDamage, float attackRange, int gold, int exp)
     {

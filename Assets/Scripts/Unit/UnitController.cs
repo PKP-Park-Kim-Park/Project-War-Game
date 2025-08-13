@@ -325,8 +325,8 @@ public class UnitController : MonoBehaviour, IDamageable
 
         if (gameObject.CompareTag("Enemy"))
         {
-            GoldManager.instance.AddGold(stat.Gold);
-            ExpManager.instance.AddExp(stat.Exp);
+            GoldManager.instance.AddGold(combat.gold);
+            ExpManager.instance.AddExp(combat.exp);
         }
 
         yield return unitAnimation.WaitForDeathAnimation();

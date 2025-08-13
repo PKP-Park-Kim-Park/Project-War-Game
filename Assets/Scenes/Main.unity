@@ -1945,10 +1945,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGM
       objectReference: {fileID: 0}
-    - target: {fileID: 8918863381754382629, guid: 3d4831dfe72bacf40802b20fe5973acc, type: 3}
-      propertyPath: m_Volume
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 8998068627834872073, guid: 3d4831dfe72bacf40802b20fe5973acc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.3634937
