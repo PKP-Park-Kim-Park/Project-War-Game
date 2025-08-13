@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4262471654201289104}
   - component: {fileID: 6567218163629328079}
   - component: {fileID: 3896001456569856093}
+  - component: {fileID: 4666708527579386389}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -59,3 +60,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooltimeBarFill: {fileID: 0}
   cooldownTime: 5
+--- !u!114 &4666708527579386389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6280332814400093199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0314d4240cd6be47bc68c5722de2c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseImage: {fileID: 0}
