@@ -134,9 +134,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultFacingDirection: 0
-  attackRange: 10
+  attackRange: 9
   turnSpeed: 10
-  fireRate: 5
+  fireRate: 4
   initialFireDelay: 0.5
   projectileDamage: 10
   enemyTag: Enemy

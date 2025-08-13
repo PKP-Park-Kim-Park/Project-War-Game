@@ -18,14 +18,19 @@ public class ShopManager : MonoBehaviour
     private Dictionary<int, float> _cooldownTimes = new Dictionary<int, float>()
     {
         //Unit Shop 1
-        { 15, 1.0f },
-        { 25, 2.0f },
-        { 100, 3.0f },
+        { 25, 1.0f },
+        { 65, 2.0f },
+        {150, 3.0f },
 
         //Unit Shop 2
-        { 50, 1.5f },
-        { 85, 2.5f },
-        { 300, 3.5f },
+        { 70, 1.5f },
+        { 130, 2.5f },
+        { 330, 3.5f },
+
+        //unit shop 3
+        { 100, 1.5f },
+        { 185, 2.5f },
+        { 500, 3.5f },
     };
 
     // 비용(cost)을 키로, 유닛 인덱스(unitIndex)를 값으로 하는 딕셔너리
@@ -35,21 +40,35 @@ public class ShopManager : MonoBehaviour
 
     void Awake()
     {
-        // Awake()에서 비용과 유닛 인덱스를 매핑
-        // 이 부분은 유닛 프리팹 리스트 순서에 맞게 직접 설정해야 합니다.
-        _unitCostsAndIndices.Add(15, 0);   // 비용 15 골드는 unitPrefabs[0]에 해당
-        _unitCostsAndIndices.Add(25, 1);   // 비용 25 골드는 unitPrefabs[1]에 해당
-        _unitCostsAndIndices.Add(100, 2);  // 비용 100 골드는 unitPrefabs[2]에 해당
+        // Unit Shop 1의 유닛 추가
+        _unitCostsAndIndices.Add(25, 0);
+        _unitCostsAndIndices.Add(65, 1);
+        _unitCostsAndIndices.Add(150, 2);
 
-        //// Unit Shop 2의 유닛들도 추가
-        //_unitCostsAndIndices.Add(50, 3);
-        //_unitCostsAndIndices.Add(85, 4);
-        //_unitCostsAndIndices.Add(300, 5);
+        // Unit Shop 2의 유닛 추가
+        _unitCostsAndIndices.Add(70, 3);
+        _unitCostsAndIndices.Add(130, 4);
+        _unitCostsAndIndices.Add(330, 5);
 
-        // 터렛 비용과 인덱스 매핑 (예시)
-        _turretCostsAndIndices.Add(150, 0); // 50골드 터렛은 turretPrefabs[0]
-        _turretCostsAndIndices.Add(300, 1); // 150골드 터렛은 turretPrefabs[1]
-        _turretCostsAndIndices.Add(500, 2);
+        // Unit Shop 3의 유닛 추가
+        _unitCostsAndIndices.Add(100, 6);
+        _unitCostsAndIndices.Add(185, 7);
+        _unitCostsAndIndices.Add(500, 8);
+
+        // Turret Shop 1의 터렛 추가
+        _turretCostsAndIndices.Add(250, 0);
+        _turretCostsAndIndices.Add(400, 1);
+        _turretCostsAndIndices.Add(600, 2);
+
+        // Turret Shop 2의 터렛 추가
+        _turretCostsAndIndices.Add(600, 3);
+        _turretCostsAndIndices.Add(800, 4);
+        _turretCostsAndIndices.Add(1000, 5);
+
+        // Turret Shop 2의 터렛 추가
+        _turretCostsAndIndices.Add(900, 6);
+        _turretCostsAndIndices.Add(1300, 7);
+        _turretCostsAndIndices.Add(1500, 8);
     }
 
     void Start()
