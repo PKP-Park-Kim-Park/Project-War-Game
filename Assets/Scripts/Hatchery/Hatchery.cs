@@ -114,11 +114,13 @@ public class Hatchery : MonoBehaviour, IDamageable
 
     private void DestroyHatchery()
     {
+        bool isGameOver = false;
         // 적 해처리인지 태그로 확인
         if (gameObject.CompareTag(enemyHatcheryTag))
         {
             // --- 승리 조건 ---
             Debug.Log("적 해처리가 파괴되었습니다. 게임 승리!");
+            isGameOver = true;
             if (winUIPanel != null)
             {
                 winUIPanel.SetActive(true);
@@ -127,13 +129,12 @@ public class Hatchery : MonoBehaviour, IDamageable
             {
                 Debug.LogWarning("승리 UI 패널이 할당되지 않음", this);
             }
-            // 3초 후 게임 종료 시퀀스 시작
-            StartCoroutine(SequenceCoroutine());
         }
         else if (gameObject.CompareTag(playerHatcheryTag))
         {
             // --- 패배 조건 (플레이어 해처리) ---
             Debug.Log("플레이어 해처리가 파괴되었습니다. 게임 패배!");
+            isGameOver = true;
             if (loseUIPanel != null)
             {
                 loseUIPanel.SetActive(true);
@@ -142,7 +143,20 @@ public class Hatchery : MonoBehaviour, IDamageable
             {
                 Debug.LogWarning("패배 UI 패널이 할당되지 않음", this);
             }
-            // 3초 후 게임 종료 시퀀스 시작
+        }
+
+        if (isGameOver)
+        {
+            // 게임 정지 및 BGM 끄기
+            Time.timeScale = 0f;
+
+            BGM bgmManager = FindObjectOfType<BGM>();
+            if (bgmManager != null)
+            {
+                bgmManager.StopMusic();
+            }
+
+            // 3초 후 게임 종료 시퀀스 시작 (Time.timeScale에 영향을 받지 않음)
             StartCoroutine(SequenceCoroutine());
         }
     }
@@ -152,7 +166,7 @@ public class Hatchery : MonoBehaviour, IDamageable
     /// </summary>
     private IEnumerator SequenceCoroutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(3f);
         if (GameManager.instance != null)
         {
             GameManager.instance.EndGame();

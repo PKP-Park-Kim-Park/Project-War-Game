@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("게임 종료");
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Title");
     }
 }

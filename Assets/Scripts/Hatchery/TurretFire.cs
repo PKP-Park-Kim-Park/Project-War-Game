@@ -22,8 +22,11 @@ public class TurretFire : MonoBehaviour
     public float fireRate = 1f;
     [Tooltip("첫 타겟 감지 후 발사까지의 딜레이")]
     public float initialFireDelay = 0.5f;
-    [Tooltip("발사체가 가하는 데미지")]
-    public int projectileDamage = 10;
+    [Tooltip("발사체가 가하는 기본 데미지")]
+    public int baseProjectileDamage = 10;
+    [Tooltip("시대 업그레이드 당 데미지 증가량 (기본 데미지 * (1 + 증가량 * 시대 레벨))")]
+    public int damageUpgradeMultiplier = 1;
+    private int currentProjectileDamage;
     private float fireCountdown = 0f;
 
     [Header("Required Setup")]
@@ -47,17 +50,76 @@ public class TurretFire : MonoBehaviour
     private Quaternion initialRotation;
     private int nextFirePointIndex = 0; // 다음 발사할 총구의 인덱스
     private AudioSource audioSource;
+    private SpriteRenderer turretSpriteRenderer;
+    public Age BuiltInAge { get; private set; }
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
+
+        // 색상을 변경할 SpriteRenderer를 찾습니다. partToRotate에 있다면 그것을 우선 사용합니다.
+        if (partToRotate != null)
+        {
+            turretSpriteRenderer = partToRotate.GetComponent<SpriteRenderer>();
+        }
+
+        // partToRotate에 없다면, 이 게임 오브젝트에서 찾습니다.
+        if (turretSpriteRenderer == null)
+        {
+            turretSpriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        if (turretSpriteRenderer == null)
+            Debug.LogWarning("터렛의 색상을 변경할 SpriteRenderer를 찾을 수 없습니다.", this);
     }
 
     private void Start()
     {
         SetInitialRotation();
+
+        // 자신의 소속에 따라 해처리를 찾아 현재 시대에 맞는 데미지를 설정합니다.
+        // 이 터렛이 공격할 대상(enemyTag)을 기준으로 소유자 해처리를 결정합니다.
+        string ownerHatcheryTag = (enemyTag == "Enemy") ? "PlayerHatchery" : "EnemyHatchery";
+        GameObject hatcheryObj = GameObject.FindGameObjectWithTag(ownerHatcheryTag);
+
+        if (hatcheryObj != null)
+        {
+            Hatchery ownerHatchery = hatcheryObj.GetComponent<Hatchery>();
+            if (ownerHatchery != null)
+            {
+                BuiltInAge = ownerHatchery.CurrAge;
+                int ageLevel = (int)ownerHatchery.CurrAge; // Age enum: Primitive = 0, Developed = 1, Advanced = 2
+                currentProjectileDamage = baseProjectileDamage * (1 + damageUpgradeMultiplier * ageLevel);
+                Debug.Log($"터렛 데미지가 시대({ownerHatchery.CurrAge})에 맞춰 {currentProjectileDamage}(으)로 설정되었습니다.", this);
+
+                // 해처리의 SpriteRenderer에서 기본 색상을 가져옵니다.
+                Color hatcheryColor = Color.white; // 기본값은 흰색
+                SpriteRenderer hatcheryRenderer = ownerHatchery.GetComponent<SpriteRenderer>();
+                if (hatcheryRenderer != null)
+                {
+                    hatcheryColor = hatcheryRenderer.color;
+                }
+                else
+                {
+                    Debug.LogWarning($"소유자 해처리 '{ownerHatchery.name}'에 SpriteRenderer가 없어 기본 색상(흰색)을 사용합니다.", this);
+                }
+                UpdateTurretColor(ageLevel, hatcheryColor);
+            }
+            else
+            {
+                Debug.LogWarning($"'{ownerHatcheryTag}' 태그를 가진 오브젝트에 Hatchery 컴포넌트가 없습니다. 기본 데미지를 사용합니다.", this);
+                currentProjectileDamage = baseProjectileDamage;
+                UpdateTurretColor(0, Color.white); // 해처리를 못찾았을 때의 처리
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"'{ownerHatcheryTag}' 태그를 가진 해처리를 찾을 수 없습니다. 기본 데미지를 사용합니다.", this);
+            currentProjectileDamage = baseProjectileDamage;
+            UpdateTurretColor(0, Color.white); // 해처리를 못찾았을 때의 처리
+        }
 
         // 0.5초마다 가장 가까운 적을 찾도록 설정
         InvokeRepeating(nameof(UpdateTarget), 0f, 0.5f);
@@ -190,7 +252,7 @@ public class TurretFire : MonoBehaviour
         if (projectile != null)
         {
             // 생성된 발사체에 데미지와 타겟 태그를 설정합니다.
-            projectile.Damage = projectileDamage;
+            projectile.Damage = currentProjectileDamage;
             projectile.AttackTargetTag = enemyTag;
         }
         else
@@ -217,5 +279,27 @@ public class TurretFire : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    /// <summary>
+    /// 시대 레벨에 따라 터렛의 색상을 변경합니다.
+    /// </summary>
+    /// <param name="ageLevel">현재 시대 레벨 (0: 원시, 1: 발전, 2: 진보)</param>
+    void UpdateTurretColor(int ageLevel, Color defaultColor)
+    {
+        if (turretSpriteRenderer == null) return;
+
+        switch (ageLevel)
+        {
+            case 1: // 발전 시대 (첫 업그레이드)
+                turretSpriteRenderer.color = Color.yellow;
+                break;
+            case 2: // 진보 시대 (두 번째 업그레이드)
+                turretSpriteRenderer.color = Color.red;
+                break;
+            default: // 원시 시대 또는 기타
+                turretSpriteRenderer.color = defaultColor; // 부모 해처리의 색상 또는 기본 색상
+                break;
+        }
     }
 }
