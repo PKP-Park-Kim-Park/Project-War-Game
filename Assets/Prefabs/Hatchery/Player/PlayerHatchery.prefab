@@ -809,6 +809,12 @@ MonoBehaviour:
   - {fileID: 3651504156012215081, guid: 1b47407ad153d8b4286fee6dcf3d5348, type: 3}
   - {fileID: 280633020449921423, guid: cb86f00adfb20f14f896497208a3adf1, type: 3}
   - {fileID: 6868368252486299080, guid: 3ae9c2f307ad94049a9cb30a4da9a025, type: 3}
+  - {fileID: 3651504156012215081, guid: 1b47407ad153d8b4286fee6dcf3d5348, type: 3}
+  - {fileID: 280633020449921423, guid: cb86f00adfb20f14f896497208a3adf1, type: 3}
+  - {fileID: 6868368252486299080, guid: 3ae9c2f307ad94049a9cb30a4da9a025, type: 3}
+  - {fileID: 3651504156012215081, guid: 1b47407ad153d8b4286fee6dcf3d5348, type: 3}
+  - {fileID: 280633020449921423, guid: cb86f00adfb20f14f896497208a3adf1, type: 3}
+  - {fileID: 6868368252486299080, guid: 3ae9c2f307ad94049a9cb30a4da9a025, type: 3}
   spawnTransform: {fileID: 7433207814356642}
 --- !u!1 &8161737865146471484
 GameObject:
@@ -875,6 +881,12 @@ MonoBehaviour:
   turretToPlacePrefab: {fileID: 0}
   turretCost: 0
   turretPrefabs:
+  - {fileID: 1416073545092648483, guid: a394248dbf1b4af48acac3beb45a241e, type: 3}
+  - {fileID: 4885401199099342128, guid: e6d5491be4fd40540a642fee2dc33228, type: 3}
+  - {fileID: 6079942632171860774, guid: 24451b669fef45e449356b0130ccd54d, type: 3}
+  - {fileID: 1416073545092648483, guid: a394248dbf1b4af48acac3beb45a241e, type: 3}
+  - {fileID: 4885401199099342128, guid: e6d5491be4fd40540a642fee2dc33228, type: 3}
+  - {fileID: 6079942632171860774, guid: 24451b669fef45e449356b0130ccd54d, type: 3}
   - {fileID: 1416073545092648483, guid: a394248dbf1b4af48acac3beb45a241e, type: 3}
   - {fileID: 4885401199099342128, guid: e6d5491be4fd40540a642fee2dc33228, type: 3}
   - {fileID: 6079942632171860774, guid: 24451b669fef45e449356b0130ccd54d, type: 3}

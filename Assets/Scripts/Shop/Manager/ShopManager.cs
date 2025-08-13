@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
@@ -7,7 +9,7 @@ public class ShopManager : MonoBehaviour
     [Tooltip("Turret Manager 넣으쇼..")]
     public TurretSpotBuilder turretSpotBuilder;
     // 터렛 매니저 참조 변수 추가
-    public TurretManager turretManager; 
+    public TurretManager turretManager;
 
     // 증축 비용을 담는 배열
     private int[] additionCosts = { 1000, 3000, 5000 };
@@ -61,7 +63,7 @@ public class ShopManager : MonoBehaviour
         _turretCostsAndIndices.Add(600, 2);
 
         // Turret Shop 2의 터렛 추가
-        _turretCostsAndIndices.Add(600, 3);
+        _turretCostsAndIndices.Add(650, 3);
         _turretCostsAndIndices.Add(800, 4);
         _turretCostsAndIndices.Add(1000, 5);
 
@@ -122,7 +124,8 @@ public class ShopManager : MonoBehaviour
             if (TurretManager.Instance != null)
             {
                 // 포탑 설치 모드 시작. 골드는 아직 소모하지 않음.
-                TurretManager.Instance.SelectTurret(turretIndex, cost);
+                TurretManager.Instance.SelectTurret(turretIndex, cost); 
+                Debug.Log("Turret설치 모드 시작");
             }
             else
             {
@@ -157,6 +160,7 @@ public class ShopManager : MonoBehaviour
         if (currentAdditions >= maxAdditions)
         {
             Debug.Log("더 이상 증축할 수 없습니다. 최대 증축 횟수에 도달했습니다.");
+            MessageManager.Instance.ShowTemporaryText("<color=red>full addition</color>");
             return;
         }
 
@@ -182,7 +186,9 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("골드 부족으로 증축 불가.");
+            Debug.Log(cost + "골드 있어야 증축 가능");
+            MessageManager.Instance.ShowTemporaryText($"need to <color=#FFD700>{cost}</color> gold");
+
         }
     }
 }

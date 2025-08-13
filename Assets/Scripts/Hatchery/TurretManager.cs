@@ -39,10 +39,12 @@ public class TurretManager : MonoBehaviour
         {
             // 터렛 설치 모드를 시작하면, 판매 모드는 비활성화
             isSellingTurret = false;
+         
 
             turretToPlacePrefab = turretPrefabs[turretIndex];
             turretCost = cost;
             isPlacingTurret = true;
+            Debug.Log($"터렛 설치모드(isPlacingTurret = true) ");
 
             Debug.Log($"Turret placement mode started for {turretToPlacePrefab.name}.");
         }

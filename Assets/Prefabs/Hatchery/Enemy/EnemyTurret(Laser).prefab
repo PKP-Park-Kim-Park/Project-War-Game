@@ -223,9 +223,10 @@ MonoBehaviour:
   defaultFacingDirection: 1
   attackRange: 10
   turnSpeed: 10
-  fireRate: 5
+  fireRate: 4
   initialFireDelay: 0.5
-  projectileDamage: 10
+  baseProjectileDamage: 5
+  damageUpgradeMultiplier: 1
   enemyTag: Player
   partToRotate: {fileID: 7099506482375715887}
   firePoints:

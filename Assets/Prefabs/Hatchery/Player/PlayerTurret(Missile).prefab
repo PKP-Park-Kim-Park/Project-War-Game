@@ -134,11 +134,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultFacingDirection: 0
-  attackRange: 8
+  attackRange: 9
   turnSpeed: 10
   fireRate: 1
   initialFireDelay: 0.5
-  projectileDamage: 35
+  baseProjectileDamage: 35
+  damageUpgradeMultiplier: 1
   enemyTag: Enemy
   partToRotate: {fileID: 5527621026151770015}
   firePoints:

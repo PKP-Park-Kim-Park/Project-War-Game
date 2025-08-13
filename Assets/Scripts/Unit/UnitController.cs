@@ -101,7 +101,7 @@ public class UnitController : MonoBehaviour, IDamageable
                 spriteRenderer.color = Color.yellow;
                 break;
             case 2:
-                spriteRenderer.color = Color.green;
+                spriteRenderer.color = Color.red;
                 break;
         }
 
