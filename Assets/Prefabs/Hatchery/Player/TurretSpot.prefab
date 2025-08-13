@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverVisual: {fileID: 401833984620973130}
+  mountSound: {fileID: 8300000, guid: 39d757212e35f284aa896290bff3608a, type: 3}
+  mountSoundVolume: 1
   isOccupied: 0
   mountedTurret: {fileID: 0}
 --- !u!1 &7367135200505667500
