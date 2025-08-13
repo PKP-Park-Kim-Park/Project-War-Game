@@ -1449,63 +1449,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1066587128
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729347312857649569, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620748240701030874, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
-      propertyPath: m_Name
-      value: Ult Skill
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
 --- !u!1 &1163287288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,10 +2226,6 @@ PrefabInstance:
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 1058690243}
-    - target: {fileID: 1524428019189412483, guid: 581512defa151ec4686ea07c55d4d115, type: 3}
-      propertyPath: _upgradeAgeTime
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 3192495946806609731, guid: 581512defa151ec4686ea07c55d4d115, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2350,5 +2289,4 @@ SceneRoots:
   - {fileID: 1058690242}
   - {fileID: 155178589}
   - {fileID: 6334347218936596026}
-  - {fileID: 1066587128}
   - {fileID: 1291965557}
