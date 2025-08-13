@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public enum UnitType
@@ -32,6 +33,7 @@ public class UnitController : MonoBehaviour, IDamageable
     [SerializeField] private UnitData unitData;
     [SerializeField] private Slider healthBar;
     [SerializeField] private Transform rayShootTransform;
+    [SerializeField] private int _upGradeMagnification = 1;
 
     [Header("Audio")]
     [SerializeField] private UnitTypeAudioClips[] unitAttackSounds;
@@ -61,6 +63,7 @@ public class UnitController : MonoBehaviour, IDamageable
     private bool isMoving = false;
     private bool isAttacking = false;
     private bool isDie = false;
+    private bool isSetting = false;
 
     private void Awake()
     {
@@ -75,17 +78,37 @@ public class UnitController : MonoBehaviour, IDamageable
         unitAnimation = new UnitAnimation(animator);
         stat.Initialize(unitData, gameObject.tag);
 
-        currentHealth = stat.MaxHealth;
         InitializeSoundMap();
-
-        SetMoveDirection();
-        combat.Setup(rayShootTransform, moveDirection, stat.AttackTargetTags, stat.AttackDamage, stat.AttackRange, stat.Gold, stat.Exp);
     }
 
-    private void Start()
+    public void SetAgeUnit(int age)
     {
-        healthBar.maxValue = stat.MaxHealth;
-        healthBar.value = stat.MaxHealth;
+        int upgrade = 1 + _upGradeMagnification * age;
+
+        SetMoveDirection();
+        currentHealth = stat.MaxHealth * upgrade;
+        combat.Setup(rayShootTransform,
+            moveDirection,
+            stat.AttackTargetTags,
+            stat.AttackDamage * upgrade,
+            stat.AttackRange,
+            stat.Gold * upgrade,
+            stat.Exp * upgrade);
+
+        switch(age)
+        {
+            case 1:
+                spriteRenderer.color = Color.yellow;
+                break;
+            case 2:
+                spriteRenderer.color = Color.green;
+                break;
+        }
+
+        isSetting = true;
+
+        healthBar.maxValue = currentHealth;
+        healthBar.value = currentHealth;
     }
 
     private void InitializeSoundMap()
@@ -111,6 +134,11 @@ public class UnitController : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if(isSetting == false)
+        {
+            return;
+        }
+
         if (isDie)
         {
             return;

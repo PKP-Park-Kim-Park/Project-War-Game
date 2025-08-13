@@ -449,6 +449,7 @@ MonoBehaviour:
   unitData: {fileID: 11400000, guid: 84430ea60fd7d774592fcae9ff18cd2f, type: 2}
   healthBar: {fileID: 6609152356378028212}
   rayShootTransform: {fileID: 3174535942763269450}
+  _upGradeMagnification: 1
   unitAttackSounds:
   - unitType: 0
     attackSounds:

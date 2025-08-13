@@ -716,6 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 500
+  currAge: 0
   healthBar: {fileID: 379400321433440350}
   healthText: {fileID: 8277184038856972427}
   winUIPanel: {fileID: 0}
@@ -904,6 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4653b7cd4be9a024086f9ed847f5394c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHatchery: {fileID: 3696407319073629151}
   unitPrefabs:
   - {fileID: 7198538079608484487, guid: a8a82bd2db6e907459d5d6e536988b51, type: 3}
   - {fileID: 7757458698757291420, guid: e10fdc5fed42ff04095a09984442698e, type: 3}
