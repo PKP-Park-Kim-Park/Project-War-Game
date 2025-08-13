@@ -60,6 +60,10 @@ public class SpawnPoint : MonoBehaviour
             Debug.LogError("Spawn Position이 SpawnPoint에 할당X", this.gameObject);
             return;
         }
+
+        GameObject unitObject = Instantiate(unitPrefab, spawnTransform.position, Quaternion.identity);
+        unitObject.GetComponent<UnitController>().SetAgeUnit((int)playerHatchery.CurrAge);
+        Debug.Log($"'{unitPrefab.name}' 유닛 생성", this.gameObject);
     }
 
     /// <summary>

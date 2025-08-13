@@ -12,9 +12,11 @@ public struct Ingredient
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Ingredient> _ingredients;
-    [SerializeField] private int _currentAge = 0;
     [SerializeField] private SpawnPoint _spawnPoint;
     [SerializeField] private float _upgradeAgeTime = 90f;
+    [SerializeField] private float _spawnCoolTimeMin = 1f;
+    [SerializeField] private float _spawnCoolTimeMax = 3f;
+    [SerializeField] private Hatchery _hatchery;
     private float _spawnCoolTime = 0f;
     private float _time = 0f;
     private float _ageTime = 0f;
@@ -22,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        _spawnCoolTime = Random.Range(1f, 3f);
+        _spawnCoolTime = Random.Range(_spawnCoolTimeMin, _spawnCoolTimeMax);
     }
 
     private void Update()
@@ -35,9 +37,9 @@ public class EnemySpawner : MonoBehaviour
     {
         _ageTime += Time.deltaTime;
 
-        if (_ageTime >= _upgradeAgeTime && _currentAge < _ingredients.Count - 1)
+        if (_ageTime >= _upgradeAgeTime)
         {
-            _currentAge++;
+            _hatchery.UpgradeAge();
             _ageTime = 0;
         }
     }
@@ -60,25 +62,20 @@ public class EnemySpawner : MonoBehaviour
     {
         _spawnUnitInt = Random.Range(1f, 100f);
 
-        if (_ingredients.Count <= _currentAge)
-        {
-            return;
-        }
-
-        if (0f < _spawnUnitInt && _spawnUnitInt <= _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Normal])
+        if (0f < _spawnUnitInt && _spawnUnitInt <= _ingredients[0].unitSpawnCoolTime[(int)UnitType.Normal])
         {
             _spawnPoint.SpawnUnit((int)UnitType.Normal);
         }
         else if (_spawnUnitInt <=
-            _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Normal] +
-            _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Long])
+            _ingredients[0].unitSpawnCoolTime[(int)UnitType.Normal] +
+            _ingredients[0].unitSpawnCoolTime[(int)UnitType.Long])
         {
             _spawnPoint.SpawnUnit((int)UnitType.Long);
         }
         else if (_spawnUnitInt <=
-            _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Normal] +
-            _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Long] +
-            _ingredients[_currentAge].unitSpawnCoolTime[(int)UnitType.Tank])
+            _ingredients[0].unitSpawnCoolTime[(int)UnitType.Normal] +
+            _ingredients[0].unitSpawnCoolTime[(int)UnitType.Long] +
+            _ingredients[0].unitSpawnCoolTime[(int)UnitType.Tank])
         {
             _spawnPoint.SpawnUnit((int)UnitType.Tank);
         }

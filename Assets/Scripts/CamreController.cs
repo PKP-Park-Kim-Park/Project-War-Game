@@ -2,43 +2,98 @@
 
 public class CamreController : MonoBehaviour
 {
-    [SerializeField] private float _dragSpeed = 0.01f;
-    [SerializeField] private Transform _leftEnd;
-    [SerializeField] private Transform _rightEnd;
+    [Header("Drag Settings")]
+    [SerializeField] private float _dragSpeed = 0.01f;  
+    [SerializeField] private bool _invert = false;
 
-    private Vector2 _lastTouchPos;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float edgeThreshold = 0.2f; // 화면 비율(20%) 기준
+
+    [Header("Bounds (World Space)")]
+    [SerializeField] private Transform _leftEnd;      
+    [SerializeField] private Transform _rightEnd;       
+
+    private Vector2 _lastPointerPos;
     private bool _isDragging = false;
 
-    void Update()
+    private void Update()
     {
-        if (Input.touchCount > 0)
+        HandleMouseDrag();
+
+        // HandleTouchDrag(); // 모바일
+    }
+
+    private void HandleMouseDrag()
+    {
+        Vector3 pos = transform.position;
+
+        // 마우스 위치를 0~1 비율로 변환
+        float mouseXNormalized = Input.mousePosition.x / Screen.width;
+
+        // 왼쪽 이동
+        if (mouseXNormalized < edgeThreshold)
         {
-            Touch touch = Input.GetTouch(0);
+            pos.x -= moveSpeed * Time.deltaTime;
+        }
+        // 오른쪽 이동
+        else if (mouseXNormalized > 1f - edgeThreshold)
+        {
+            pos.x += moveSpeed * Time.deltaTime;
+        }
 
-            if (touch.phase == TouchPhase.Began)
+        // 이동 제한
+        pos.x = Mathf.Clamp(pos.x, _leftEnd.localPosition.x, _rightEnd.localPosition.x);
+
+        transform.position = pos;
+    }
+
+    private void HandleTouchDrag()
+    {
+        if (Input.touchCount <= 0)
+        {
+            _isDragging = false;
+            return;
+        }
+
+        Touch t = Input.GetTouch(0);
+
+        if (t.phase == TouchPhase.Began)
+        {
+            _lastPointerPos = t.position;
+            _isDragging = true;
+            return;
+        }
+
+        if ((t.phase == TouchPhase.Moved || t.phase == TouchPhase.Stationary) && _isDragging)
+        {
+            Vector2 currentPos = t.position;
+            Vector2 direction = currentPos - _lastPointerPos;
+
+            float sign = _invert ? 1f : -1f;
+            float moveX = sign * direction.x * _dragSpeed;
+
+            Vector3 next = transform.position + new Vector3(moveX, 0f, 0f);
+
+            float minX = (_leftEnd != null) ? _leftEnd.position.x : next.x;
+            float maxX = (_rightEnd != null) ? _rightEnd.position.x : next.x;
+            if (minX > maxX)
             {
-                _lastTouchPos = touch.position;
-                _isDragging = true;
+                float tmp = minX;
+                minX = maxX;
+                maxX = tmp;
             }
-            else if (touch.phase == TouchPhase.Moved && _isDragging)
-            {
-                Vector2 currentPos = touch.position;
-                Vector2 diraction = currentPos - _lastTouchPos;
 
-                float moveX = -diraction.x * _dragSpeed;
+            float clampedX = Mathf.Clamp(next.x, minX, maxX);
+            transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
 
-                Vector3 nextPosition = transform.position + new Vector3(moveX, 0f, 0f);
+            _lastPointerPos = currentPos;
+            return;
+        }
 
-                float clampedX = Mathf.Clamp(nextPosition.x, _leftEnd.localPosition.x, _rightEnd.localPosition.x);
-
-                transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
-
-                _lastTouchPos = currentPos;
-            }
-            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            {
-                _isDragging = false;
-            }
+        if (t.phase == TouchPhase.Ended || t.phase == TouchPhase.Canceled)
+        {
+            _isDragging = false;
+            return;
         }
     }
 }
