@@ -2405,7 +2405,15 @@ PrefabInstance:
     - target: {fileID: 9175206144847193223, guid: 762513289dc2fef43aee452f0b2ce568, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6937817954938267909, guid: 67100957c635b5547a0bf6c3a1b15d54, type: 3}
+      objectReference: {fileID: -855298285791758126, guid: da61911a29dac714dad88147dc6d4852, type: 3}
+    - target: {fileID: 9175206144847193223, guid: 762513289dc2fef43aee452f0b2ce568, type: 3}
+      propertyPath: m_Color.b
+      value: 0.1273585
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175206144847193223, guid: 762513289dc2fef43aee452f0b2ce568, type: 3}
+      propertyPath: m_Color.g
+      value: 0.1273585
+      objectReference: {fileID: 0}
     - target: {fileID: 9204071590002076681, guid: 762513289dc2fef43aee452f0b2ce568, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2982,14 +2990,14 @@ PrefabInstance:
     - target: {fileID: 4572853525227001302, guid: 39fa1acf1d9bc6348882bd833e99c452, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6937817954938267909, guid: 67100957c635b5547a0bf6c3a1b15d54, type: 3}
+      objectReference: {fileID: -855298285791758126, guid: da61911a29dac714dad88147dc6d4852, type: 3}
     - target: {fileID: 4572853525227001302, guid: 39fa1acf1d9bc6348882bd833e99c452, type: 3}
       propertyPath: m_Color.b
-      value: 0.9411765
+      value: 0.1273585
       objectReference: {fileID: 0}
     - target: {fileID: 4572853525227001302, guid: 39fa1acf1d9bc6348882bd833e99c452, type: 3}
       propertyPath: m_Color.g
-      value: 0.53333336
+      value: 0.1273585
       objectReference: {fileID: 0}
     - target: {fileID: 4572853525227001302, guid: 39fa1acf1d9bc6348882bd833e99c452, type: 3}
       propertyPath: m_Color.r
@@ -3369,14 +3377,14 @@ PrefabInstance:
     - target: {fileID: 3077763990117070144, guid: f2968f735b5242843afa5e1cf8bcaf43, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6937817954938267909, guid: 67100957c635b5547a0bf6c3a1b15d54, type: 3}
+      objectReference: {fileID: -855298285791758126, guid: da61911a29dac714dad88147dc6d4852, type: 3}
     - target: {fileID: 3077763990117070144, guid: f2968f735b5242843afa5e1cf8bcaf43, type: 3}
       propertyPath: m_Color.b
-      value: 0.9411765
+      value: 0.1273585
       objectReference: {fileID: 0}
     - target: {fileID: 3077763990117070144, guid: f2968f735b5242843afa5e1cf8bcaf43, type: 3}
       propertyPath: m_Color.g
-      value: 0.53333336
+      value: 0.1273585
       objectReference: {fileID: 0}
     - target: {fileID: 3077763990117070144, guid: f2968f735b5242843afa5e1cf8bcaf43, type: 3}
       propertyPath: m_Color.r
@@ -4608,11 +4616,15 @@ PrefabInstance:
       objectReference: {fileID: 5412316032490039944}
     - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
       propertyPath: skillDamage
-      value: 999
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
       propertyPath: flashDuration
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
+      propertyPath: skillCooldown
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3844338252603159525, guid: 1a2ae86163fd06c42949f9aee41ef4a7, type: 3}
       propertyPath: skillStartSound
@@ -4717,7 +4729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1512943313822462816, guid: 43811eb07c6d6d347bf3d0e63851fea8, type: 3}
       propertyPath: gold
-      value: 11000
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 1512943313822462816, guid: 43811eb07c6d6d347bf3d0e63851fea8, type: 3}
       propertyPath: goldText
@@ -4737,12 +4749,16 @@ PrefabInstance:
       objectReference: {fileID: 2952434197485728657}
     - target: {fileID: 3156812138180371671, guid: 43811eb07c6d6d347bf3d0e63851fea8, type: 3}
       propertyPath: exp
-      value: 3950
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3156812138180371671, guid: 43811eb07c6d6d347bf3d0e63851fea8, type: 3}
       propertyPath: expText
       value: 
       objectReference: {fileID: 2144273056077928664}
+    - target: {fileID: 3156812138180371671, guid: 43811eb07c6d6d347bf3d0e63851fea8, type: 3}
+      propertyPath: expIncreaseAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5485677792625366425, guid: 43811eb07c6d6d347bf3d0e63851fea8, type: 3}
       propertyPath: m_Name
       value: ShopManager

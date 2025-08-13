@@ -111,7 +111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1344, y: 300}
+  m_AnchoredPosition: {x: 1350, y: 140}
   m_SizeDelta: {x: 20, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &379400321433440350
@@ -559,9 +559,9 @@ MonoBehaviour:
   - {fileID: 402038543466537056, guid: 73e2239f54db6ad4d81b8e88347cfe51, type: 3}
   - {fileID: 7399804362714274945, guid: 45e44bd239ab3cb4ba72cd770e9566ea, type: 3}
   maxTurrets: 2
-  buildTime: 30
-  spotBuildInterval: 10
-  initBuildTime: 10
+  buildTime: 90
+  spotBuildInterval: 90
+  initBuildTime: 60
   increaseMaxTurretTime: 480
 --- !u!1 &6491014475347042980
 GameObject:

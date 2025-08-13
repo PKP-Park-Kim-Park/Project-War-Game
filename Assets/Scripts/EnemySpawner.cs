@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         CalculateSpawnUnit();
-        _spawnCoolTime = Random.Range(1f, 3f);
+        _spawnCoolTime = Random.Range(_spawnCoolTimeMin, _spawnCoolTimeMax);
         _time = 0;
     }
 

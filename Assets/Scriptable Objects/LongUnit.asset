@@ -17,5 +17,5 @@ MonoBehaviour:
   _maxHealth: 75
   _attackDamage: 20
   _attackRange: 3
-  _gold: 100
-  _exp: 100
+  _gold: 75
+  _exp: 125

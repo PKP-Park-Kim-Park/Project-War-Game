@@ -186,7 +186,7 @@ MonoBehaviour:
   _dragSpeed: 0.01
   _invert: 0
   moveSpeed: 10
-  edgeThreshold: 0.2
+  edgeThreshold: 0.05
   _leftEnd: {fileID: 5541259216064972192}
   _rightEnd: {fileID: 1107372627736620359}
 --- !u!1 &9089176938891670316
