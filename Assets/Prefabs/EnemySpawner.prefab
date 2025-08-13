@@ -48,6 +48,8 @@ MonoBehaviour:
   - age: 0
     exp: 4000
     unitSpawnCoolTime: 32000000280000000a000000
-  _currentAge: 0
   _spawnPoint: {fileID: 0}
-  _upgradeAgeTime: 90
+  _upgradeAgeTime: 120
+  _spawnCoolTimeMin: 1
+  _spawnCoolTimeMax: 3
+  _hatchery: {fileID: 0}
