@@ -18,9 +18,9 @@ public class CamreController : MonoBehaviour
 
     private void Update()
     {
-        HandleMouseDrag();
+        //HandleMouseDrag();
 
-        // HandleTouchDrag(); // 모바일
+        HandleTouchDrag(); // 모바일
     }
 
     private void HandleMouseDrag()
@@ -74,8 +74,8 @@ public class CamreController : MonoBehaviour
 
             Vector3 next = transform.position + new Vector3(moveX, 0f, 0f);
 
-            float minX = (_leftEnd != null) ? _leftEnd.position.x : next.x;
-            float maxX = (_rightEnd != null) ? _rightEnd.position.x : next.x;
+            float minX = (_leftEnd != null) ? _leftEnd.localPosition.x : next.x;
+            float maxX = (_rightEnd != null) ? _rightEnd.localPosition.x : next.x;
             if (minX > maxX)
             {
                 float tmp = minX;

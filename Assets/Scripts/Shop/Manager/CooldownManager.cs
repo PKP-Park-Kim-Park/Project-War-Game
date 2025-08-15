@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class CooldownManager : MonoBehaviour
 {
-    public Image cooltimeBarFill;
+    public Slider cooltimeSlider;
 
     public SpawnPoint spawnPoint; // SpawnPoint 스크립트 참조
     private int unitIndexToSpawn; // 스폰할 유닛의 인덱스 저장
@@ -14,9 +14,9 @@ public class CooldownManager : MonoBehaviour
 
     void Start()
     {
-        if (cooltimeBarFill != null)
+        if (cooltimeSlider != null)
         {
-            cooltimeBarFill.fillAmount = 0;
+            cooltimeSlider.value = 0;
         }
     }
 
@@ -25,13 +25,13 @@ public class CooldownManager : MonoBehaviour
         if (isCooldown)
         {
             currentCooldownTime += Time.deltaTime;
-            cooltimeBarFill.fillAmount = currentCooldownTime / maxCooldownTime;
+            cooltimeSlider.value = currentCooldownTime / maxCooldownTime;
 
             if (currentCooldownTime >= maxCooldownTime)
             {
                 isCooldown = false;
                 currentCooldownTime = 0;
-                cooltimeBarFill.fillAmount = 0;
+                cooltimeSlider.value = 0;
 
                 //여기에 스폰유닛함수를 넣어야댐
                 if (spawnPoint != null)
@@ -59,7 +59,7 @@ public class CooldownManager : MonoBehaviour
             isCooldown = true;
             maxCooldownTime = buttonCooldownTime; // 버튼에서 받은 쿨타임 시간으로 설정
             currentCooldownTime = 0;
-            cooltimeBarFill.fillAmount = 0;
+            cooltimeSlider.value = 0;
 
             // 전달받은 unitIndex를 저장합니다.
             unitIndexToSpawn = unitIndex;
