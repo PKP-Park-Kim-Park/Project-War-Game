@@ -18,9 +18,9 @@ public class CamreController : MonoBehaviour
 
     private void Update()
     {
-        HandleMouseDrag();
+        //HandleMouseDrag();
 
-        // HandleTouchDrag(); // 모바일
+        HandleTouchDrag(); // 모바일
     }
 
     private void HandleMouseDrag()
