@@ -21,18 +21,18 @@ public class ShopManager : MonoBehaviour
     {
         //Unit Shop 1
         { 25, 1.0f },
-        { 65, 2.0f },
-        {150, 3.0f },
+        { 65, 1.3f },
+        {150, 2.0f },
 
         //Unit Shop 2
-        { 70, 2.0f },
-        { 130, 4.0f },
-        { 330, 6.0f },
+        { 70, 1.2f },
+        { 130, 1.8f },
+        { 330, 2.5f },
 
         //unit shop 3
-        { 100, 3.0f },
-        { 185, 6.0f },
-        { 500, 8.0f },
+        { 100, 1.5f },
+        { 185, 2.2f },
+        { 500, 3.0f },
     };
 
     // 비용(cost)을 키로, 유닛 인덱스(unitIndex)를 값으로 하는 딕셔너리
@@ -58,19 +58,19 @@ public class ShopManager : MonoBehaviour
         _unitCostsAndIndices.Add(500, 8);
 
         // Turret Shop 1의 터렛 추가
-        _turretCostsAndIndices.Add(250, 0);
-        _turretCostsAndIndices.Add(400, 1);
-        _turretCostsAndIndices.Add(600, 2);
+        _turretCostsAndIndices.Add(300, 0);
+        _turretCostsAndIndices.Add(500, 1);
+        _turretCostsAndIndices.Add(900, 2);
 
         // Turret Shop 2의 터렛 추가
-        _turretCostsAndIndices.Add(650, 3);
-        _turretCostsAndIndices.Add(800, 4);
-        _turretCostsAndIndices.Add(1000, 5);
+        _turretCostsAndIndices.Add(750, 3);
+        _turretCostsAndIndices.Add(1100, 4);
+        _turretCostsAndIndices.Add(1700, 5);
 
         // Turret Shop 2의 터렛 추가
-        _turretCostsAndIndices.Add(900, 6);
-        _turretCostsAndIndices.Add(1300, 7);
-        _turretCostsAndIndices.Add(1500, 8);
+        _turretCostsAndIndices.Add(1500, 6);
+        _turretCostsAndIndices.Add(2200, 7);
+        _turretCostsAndIndices.Add(3000, 8);
     }
 
     void Start()
