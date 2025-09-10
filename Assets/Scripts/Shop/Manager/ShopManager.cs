@@ -21,24 +21,33 @@ public class ShopManager : MonoBehaviour
     {
         //Unit Shop 1
         { 25, 1.0f },
-        { 65, 2.0f },
-        {150, 3.0f },
+        { 65, 1.3f },
+        {150, 2.0f },
 
         //Unit Shop 2
-        { 70, 2.0f },
-        { 130, 4.0f },
-        { 330, 6.0f },
+        { 70, 1.2f },
+        { 130, 1.8f },
+        { 330, 2.5f },
 
         //unit shop 3
-        { 100, 3.0f },
-        { 185, 6.0f },
-        { 500, 8.0f },
+        { 100, 1.5f },
+        { 185, 2.2f },
+        { 500, 3.0f },
     };
 
     // 비용(cost)을 키로, 유닛 인덱스(unitIndex)를 값으로 하는 딕셔너리
     private Dictionary<int, int> _unitCostsAndIndices = new Dictionary<int, int>();
     //터렛 비용과 인덱스를 매핑하는 딕셔너리 추가
     private Dictionary<int, int> _turretCostsAndIndices = new Dictionary<int, int>();
+
+    // 모든 유닛 합산 대기큐
+    private Queue<(int unitIndex, int cost)> unitSpawnQueue = new Queue<(int, int)>();
+    private const int maxQueueSize = 4;
+
+    // UI 관련 변수
+    public Transform queueUIParent;              // QueuePanel 연결
+    public GameObject queueBoxPrefab;            // 흰색 박스 프리팹 연결
+    private List<GameObject> activeQueueBoxes = new List<GameObject>();  // 현재 띄워진 박스 리스트
 
     void Awake()
     {
@@ -58,19 +67,19 @@ public class ShopManager : MonoBehaviour
         _unitCostsAndIndices.Add(500, 8);
 
         // Turret Shop 1의 터렛 추가
-        _turretCostsAndIndices.Add(250, 0);
-        _turretCostsAndIndices.Add(400, 1);
-        _turretCostsAndIndices.Add(600, 2);
+        _turretCostsAndIndices.Add(300, 0);
+        _turretCostsAndIndices.Add(500, 1);
+        _turretCostsAndIndices.Add(900, 2);
 
         // Turret Shop 2의 터렛 추가
-        _turretCostsAndIndices.Add(650, 3);
-        _turretCostsAndIndices.Add(800, 4);
-        _turretCostsAndIndices.Add(1000, 5);
+        _turretCostsAndIndices.Add(750, 3);
+        _turretCostsAndIndices.Add(1100, 4);
+        _turretCostsAndIndices.Add(1700, 5);
 
         // Turret Shop 2의 터렛 추가
-        _turretCostsAndIndices.Add(900, 6);
-        _turretCostsAndIndices.Add(1300, 7);
-        _turretCostsAndIndices.Add(1500, 8);
+        _turretCostsAndIndices.Add(1500, 6);
+        _turretCostsAndIndices.Add(2200, 7);
+        _turretCostsAndIndices.Add(3000, 8);
     }
 
     void Start()
@@ -83,38 +92,48 @@ public class ShopManager : MonoBehaviour
                 Debug.LogError("TurretManager 인스턴스를 찾을 수 없습니다. 씬에 TurretManager를 배치했는지 확인하세요.");
             }
         }
+        UpdateQueueUI();
     }
 
     public void OnUnitButton(int cost)
     {
+        if (!_unitCostsAndIndices.TryGetValue(cost, out int unitIndex))
+            return;
+
+        // 대기큐 공간 먼저 확인 (골드 차감 전에)
+        if (unitSpawnQueue.Count >= maxQueueSize)
+        {
+            Debug.Log("대기큐가 가득 찼습니다. 골드 차감 없음.");
+            // 필요시 UI에 대기큐 꽉 찼다는 메시지 표시
+            return;
+        }
+
+        // 골드가 충분한지 확인하고 차감
+        if (GoldManager.instance == null || !GoldManager.instance.SpendGold(cost))
+        {
+            Debug.Log("골드 부족으로 유닛 구매 불가");
+            return;
+        }
+
+        // 쿨타임 없는 경우 즉시 소환
         if (cooldownManager != null && !cooldownManager.IsOnCooldown())
         {
-            // 골드가 충분한지 확인
-            if (GoldManager.instance != null && GoldManager.instance.SpendGold(cost))
+            if (_cooldownTimes.TryGetValue(cost, out float cooldownTime))
             {
-                // 비용에 해당하는 쿨타임과 유닛 인덱스를 가져옴
-                if (_cooldownTimes.TryGetValue(cost, out float cooldownTime) &&
-                    _unitCostsAndIndices.TryGetValue(cost, out int unitIndex))
-                {
-                    // 쿨타임 시작 시 유닛 인덱스를 함께 전달
-                    cooldownManager.StartCooldown(cooldownTime, unitIndex);
-                    Debug.Log($"유닛 구매! {cost} 골드 소모. 유닛 인덱스: {unitIndex}");
-                }
-                else
-                {
-                    Debug.LogWarning($"비용 {cost}에 대한 쿨타임 또는 유닛 인덱스 설정이 없습니다.");
-                }
-            }
-            else
-            {
-                Debug.Log("골드 부족!");
+                cooldownManager.StartCooldown(cooldownTime, unitIndex);
+                Debug.Log($"유닛 즉시 소환: 인덱스 {unitIndex}");
             }
         }
         else
         {
-            Debug.Log("쿨다운 중이거나 쿨다운 매니저 미연결");
+            // 쿨타임 중이면 대기큐에 추가
+            unitSpawnQueue.Enqueue((unitIndex, cost));
+            Debug.Log($"대기큐에 추가: 인덱스 {unitIndex}");
+            UpdateQueueUI();
         }
     }
+
+
 
     public void OnTurretButton(int cost)
     {
@@ -191,5 +210,51 @@ public class ShopManager : MonoBehaviour
 
         }
     }
+    public void OnCooldownFinished()
+    {
+        if (unitSpawnQueue.Count > 0)
+        {
+            var (unitIndex, cost) = unitSpawnQueue.Dequeue();
+            if (_cooldownTimes.TryGetValue(cost, out float cooldownTime))
+            {
+                cooldownManager.StartCooldown(cooldownTime, unitIndex);
+                UpdateQueueUI();
+                Debug.Log($"대기큐에서 유닛 소환 시작: 인덱스 {unitIndex}");
+            }
+        }
+    }
+
+    public void UpdateQueueUI()
+    {
+        // 기존 박스 모두 제거
+        foreach (var box in activeQueueBoxes)
+            Destroy(box);
+        activeQueueBoxes.Clear();
+
+        // 채워진 박스: 실제 대기큐에 들어있는 유닛 개수만큼
+        int filledCount = unitSpawnQueue.Count;
+        for (int i = 0; i < filledCount; i++)
+        {
+            GameObject box = Instantiate(queueBoxPrefab, queueUIParent);
+            // 기본: 채워진 박스(불투명 흰색 등)
+            Image img = box.GetComponent<Image>();
+            if (img != null)
+                img.color = Color.white;
+            activeQueueBoxes.Add(box);
+        }
+
+        // 빈 박스: (최대 - 현재 대기큐 개수)만큼 반복
+        for (int i = filledCount; i < maxQueueSize; i++)
+        {
+            GameObject box = Instantiate(queueBoxPrefab, queueUIParent);
+            // 빈 칸 연출: 투명도 낮추거나 회색 등
+            Image img = box.GetComponent<Image>();
+            if (img != null)
+                img.color = new Color(1, 1, 1, 0.5f); // 연한 흰색
+            activeQueueBoxes.Add(box);
+        }
+    }
+
+
 }
 

@@ -701,6 +701,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 352603948113726037, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 650
+      objectReference: {fileID: 0}
+    - target: {fileID: 352603948113726037, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 340
+      objectReference: {fileID: 0}
+    - target: {fileID: 352603948113726037, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 828419242228628274, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
       propertyPath: turretManager
       value: 
@@ -714,6 +726,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2123524208}
     - target: {fileID: 1001844208731127148, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1899523440}
+    - target: {fileID: 1465905992867009936, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1899523440}
@@ -765,6 +781,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1899523440}
+    - target: {fileID: 2918200694771697365, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298316352337412324, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 650
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298316352337412324, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 340
+      objectReference: {fileID: 0}
     - target: {fileID: 3315376319412112258, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
       propertyPath: spawnPoint
       value: 
@@ -781,11 +809,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5825960663486447445, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1899523440}
     - target: {fileID: 5984377211678043244, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1899523440}
+    - target: {fileID: 6105639271013130322, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1899523440}
     - target: {fileID: 6151806567116122159, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1899523440}
+    - target: {fileID: 6555745741709975055, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1899523440}

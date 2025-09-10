@@ -144,7 +144,7 @@ public class EnemyAIController : MonoBehaviour
 
     private void BuildNewTurret(List<EnemyTurretSlot> emptySlots)
     {
-        GameObject turretToBuild = turretBuildSequence[0]; // 신규 건설은 항상 기본 터렛으로
+        GameObject turretToBuild = turretBuildSequence[1]; // 신규 건설은 항상 기본 터렛으로
         EnemyTurretSlot slotToBuildIn = emptySlots[Random.Range(0, emptySlots.Count)];
 
         Debug.Log($"AI: 빈 슬롯 '{slotToBuildIn.gameObject.name}'에 기본 터렛 '{turretToBuild.name}' 신규 건설을 시도합니다.", this);
@@ -169,11 +169,11 @@ public class EnemyAIController : MonoBehaviour
                 Debug.LogWarning("씬에서 TurretSpotBuilder를 못 찾겠음..", this);
             }
 
-            // 최대 터렛 수 증가 타이머 시작
-            if (increaseMaxTurretTime > 0)
-            {
-                StartCoroutine(IncreaseMaxTurretsAfterDelay());
-            }
+            //// 최대 터렛 수 증가 타이머 시작
+            //if (increaseMaxTurretTime > 0)
+            //{
+            //    StartCoroutine(IncreaseMaxTurretsAfterDelay());
+            //}
         }
     }
 
