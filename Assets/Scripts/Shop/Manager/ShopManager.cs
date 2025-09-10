@@ -250,7 +250,7 @@ public class ShopManager : MonoBehaviour
             // 빈 칸 연출: 투명도 낮추거나 회색 등
             Image img = box.GetComponent<Image>();
             if (img != null)
-                img.color = new Color(1, 1, 1, 0.25f); // 연한 흰색
+                img.color = new Color(1, 1, 1, 0.5f); // 연한 흰색
             activeQueueBoxes.Add(box);
         }
     }
