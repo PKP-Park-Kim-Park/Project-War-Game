@@ -15,7 +15,7 @@ MonoBehaviour:
   _unitType: 1
   _moveSpeed: 1
   _maxHealth: 75
-  _attackDamage: 20
+  _attackDamage: 25
   _attackRange: 3
   _gold: 75
   _exp: 125

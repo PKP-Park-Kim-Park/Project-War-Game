@@ -4,13 +4,15 @@ using UnityEngine.UI;
 public class CooldownManager : MonoBehaviour
 {
     public Slider cooltimeSlider;
-
     public SpawnPoint spawnPoint; // SpawnPoint 스크립트 참조
+    
     private int unitIndexToSpawn; // 스폰할 유닛의 인덱스 저장
-
     private float currentCooldownTime = 0f;
     private float maxCooldownTime = 0f; // 버튼 클릭 시 설정될 쿨타임 시간
     private bool isCooldown = false;
+
+    // ShopManager 참조 필요 (할당 또는 Find 등)
+    private ShopManager shopManager;
 
     void Start()
     {
@@ -18,6 +20,9 @@ public class CooldownManager : MonoBehaviour
         {
             cooltimeSlider.value = 0;
         }
+        shopManager = FindObjectOfType<ShopManager>();
+        if (shopManager == null)
+            Debug.LogError("ShopManager 인스턴스를 찾을 수 없습니다.");
     }
 
     private void Update()
@@ -40,6 +45,10 @@ public class CooldownManager : MonoBehaviour
                 }
 
                 Debug.Log("쿨타임 종료! 다시 사용 가능합니다.");
+
+                // **쿨타임 완료 알려주기**
+                if (shopManager != null)
+                    shopManager.OnCooldownFinished(); // 대기큐 다음 아이템 처리 호출
             }
         }
     }

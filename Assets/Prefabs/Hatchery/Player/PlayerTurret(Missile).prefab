@@ -138,7 +138,7 @@ MonoBehaviour:
   turnSpeed: 10
   fireRate: 1
   initialFireDelay: 0.5
-  baseProjectileDamage: 35
+  baseProjectileDamage: 20
   damageUpgradeMultiplier: 1
   enemyTag: Enemy
   partToRotate: {fileID: 5527621026151770015}
