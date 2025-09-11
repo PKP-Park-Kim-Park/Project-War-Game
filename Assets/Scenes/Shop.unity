@@ -701,18 +701,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 352603948113726037, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 650
-      objectReference: {fileID: 0}
-    - target: {fileID: 352603948113726037, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 340
-      objectReference: {fileID: 0}
-    - target: {fileID: 352603948113726037, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 828419242228628274, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
       propertyPath: turretManager
       value: 
@@ -784,14 +772,6 @@ PrefabInstance:
     - target: {fileID: 2918200694771697365, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3298316352337412324, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 650
-      objectReference: {fileID: 0}
-    - target: {fileID: 3298316352337412324, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 340
       objectReference: {fileID: 0}
     - target: {fileID: 3315376319412112258, guid: 2f4be7c84617bda4a8ed7a7ecd09ced7, type: 3}
       propertyPath: spawnPoint
