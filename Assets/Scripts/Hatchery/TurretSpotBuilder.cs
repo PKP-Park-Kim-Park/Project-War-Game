@@ -110,6 +110,14 @@ public class TurretSpotBuilder : MonoBehaviour
 
         GameObject newSpot = Instantiate(turretSpotPrefab, spawnPosition, Quaternion.identity, spotParent);
         _turretSpots.Add(newSpot);
+
+        // 새로 생성된 터렛 스팟의 TurretSlot을 TurretManager에 등록합니다.
+        TurretSlot newSlot = newSpot.GetComponentInChildren<TurretSlot>();
+        if (newSlot != null && TurretManager.Instance != null)
+        {
+            TurretManager.Instance.RegisterTurretSlot(newSlot);
+        }
+
         Debug.Log($"{_turretSpots.Count}번째 터렛 스팟 생성 완료.", newSpot);
     }
 }

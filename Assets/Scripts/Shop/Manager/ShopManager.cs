@@ -155,6 +155,19 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 터렛 구매 창을 닫을 때 호출될 메서드 (UI의 Exit 버튼에 연결)
+    /// </summary>
+    public void OnExitTurretShopButton()
+    {
+        if (TurretManager.Instance != null && TurretManager.Instance.isPlacingTurret)
+        {
+            // 터렛 설치 모드를 종료하여 시각 효과를 끕니다.
+            TurretManager.Instance.EndTurretPlacement();
+            Debug.Log("터렛 설치가 취소되었습니다.");
+        }
+    }
+
     public void OnSellingButton(int cost)
     {
         if (turretManager != null)
