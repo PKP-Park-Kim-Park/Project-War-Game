@@ -38,6 +38,12 @@ public class TurretSlot : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+
+        // TurretManager가 초기화될 때 모든 슬롯의 상태를 업데이트하도록 요청할 수 있습니다.
+        if (TurretManager.Instance != null)
+        {
+            TurretManager.Instance.UpdateAllSlotsVisuals();
+        }
     }
 
     void Start()
@@ -46,6 +52,12 @@ public class TurretSlot : MonoBehaviour
         if (hoverVisual != null)
         {
             hoverVisual.SetActive(false);
+        }
+
+        // TurretManager가 초기화될 때 모든 슬롯의 상태를 업데이트하도록 요청할 수 있습니다.
+        if (TurretManager.Instance != null)
+        {
+            TurretManager.Instance.UpdateAllSlotsVisuals();
         }
     }
 
@@ -133,6 +145,7 @@ public class TurretSlot : MonoBehaviour
         }
 
         isOccupied = true;
+        if (TurretManager.Instance != null) TurretManager.Instance.UpdateAllSlotsVisuals();
         Debug.Log($"터렛 '{turretPrefab.name}'이(가) '{this.gameObject.name}'에 장착됨..", this.gameObject);
 
         // 터렛 장착 효과음 재생
@@ -171,6 +184,7 @@ public class TurretSlot : MonoBehaviour
             Destroy(mountedTurret);
             mountedTurret = null;
             isOccupied = false;
+            if (TurretManager.Instance != null) TurretManager.Instance.UpdateAllSlotsVisuals();
 
             // GoldManager를 통해 골드를 추가합니다.
             if (GoldManager.instance != null)
@@ -199,33 +213,26 @@ public class TurretSlot : MonoBehaviour
     }
 
     /// <summary>
-    /// 호버 효과
+    /// TurretManager의 상태에 따라 슬롯의 시각적 효과를 업데이트합니다.
     /// </summary>
-
-    private void OnMouseEnter()
+    public void UpdateVisual()
     {
         if (hoverVisual == null) return;
 
-        // 비어있는 슬롯에 터렛을 설치할 때
-        if (!isOccupied && TurretManager.Instance != null && TurretManager.Instance.isPlacingTurret)
+        bool shouldShow = false;
+        if (TurretManager.Instance != null)
         {
-            hoverVisual.SetActive(true);
+            // 설치 모드이고 슬롯이 비어있을 때
+            if (TurretManager.Instance.isPlacingTurret && !isOccupied)
+            {
+                shouldShow = true;
+            }
+            // 판매 모드이고 슬롯이 차있을 때
+            else if (TurretManager.Instance.isSellingTurret && isOccupied)
+            {
+                shouldShow = true;
+            }
         }
-        // 터렛이 설치된 슬롯을 판매할 때
-        else if (isOccupied && TurretManager.Instance != null && TurretManager.Instance.isSellingTurret)
-        {
-            hoverVisual.SetActive(true);
-        }
-    }
-
-
-
-    private void OnMouseExit()
-    {
-
-        if (hoverVisual != null)
-        {
-            hoverVisual.SetActive(false);
-        }
+        hoverVisual.SetActive(shouldShow);
     }
 }
