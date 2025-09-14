@@ -66,8 +66,11 @@ public class TurretSlot : MonoBehaviour
         // TurretManager가 없으면 아무것도 하지 않음.
         if (TurretManager.Instance == null)
         {
+            Debug.LogError("TurretSlot: TurretManager.Instance가 null입니다. OnMouseDown을 처리할 수 없습니다.", this);
             return;
         }
+
+        Debug.Log($"OnMouseDown: {gameObject.name} 클릭됨. isSellingTurret: {TurretManager.Instance.isSellingTurret}, isPlacingTurret: {TurretManager.Instance.isPlacingTurret}", this);
 
         // --- 판매 모드일 때의 동작 ---
         if (TurretManager.Instance.isSellingTurret)
@@ -75,6 +78,7 @@ public class TurretSlot : MonoBehaviour
             // 슬롯에 터렛이 있다면 제거(판매)
             if (isOccupied)
             {
+                Debug.Log("판매 모드: 점유된 슬롯이므로 터렛을 판매합니다.", this);
                 RemoveTurret();
                 // 판매 후 판매 모드 종료 (선택 사항)
                 TurretManager.Instance.ToggleSellMode();
@@ -93,12 +97,14 @@ public class TurretSlot : MonoBehaviour
 
                 if (turretToBuild != null)
                 {
+                    Debug.Log($"설치 시도: {turretToBuild.name}, 비용: {turretCost}", this);
                     if (GoldManager.instance != null && GoldManager.instance.SpendGold(turretCost))
                     {
                         if (MountTurret(turretToBuild))
                         {
                             Debug.Log("터렛 설치 완료");
                         }
+                        // 설치 성공 후 설치 모드 종료
                         TurretManager.Instance.EndTurretPlacement();
                     }
                     else
@@ -107,6 +113,10 @@ public class TurretSlot : MonoBehaviour
                         TurretManager.Instance.EndTurretPlacement();
                     }
                 }
+            }
+            else
+            {
+                Debug.Log("설치 모드: 슬롯이 이미 점유되어 있어 설치할 수 없습니다.", this);
             }
         }
     }

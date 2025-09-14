@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -17,10 +18,16 @@ public class TurretSpotBuilder : MonoBehaviour
     [Tooltip("첫 번째 터렛 스팟이 생성될 위치 (spotParent 기준 로컬 좌표)")]
     public Vector3 initialSpotPosition = Vector3.zero;
 
+    [Tooltip("건설할 수 있는 최대 터렛 스팟의 수")]
+    [SerializeField] private int maxTurretSpots = 4;
+
+    // 터렛 스팟이 생성될 때 발생하는 이벤트. TurretManager가 이를 구독함.
+    public static event Action<TurretSlot> OnTurretSpotBuilt;
+
     private List<GameObject> _turretSpots = new List<GameObject>();
     private float _buildInterval = 10f; // AI 컨트롤러로부터 값을 받기 전의 기본값
-    private const int MAX_TURRET_SPOTS = 4;
     private bool _isBuildingProcessStarted = false;
+
 
     void Start()
     {
@@ -39,7 +46,14 @@ public class TurretSpotBuilder : MonoBehaviour
 
         GameObject initialSpot = Instantiate(turretSpotPrefab, parent.TransformPoint(initialSpotPosition), parent.rotation, parent);
         _turretSpots.Add(initialSpot);
-        Debug.Log($"<color=cyan>초기 터렛 스팟 '{initialSpot.name}' 생성 완료.</color>", initialSpot);
+
+        // 초기 스팟에 대한 이벤트도 발생시켜 TurretManager가 등록할 수 있도록 함.
+        TurretSlot initialSlot = initialSpot.GetComponentInChildren<TurretSlot>();
+        if (initialSlot != null)
+        {
+            OnTurretSpotBuilt?.Invoke(initialSlot);
+            Debug.Log($"<color=cyan>초기 터렛 스팟 '{initialSpot.name}' 생성 및 등록 완료.</color>", initialSpot);
+        }
     }
 
     /// <summary>
@@ -61,7 +75,7 @@ public class TurretSpotBuilder : MonoBehaviour
     private IEnumerator BuildSpotsOverTime()
     {
         // 최대 스팟 수에 도달할 때까지 반복합니다.
-        while (_turretSpots.Count < MAX_TURRET_SPOTS)
+        while (_turretSpots.Count < maxTurretSpots)
         {
             yield return new WaitForSeconds(_buildInterval);
 
@@ -89,9 +103,9 @@ public class TurretSpotBuilder : MonoBehaviour
             return;
         }
 
-        if (_turretSpots.Count >= MAX_TURRET_SPOTS)
+        if (_turretSpots.Count >= maxTurretSpots)
         {
-            Debug.Log("터렛 스팟이 최대 개수에 도달.. (최대: " + MAX_TURRET_SPOTS + "개)", this);
+            Debug.Log("터렛 스팟이 최대 개수에 도달.. (최대: " + maxTurretSpots + "개)", this);
             return;
         }
 
@@ -111,12 +125,9 @@ public class TurretSpotBuilder : MonoBehaviour
         GameObject newSpot = Instantiate(turretSpotPrefab, spawnPosition, Quaternion.identity, spotParent);
         _turretSpots.Add(newSpot);
 
-        // 새로 생성된 터렛 스팟의 TurretSlot을 TurretManager에 등록합니다.
+        // 새로 생성된 터렛 스팟의 TurretSlot을 이벤트로 알림.
         TurretSlot newSlot = newSpot.GetComponentInChildren<TurretSlot>();
-        if (newSlot != null && TurretManager.Instance != null)
-        {
-            TurretManager.Instance.RegisterTurretSlot(newSlot);
-        }
+        OnTurretSpotBuilt?.Invoke(newSlot);
 
         Debug.Log($"{_turretSpots.Count}번째 터렛 스팟 생성 완료.", newSpot);
     }

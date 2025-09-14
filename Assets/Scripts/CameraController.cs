@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CamreController : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [Header("Drag Settings")]
     [SerializeField] private float _dragSpeed = 0.01f;  

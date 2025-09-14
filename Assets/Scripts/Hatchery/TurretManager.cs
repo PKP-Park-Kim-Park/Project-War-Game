@@ -30,12 +30,26 @@ public class TurretManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        // TurretSpotBuilder에서 발생하는 이벤트를 구독함.
+        TurretSpotBuilder.OnTurretSpotBuilt += RegisterTurretSlot;
+    }
+
+    private void OnDestroy()
+    {
+        // 오브젝트가 파괴될 때 이벤트 구독을 해제하여 메모리 누수를 방지함.
+        if (Instance == this)
+        {
+            TurretSpotBuilder.OnTurretSpotBuilt -= RegisterTurretSlot;
+        }
     }
 
     private void Start()
     {
         // 씬에 있는 모든 TurretSlot을 찾아서 리스트에 추가합니다.
+        // 이 코드는 씬에 미리 배치된 슬롯들을 등록하기 위해 여전히 유용함.
         allTurretSlots = FindObjectsOfType<TurretSlot>().ToList();
+        UpdateAllSlotsVisuals();
     }
     /// <summary>
     /// 터렛 설치 모드를 시작하고, 설치할 터렛 정보를 저장
@@ -108,7 +122,7 @@ public class TurretManager : MonoBehaviour
     /// </summary>
     /// <param name="slot">새로 추가할 터렛 슬롯</param>
     public void RegisterTurretSlot(TurretSlot slot)
-    {
+    {        
         if (slot != null && !allTurretSlots.Contains(slot))
         {
             allTurretSlots.Add(slot);
