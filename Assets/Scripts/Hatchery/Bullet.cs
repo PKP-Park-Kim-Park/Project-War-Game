@@ -5,14 +5,6 @@ using UnityEngine;
 /// </summary>
 public class Bullet : BaseProjectile
 {
-    [Header("Bullet Stats")]
-    [SerializeField] private float speed = 20f;
-
-    protected override void Start()
-    {
-        base.Start(); // lifeTime 후 자동 파괴 및 이펙트 생성을 위해 부모의 Start() 호출
-
-        // 총알을 생성된 방향(로컬 X축)으로 발사
-        rb.linearVelocity = transform.right * speed;
-    }
+    // BaseProjectile에서 이동 로직을 처리하므로 추가 코드가 필요 없습니다.
+    // 인스펙터에서 speed 값을 조절할 수 있습니다.
 }
