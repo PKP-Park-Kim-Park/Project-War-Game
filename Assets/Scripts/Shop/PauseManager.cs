@@ -43,8 +43,9 @@ public class PauseManager : MonoBehaviour
     {
         // 게임 상태 초기화
         Time.timeScale = 1f; // 게임 시간을 정상 상태로 되돌림
-
-        // 초기 화면 씬 로드
-        SceneManager.LoadScene("Title"); // 빌드 설정에서 0번 인덱스에 있는 씬을 로드
+        GameManager.instance.ShowInterstitialAd(() =>
+        {
+            SceneManager.LoadScene("Title");
+        });
     }
 }
