@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
 
 public class UltSkill : MonoBehaviour
 {
@@ -64,7 +65,10 @@ public class UltSkill : MonoBehaviour
         // 쿨다운 시간이 지났을 때만 코루틴을 시작
         if (Time.time >= nextAvailableTime)
         {
-            StartCoroutine(UseSkillCoroutine());
+            GameManager.instance.ShowInterstitialAd(() =>
+            {
+                StartCoroutine(UseSkillCoroutine());
+            });
         }
         else
         {
