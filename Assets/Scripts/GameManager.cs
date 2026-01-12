@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     //private string _adUnitId = "ca-app-pub-3940256099942544/1033173712";
 
     // 실제 적용 키
-    private string _adUnitId = "ca-app-pub-3114806291227513/3809244222";
+    private string _adUnitId = "";
 
     private void Awake()
     {
