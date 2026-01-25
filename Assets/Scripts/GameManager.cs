@@ -144,10 +144,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("게임 종료");
         Time.timeScale = 1f;
-
-        ShowInterstitialAd(() =>
-        {
-            SceneManager.LoadScene("Title");
-        });
+        SceneManager.LoadScene("Title");
     }
 }

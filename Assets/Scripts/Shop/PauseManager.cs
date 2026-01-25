@@ -43,9 +43,6 @@ public class PauseManager : MonoBehaviour
     {
         // 게임 상태 초기화
         Time.timeScale = 1f; // 게임 시간을 정상 상태로 되돌림
-        GameManager.instance.ShowInterstitialAd(() =>
-        {
-            SceneManager.LoadScene("Title");
-        });
+        SceneManager.LoadScene("Title");
     }
 }
